@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NBA Player Comparison & Prediction Tool - Project Proposal</title>
-  <link rel="stylesheet" href="proposal.css" />
+  <link rel="stylesheet" href="css/proposal.css" />
 </head>
 <body>
   <header>
@@ -14,75 +14,66 @@
   <section>
     <h2>Problem Description</h2>
     <p>
-      The NBA is one of the most statistics-driven sports leagues, with fans regularly engaging in debates over player performance, legacy, and overall impact. Whether it’s casual conversations or in-depth fantasy league decisions, comparing two players side by side is a common and meaningful activity for many basketball enthusiasts.
+      The NBA is filled with fan debates about who the best players are, yet there is no dedicated platform that allows fans to rate and rank players based on their own opinions. While sites like <strong>Basketball Reference</strong> provide extensive stats, they focus on objective data and lack a personalized or community-driven element. Fans have no easy way to express or share how they perceive players across different skill areas.
     </p>
     <p>
-      However, current tools for player comparison often fall short. Websites like <strong>Basketball Reference</strong> provide a wealth of data, but the interface can be overwhelming and unintuitive, especially for newer fans. Similarly, platforms like <strong>StatMuse</strong> allow for player stat lookups via natural language queries but don't offer customizable or shareable side-by-side comparisons.
+      Other platforms like <strong>StatMuse</strong> or Reddit allow discussion but don’t offer structured tools for individual player ratings, community rankings, or curated favorites. Inspired by media-focused sites like IMDb and Letterboxd, this project aims to bring a more interactive, opinion-based experience to NBA fans—bridging the gap between cold stats and fan sentiment.
     </p>
-</section>
-
-<section>
+  </section>
+  
+  <section>
     <h2>Proposed Application</h2>
     <p>
-      This project addresses the need for a more accessible and engaging way to compare NBA players. We’re building a web application that allows users to:
+      This project introduces a web application that allows users to rate NBA players across multiple categories, including Shooting, Defense, Playmaking, and Rebounding. Each player will receive an overall community score based on fan ratings, which will be displayed on their profile alongside key stats and a highlight reel.
     </p>
     <ul>
-      <li>Select any two NBA players and view their stats side by side</li>
-      <li>Visualize performance across categories such as points, assists, rebounds, and shooting percentages</li>
-      <li>Save interesting matchups for future reference</li>
-      <li>Share them with others through a direct link</li>
+      <li>Rate players from 1 to 10 in multiple skill categories</li>
+      <li>View average fan scores and official stats on player pages</li>
+      <li>Track rating trends over time with dynamic charts</li>
+      <li>Create a profile to build and share a Top 10 Favorite Players list</li>
     </ul>
     <p>
-      By focusing on simplicity, usability, and interactivity, this project aims to improve the experience of exploring NBA data, whether for casual fun, settling a debate, or supporting a favorite player. While the problem may not be a large-scale social issue, it reflects a real gap in how information is accessed and shared in the context of sports and presents an opportunity for a thoughtful technological solution.
+      By combining personal expression with interactive data features, the app offers a unique way for fans to engage with the NBA. It goes beyond viewing stats by allowing users to contribute their own evaluations, turning player tracking into a personalized and community-driven experience.
     </p>
+  </section>
+
   <section>
-      <h3>Target Users</h3>
-      <p>
-        Our webpage’s target audience are basketball fans as our site is based on the NBA. Since NBA fans come from diverse backgrounds, our site is designed to be inclusive and accessible to all, 
-        with no negative impact on any minority groups. User’s will interact with our version of IMDB but for NBA players, where they can vote on the best player in a given category (shooting, dunking, 
-        defense, playmaking, and rebounding). These votes will be used to determine a ranking for each category, and we’ll combine the results from all these categories to display an overall ranking list well. 
-        Each NBA player will have a page or section which shows their career averages, current season stats, and IMDB rankings which we’ll need to use an API for. On top of this, users can customize their 
-        personal profile by adding their “Top 10 favorite players” to their profile. Finally, players will be able to create custom teams using actual NBA players, and compare them with other teams to see which is better.
-      </p>
-    </section>
+    <h3>Target Users</h3>
+    <p>
+      Our webpage’s target audience is basketball fans, as our site is centered around the NBA. Since NBA fans come from diverse backgrounds, our site is designed to be inclusive and accessible to all. Users will interact with our version of IMDb for NBA players, where they can vote on the best players in specific categories like shooting, dunking, defense, playmaking, and rebounding. These votes will determine rankings in each category and contribute to an overall player ranking.
+    </p>
+    <p>
+      Each NBA player will have a profile page displaying their career averages, current stats, and user-generated rankings. Users can also customize their own profile by adding their “Top 10 favorite players” and creating custom teams using actual NBA players. These teams can then be compared with others to see which is stronger.
+    </p>
+  </section>
 
-    <section>
-      <h3>Interactive Features</h3>
-      <ul>
-        <li><strong>Player IMDB</strong> – The first significant feature for our website is an IMDB rating for NBA players, where we’ll create player rankings for the best play in categories such as shooting, dunking, defense, playmaking, and rebounding. These rankings will be determined by the users of our site, who will vote for the best player in each category. We’ll also include an overall best player category which is a combination of the results from the other categories. </li>
-        <li><strong>Custom Team Builder</strong> – The second significant feature is a custom team builder, where users can create teams of 5 players and compare them against other custom teams or actual NBA teams. We’ll utilize an algorithm to determine the better play, and display the result to the user.</li>
-        <li><strong>NBA Player Page</strong> – One small feature we’ll be including are NBA player profiles where we’ll display their career averages, current season stats, and IMDB rankings.</li>
-        <li><strong>User Profile Page</strong> – There will also be user profile pages, where users can select their top 10 favorite players and display them on their profile. 
-        </li>
-      </ul>
-    </section>
+  <section>
+    <h3>Interactive Features</h3>
+    <ul>
+      <li><strong>Player IMDb-Style Rankings</strong> – Users rate NBA players in categories such as shooting, dunking, defense, playmaking, and rebounding. These scores contribute to both category-specific and overall player rankings.</li>
+      <li><strong>Custom Team Builder</strong> – Users can create teams of 5 players and compare them against others using an algorithm to determine which is stronger.</li>
+      <li><strong>NBA Player Profiles</strong> – Each player has a page showing their career and season stats, user rankings, and embedded highlight reels.</li>
+      <li><strong>User Profiles</strong> – Users can create personal profiles, track players they’ve rated, and display a Top 10 Favorite Players list.</li>
+    </ul>
+  </section>
 
-    <section>
-      <h3>Data & References</h3>
-      <ul>
-        <li>
-          <a href="https://github.com/swar/nba_api" target="_blank">NBA API</a>
-          <p>Use Case: Real-time and historical player stats, team rosters, schedules, game results, and box scores.</p>
-            <p> - Real-time updates for upcoming games and player performances</p>
-            <p> - Season-wise or game-specific granularity supports comparison and prediction logic</p>
-          </p>
-        </li>
-        
-        <li>
-          <a href="https://www.basketball-reference.com/" target="_blank">Basketball Reference</a>
-          <p>Use Case: Comprehensive, historical datasets for player stats, advanced metrics (e.g., PER, BPM, WS), and career logs.</p>
-          <p> - Complements the NBA API by filling in gaps in historical/advanced analytics</p>
-          <p> - Ideal for creating radar charts or percentile visualizations.</p>
-        </li>
-      </ul>
-    </section>
+  <section>
+    <h3>Data & References</h3>
+    <ul>
+      <li>
+        <a href="https://github.com/swar/nba_api" target="_blank">NBA API</a> – Provides real-time and historical player stats, team rosters, game schedules, results, and box scores. Useful for live updates and game-specific data needed for comparisons and ratings.
+      </li>
+      <li>
+        <a href="https://www.basketball-reference.com/" target="_blank">Basketball Reference</a> – Offers comprehensive historical datasets, advanced metrics (PER, BPM, WS), and player career logs. Ideal for visualizations and analytics beyond real-time stats.
+      </li>
+    </ul>
+  </section>
 
-    <section>
-      <h3>Why This App?</h3>
-      <p>
-          This app stands out by combining detailed NBA player comparisons with interactive fan engagement features like polls and predictions—something traditional stat platforms lack. While sites like NBA.com focus on static stats, our tool adds a social and contextual layer, letting users vote on matchups, save predictions, and view real-time community sentiment. A unique “Matchup Insights” feature delivers smart, auto-generated highlights based on upcoming games, giving fans digestible, game-ready analysis without backend complexity. Designed for casual fans and fantasy players alike, this app transforms raw data into a fun, shareable, and interactive basketball experience that keeps users coming back.
-      </p>
-    </section>
+  <section>
+    <h3>Why This App?</h3>
+    <p>
+      This app stands out by combining NBA stat tracking with interactive fan participation, similar to how IMDb and Letterboxd allow users to rate and curate entertainment content. Unlike static stat websites, our tool offers polls, rankings, and dynamic insights driven by fan opinions. Features like “Matchup Insights” and custom team builders make the experience engaging and personalized, encouraging users to return, contribute, and explore the NBA in new ways.
+    </p>
   </section>
 </body>
 </html>
