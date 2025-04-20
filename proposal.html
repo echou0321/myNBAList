@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NBA Player Comparison & Prediction Tool - Project Proposal</title>
-  <link rel="stylesheet" href="css/proposal.css">
-  <meta name="author" content="Eric Chou, Kevin Chuang, Arjun Supramaniam, Aakash Baheti">
-  <meta name="description" content="A web app for comparing NBA players side-by-side with visual stats, matchup saving, and community features.">
+  <link rel="stylesheet" href="proposal.css" />
 </head>
 <body>
   <header>
@@ -40,19 +38,21 @@
   <section>
       <h3>Target Users</h3>
       <p>
-        Our webpage’s target audience are basketball fans as our site is based on the NBA. 
-        This webpage would have no impact on minority groups, as NBA fans consist of a diverse group of individuals.
-        User’s will interact with our site’s portrayal of NBA players, where they can select players to compare head to head by analyzing their performances in categories such as points, assists, rebounds, and shooting percentages. 
-        These matchups can be saved to the user’s matchup collection and they can also be debated in the discussion forum of the website. This data will come from the dataset and NBA API which are linked later in the proposal.
+        Our webpage’s target audience are basketball fans as our site is based on the NBA. Since NBA fans come from diverse backgrounds, our site is designed to be inclusive and accessible to all, 
+        with no negative impact on any minority groups. User’s will interact with our version of IMDB but for NBA players, where they can vote on the best player in a given category (shooting, dunking, 
+        defense, playmaking, and rebounding). These votes will be used to determine a ranking for each category, and we’ll combine the results from all these categories to display an overall ranking list well. 
+        Each NBA player will have a page or section which shows their career averages, current season stats, and IMDB rankings which we’ll need to use an API for. On top of this, users can customize their 
+        personal profile by adding their “Top 10 favorite players” to their profile. Finally, players will be able to create custom teams using actual NBA players, and compare them with other teams to see which is better.
       </p>
     </section>
 
     <section>
       <h3>Interactive Features</h3>
       <ul>
-        <li><strong>Player Comparison Tool</strong> – The first significant interactive feature is the head to head player comparison tool. This feature is a form of data organization, as we’ll organize player data from our dataset onto the players in the website. The user can select two NBA players that they want to compare and see their stats side by side along with visualizations of the stats. We may add the option to compare more than two players as well. </li>
-        <li><strong>Favorite Matchups/Sharing</strong> – The second significant interactive feature is the ability for users to save matchups that they created. We’ll store their matchups in a “Favorite Matchups” section so they don’t have to repeat a matchup they’ve already seen. Users can share their favorite matchups with others through a direct link.</li>
-        <li><strong>Discussion Board</strong> – Our final interactive feature will be a discussion board, where users can share their matchups with others and conduct friendly discussions about them. 
+        <li><strong>Player IMDB</strong> – The first significant feature for our website is an IMDB rating for NBA players, where we’ll create player rankings for the best play in categories such as shooting, dunking, defense, playmaking, and rebounding. These rankings will be determined by the users of our site, who will vote for the best player in each category. We’ll also include an overall best player category which is a combination of the results from the other categories. </li>
+        <li><strong>Custom Team Builder</strong> – The second significant feature is a custom team builder, where users can create teams of 5 players and compare them against other custom teams or actual NBA teams. We’ll utilize an algorithm to determine the better play, and display the result to the user.</li>
+        <li><strong>NBA Player Page</strong> – One small feature we’ll be including are NBA player profiles where we’ll display their career averages, current season stats, and IMDB rankings.</li>
+        <li><strong>User Profile Page</strong> – There will also be user profile pages, where users can select their top 10 favorite players and display them on their profile. 
         </li>
       </ul>
     </section>
@@ -62,29 +62,25 @@
       <ul>
         <li>
           <a href="https://github.com/swar/nba_api" target="_blank">NBA API</a>
-          <ul>
-            <li>Use Case: Real-time and historical player stats, team rosters, schedules, game results, and box scores.</li>
-            <li>Real-time updates for upcoming games and player performances</li>
-            <li>Season-wise or game-specific granularity supports comparison and prediction logic</li>
-          </ul>
+          <p>Use Case: Real-time and historical player stats, team rosters, schedules, game results, and box scores.</p>
+            <p> - Real-time updates for upcoming games and player performances</p>
+            <p> - Season-wise or game-specific granularity supports comparison and prediction logic</p>
+          </p>
         </li>
-    
+        
         <li>
           <a href="https://www.basketball-reference.com/" target="_blank">Basketball Reference</a>
-          <ul>
-            <li>Use Case: Comprehensive, historical datasets for player stats, advanced metrics (e.g., PER, BPM, WS), and career logs.</li>
-            <li>Complements the NBA API by filling in gaps in historical/advanced analytics</li>
-            <li>Ideal for creating radar charts or percentile visualizations.</li>
-          </ul>
+          <p>Use Case: Comprehensive, historical datasets for player stats, advanced metrics (e.g., PER, BPM, WS), and career logs.</p>
+          <p> - Complements the NBA API by filling in gaps in historical/advanced analytics</p>
+          <p> - Ideal for creating radar charts or percentile visualizations.</p>
         </li>
       </ul>
     </section>
-    
 
     <section>
       <h3>Why This App?</h3>
       <p>
-        We will develop this application because fans enjoy comparing NBA players, yet the available tools are either too complex or feel outdated. Our goal was to develop a website that would allow users to investigate matchups, bookmark them, and discuss them with others conveniently and enjoyably. We wanted to create something that is both educational and entertaining since, as students and basketball fans, we noticed a gap in the way data is presented. This project offers us an opportunity to apply our knowledge in a real-world setting.
+          This app stands out by combining detailed NBA player comparisons with interactive fan engagement features like polls and predictions—something traditional stat platforms lack. While sites like NBA.com focus on static stats, our tool adds a social and contextual layer, letting users vote on matchups, save predictions, and view real-time community sentiment. A unique “Matchup Insights” feature delivers smart, auto-generated highlights based on upcoming games, giving fans digestible, game-ready analysis without backend complexity. Designed for casual fans and fantasy players alike, this app transforms raw data into a fun, shareable, and interactive basketball experience that keeps users coming back.
       </p>
     </section>
   </section>
