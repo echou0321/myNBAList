@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>MyNBAList - User Profile</title>
+     <style>
+         /* General Reset */
+         * {
+             margin: 0;
+             padding: 0;
+             box-sizing: border-box;
+         }
+         
+         body {
+             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+             background-color: #ffffff;
+             color: #1a1a1a;
+             line-height: 1.6;
+         }
+         
+         /* Header */
+         header {
+             background-color: #0b1f40; /* deep blue */
+             padding: 1rem 2rem;
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+         }
+         
+         header h1 {
+             font-size: 2.5rem;
+             color: #ffffff;
+             margin-bottom: 0.5rem;
+         }
+         
+         nav {
+             display: flex;
+             flex-wrap: wrap;
+             gap: 1rem;
+         }
+         
+         nav a {
+             text-decoration: none;
+             color: #ffffff;
+             padding: 0.5rem 1rem;
+             border-radius: 5px;
+             transition: background-color 0.3s;
+         }
+         
+         nav a:hover {
+             background-color: #c8102e; /* red */
+         }
+         
+         /* Main Content */
+         main {
+             padding: 2rem;
+             max-width: 900px;
+             margin: 0 auto;
+             background-color: #f4f4f4;
+             border-radius: 8px;
+             margin-top: 2rem;
+             margin-bottom: 2rem;
+         }
+         
+         section {
+             margin-bottom: 2rem;
+         }
+         
+         h2 {
+             font-size: 1.8rem;
+             margin-bottom: 1rem;
+             color: #c8102e;
+         }
+         
+         ul {
+             list-style: none;
+             padding-left: 1rem;
+         }
+         
+         li {
+             padding: 0.5rem 0;
+             border-bottom: 1px solid #ccc;
+         }
+         
+         /* Call to Action */
+         #cta a {
+             color: #0b1f40;
+             font-weight: bold;
+             text-decoration: underline;
+         }
+         
+         #cta a:hover {
+             color: #ffffff;
+             background-color: #c8102e;
+             padding: 0.2rem 0.4rem;
+             border-radius: 4px;
+             text-decoration: none;
+         }
+         
+         /* Footer */
+         footer {
+             text-align: center;
+             padding: 1rem;
+             background-color: #0b1f40;
+             font-size: 0.9rem;
+             color: #ffffff;
+         }
+         
+         /* User Profile Specific Styles */
+         .profile-header {
+             display: flex;
+             align-items: center;
+             gap: 2rem;
+             margin-bottom: 2rem;
+             padding-bottom: 1rem;
+             border-bottom: 2px solid #ccc;
+         }
+         
+         .profile-pic {
+             width: 120px;
+             height: 120px;
+             border-radius: 50%;
+             object-fit: cover;
+             border: 3px solid #0b1f40;
+         }
+         
+         .profile-info {
+             flex-grow: 1;
+         }
+         
+         .profile-info h2 {
+             margin-bottom: 0.5rem;
+         }
+         
+         .profile-stats {
+             display: flex;
+             gap: 2rem;
+             margin-top: 0.5rem;
+         }
+         
+         .stat {
+             text-align: center;
+         }
+         
+         .stat-number {
+             font-size: 1.2rem;
+             font-weight: bold;
+             color: #0b1f40;
+         }
+         
+         .stat-label {
+             font-size: 0.9rem;
+             color: #666;
+         }
+         
+         /* Top 10 Players List */
+         .top-players-header {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             margin-bottom: 1rem;
+         }
+         
+         .edit-button {
+             background-color: #0b1f40;
+             color: white;
+             border: none;
+             padding: 0.5rem 1rem;
+             border-radius: 5px;
+             cursor: pointer;
+             transition: background-color 0.3s;
+         }
+         
+         .edit-button:hover {
+             background-color: #c8102e;
+         }
+         
+         .player-item {
+             display: flex;
+             align-items: center;
+             padding: 1rem;
+             gap: 1rem;
+             background-color: white;
+             margin-bottom: 0.5rem;
+             border-radius: 5px;
+             transition: transform 0.2s;
+         }
+         
+         .player-item:hover {
+             transform: translateX(5px);
+             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+         }
+         
+         .player-rank {
+             font-size: 1.5rem;
+             font-weight: bold;
+             color: #0b1f40;
+             min-width: 30px;
+         }
+         
+         .player-pic {
+             width: 60px;
+             height: 60px;
+             border-radius: 50%;
+             object-fit: cover;
+         }
+         
+         .player-info {
+             flex-grow: 1;
+         }
+         
+         .player-name {
+             font-weight: bold;
+             font-size: 1.1rem;
+         }
+         
+         .player-team {
+             color: #666;
+             font-size: 0.9rem;
+         }
+         
+         .drag-handle {
+             cursor: move;
+             color: #ccc;
+             display: none;
+         }
+         
+         .editing .drag-handle {
+             display: block;
+         }
+         
+         .editing .player-item {
+             background-color: #f9f9f9;
+             border: 1px dashed #ccc;
+         }
+         
+         .add-player {
+             background-color: white;
+             border: 2px dashed #ccc;
+             border-radius: 5px;
+             padding: 1rem;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             cursor: pointer;
+             transition: all 0.3s;
+             margin-top: 1rem;
+             display: none;
+         }
+         
+         .add-player:hover {
+             border-color: #0b1f40;
+             background-color: #f9f9f9;
+         }
+         
+         .editing .add-player {
+             display: flex;
+         }
+         
+         .save-changes {
+             background-color: #c8102e;
+             color: white;
+             border: none;
+             padding: 0.5rem 1rem;
+             border-radius: 5px;
+             margin-top: 1rem;
+             cursor: pointer;
+             display: none;
+         }
+         
+         .editing .save-changes {
+             display: block;
+         }
+         
+         /* Responsive adjustments */
+         @media (max-width: 768px) {
+             .profile-header {
+                 flex-direction: column;
+                 gap: 1rem;
+                 text-align: center;
+             }
+             
+             .profile-stats {
+                 justify-content: center;
+             }
+             
+             .player-item {
+                 flex-wrap: wrap;
+             }
+         }
+     </style>
+ </head>
+ <body>
+     <header>
+         <h1>MyNBAList</h1>
+         <nav>
+             <a href="#">Home</a>
+             <a href="#">Players</a>
+             <a href="#">Rankings</a>
+             <a href="#">My Profile</a>
+             <a href="#">Community</a>
+         </nav>
+     </header>
+     
+     <main>
+         <section class="profile-header">
+             <img src="/api/placeholder/120/120" alt="User avatar" class="profile-pic">
+             <div class="profile-info">
+                 <h2>Michael Jordan Fan</h2>
+                 <p>Member since January 2025</p>
+                 <div class="profile-stats">
+                     <div class="stat">
+                         <div class="stat-number">78</div>
+                         <div class="stat-label">Players Rated</div>
+                     </div>
+                     <div class="stat">
+                         <div class="stat-number">122</div>
+                         <div class="stat-label">Comments</div>
+                     </div>
+                     <div class="stat">
+                         <div class="stat-number">42</div>
+                         <div class="stat-label">Followers</div>
+                     </div>
+                 </div>
+             </div>
+         </section>
+         
+         <section>
+             <div class="top-players-header">
+                 <h2>My Top 10 Players of All Time</h2>
+                 <button class="edit-button" id="edit-list-btn">Edit List</button>
+             </div>
+             
+             <div class="top-players-list">
+                 <div class="player-item">
+                     <div class="player-rank">1</div>
+                     <img src="/api/placeholder/60/60" alt="Michael Jordan" class="player-pic">
+                     <div class="player-info">
+                         <div class="player-name">Michael Jordan</div>
+                         <div class="player-team">Chicago Bulls</div>
+                     </div>
+                     <div class="drag-handle">☰</div>
+                 </div>
+                 
+                 <div class="player-item">
+                     <div class="player-rank">2</div>
+                     <img src="/api/placeholder/60/60" alt="LeBron James" class="player-pic">
+                     <div class="player-info">
+                         <div class="player-name">LeBron James</div>
+                         <div class="player-team">Los Angeles Lakers</div>
+                     </div>
+                     <div class="drag-handle">☰</div>
+                 </div>
+                 
+                 <div class="player-item">
+                     <div class="player-rank">3</div>
+                     <img src="/api/placeholder/60/60" alt="Kareem Abdul-Jabbar" class="player-pic">
+                     <div class="player-info">
+                         <div class="player-name">Kareem Abdul-Jabbar</div>
+                         <div class="player-team">Los Angeles Lakers</div>
+                     </div>
+                     <div class="drag-handle">☰</div>
+                 </div>
+                 
+                 <div class="player-item">
+                     <div class="player-rank">4</div>
+                     <img src="/api/placeholder/60/60" alt="Magic Johnson" class="player-pic">
+                     <div class="player-info">
+                         <div class="player-name">Magic Johnson</div>
+                         <div class="player-team">Los Angeles Lakers</div>
+                     </div>
+                     <div class="drag-handle">☰</div>
+                 </div>
+                 
+                 <div class="player-item">
+                     <div class="player-rank">5</div>
+                     <img src="/api/placeholder/60/60" alt="Wilt Chamberlain" class="player-pic">
+                     <div class="player-info">
+                         <div class="player-name">Wilt Chamberlain</div>
+                         <div class="player-team">Philadelphia 76ers</div>
+                     </div>
+                     <div class="drag-handle">☰</div>
+                 </div>
+                 
+                 <div class="player-item">
+                     <div class="player-rank">6</div>
+                     <img src="/api/placeholder/60/60" alt="Bill Russell" class="player-pic">
+                     <div class="player-info">
+                         <div class="player-name">Bill Russell</div>
+                         <div class="player-team">Boston Celtics</div>
+                     </div>
+                     <div class="drag-handle">☰</div>
+                 </div>
+                 
+                 <div class="player-item">
+                     <div class="player-rank">7</div>
+                     <img src="/api/placeholder/60/60" alt="Kobe Bryant" class="player-pic">
+                     <div class="player-info">
+                         <div class="player-name">Kobe Bryant</div>
+                         <div class="player-team">Los Angeles Lakers</div>
+                     </div>
+                     <div class="drag-handle">☰</div>
+                 </div>
+                 
+                 <div class="player-item">
+                     <div class="player-rank">8</div>
+                     <img src="/api/placeholder/60/60" alt="Larry Bird" class="player-pic">
+                     <div class="player-info">
+                         <div class="player-name">Larry Bird</div>
+                         <div class="player-team">Boston Celtics</div>
+                     </div>
+                     <div class="drag-handle">☰</div>
+                 </div>
+                 
+                 <div class="player-item">
+                     <div class="player-rank">9</div>
+                     <img src="/api/placeholder/60/60" alt="Tim Duncan" class="player-pic">
+                     <div class="player-info">
+                         <div class="player-name">Tim Duncan</div>
+                         <div class="player-team">San Antonio Spurs</div>
+                     </div>
+                     <div class="drag-handle">☰</div>
+                 </div>
+                 
+                 <div class="player-item">
+                     <div class="player-rank">10</div>
+                     <img src="/api/placeholder/60/60" alt="Shaquille O'Neal" class="player-pic">
+                     <div class="player-info">
+                         <div class="player-name">Shaquille O'Neal</div>
+                         <div class="player-team">Los Angeles Lakers</div>
+                     </div>
+                     <div class="drag-handle">☰</div>
+                 </div>
+                 
+                 <div class="add-player">
+                     + Add Player
+                 </div>
+                 
+                 <button class="save-changes">Save Changes</button>
+             </div>
+         </section>
+         
+         <section id="cta">
+             <h2>Share Your List</h2>
+             <p>Let other basketball fans see your top picks and spark a conversation about who deserves to be on the list!</p>
+             <p><a href="#">Share on Twitter</a> or <a href="#">Copy Link</a></p>
+         </section>
+     </main>
+     
+     <footer>
+         <p>&copy; 2025 MyNBAList - Where basketball fans rank their favorites</p>
+     </footer>
+     
+     <script>
+         // Simple JavaScript for toggling edit mode
+         document.getElementById('edit-list-btn').addEventListener('click', function() {
+             const topPlayersList = document.querySelector('.top-players-list');
+             topPlayersList.classList.toggle('editing');
+             
+             if (topPlayersList.classList.contains('editing')) {
+                 this.textContent = 'Cancel';
+             } else {
+                 this.textContent = 'Edit List';
+             }
+         });
+     </script>
+ </body>
+ </html>
