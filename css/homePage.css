@@ -251,6 +251,18 @@ footer {
   height: 40px;
 }
 
+.player-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.player-card-link:hover .player-card {
+  transform: scale(1.02);
+  transition: transform 0.3s;
+}
+
+
 
 
 

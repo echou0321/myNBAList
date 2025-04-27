@@ -7,16 +7,20 @@
   <meta name="description" content="Browse NBA Players - MyNBAList" />
   <title>Browse NBA Players</title>
   <link rel="stylesheet" href="../css/homePage.css" />
+  <link rel="icon" href="../images/favicon.ico" type="image/x-icon" />
 </head>
 <body>
 
   <header>
-    <h1>MyNBAList</h1>
+    <div class="site-logo">
+      <img src="../images/site-icon.png" alt="Site Icon" class="logo-img">
+      <h1>MyNBAList</h1>
+    </div>
     <nav>
       <div class="nav-left">
         <a href="homePage.html">Home</a>
         <a href="browse.html">Browse Players</a>
-        <a href="5v5">My NBA 5v5</a>
+        <a href="5v5.html">My NBA 5v5</a>
         <a href="userProfile.html">My Profile</a>
       </div>
       <div class="nav-right">
@@ -41,7 +45,7 @@
         <option value="GSW">Golden State Warriors</option>
         <option value="MIL">Milwaukee Bucks</option>
         <option value="DAL">Dallas Mavericks</option>
-        <!-- Add more teams -->
+        <option value="SAS">San Antonio Spurs</option>
       </select>
       <select id="position-filter">
         <option value="">All Positions</option>
@@ -52,7 +56,6 @@
     </section>
 
     <section id="player-grid">
-      <!-- Player cards will go here -->
       <div class="player-card">
         <img src="../playerIMGs/Jokic.jpg" alt="Nikola Jokić">
         <h3>Nikola Jokić</h3>
@@ -68,7 +71,13 @@
         <h3>Giannis Antetokounmpo</h3>
         <p>Milwaukee Bucks | Forward</p>
       </div>
-      <!-- Add more player cards manually or dynamically later -->
+      <a href="playerProfile.html" class="player-card-link">
+        <div class="player-card">
+          <img src="../playerIMGs/CP3.jpg" alt="Chris Paul">
+          <h3>Chris Paul</h3>
+          <p>San Antonio Spurs | Guard</p>
+        </div>
+      </a>      
     </section>
 
   </main>
@@ -79,3 +88,4 @@
 
 </body>
 </html>
+
