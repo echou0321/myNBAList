@@ -6,51 +6,133 @@
   <meta name="author" content="Your Name" />
   <meta name="description" content="MyNBAList: Rate, Rank, and Discover NBA Players" />
   <title>MyNBAList Home</title>
-  <link rel="stylesheet" href="css/homePage.css" />
+  <link rel="stylesheet" href="../css/homePage.css" />
 </head>
 <body>
 
   <header>
     <h1>MyNBAList</h1>
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Browse Players</a>
-      <a href="#">Leaderboard</a>
-      <a href="#">My Profile</a>
-      <a href="#">Login</a>
-      <a href="#">Register</a>
-    </nav>
+      <div class="nav-left">
+        <a href="#">Home</a>
+        <a href="browse.html">Browse Players</a>
+        <a href="#">My NBA 5v5</a>
+        <a href="#">My Profile</a>
+      </div>
+      <div class="nav-right">
+        <a href="#">Login</a>
+        <a href="#">Register</a>
+      </div>
+    </nav>    
   </header>
 
   <main>
+
     <section id="intro">
       <h2>Welcome to MyNBAList</h2>
       <p>Rate, rank, and discover NBA players based on fan opinions and official stats.</p>
     </section>
 
-    <section id="trending-players">
-      <h2>🔥 Trending Players</h2>
-      <ul>
-        <li>Player 1</li>
-        <li>Player 2</li>
-        <li>Player 3</li>
-        <!-- Add dynamically or update manually -->
-      </ul>
-    </section>
+    <div class="player-lists">
+      <section id="trending-players">
+        <h2>🔥 Trending Players</h2>
+        <ol>
+          <li>
+            <img src="../playerIMGs/Wembanyama.jpg" alt="Victor Wembanyama" class="player-img">
+            Victor Wembanyama
+          </li>
+          <li>
+            <img src="../playerIMGs/Edwards.jpg" alt="Anthony Edwards" class="player-img">
+            Anthony Edwards
+          </li>
+          <li>
+            <img src="../playerIMGs/Morant.jpg" alt="Ja Morant" class="player-img">
+            Ja Morant
+          </li>
+          <li>
+            <img src="../playerIMGs/Doncic.jpg" alt="Luka Dončić" class="player-img">
+            Luka Dončić
+          </li>
+          <li>
+            <img src="../playerIMGs/Haliburton.jpg" alt="Tyrese Haliburton" class="player-img">
+            Tyrese Haliburton
+          </li>
+          <li>
+            <img src="../playerIMGs/Holmgren.jpg" alt="Chet Holmgren" class="player-img">
+            Chet Holmgren
+          </li>
+          <li>
+            <img src="../playerIMGs/Williamson.jpg" alt="Zion Williamson" class="player-img">
+            Zion Williamson
+          </li>
+          <li>
+            <img src="../playerIMGs/JalenGreen.jpg" alt="Jalen Green" class="player-img">
+            Jalen Green
+          </li>
+          <li>
+            <img src="../playerIMGs/Banchero.jpg" alt="Paolo Banchero" class="player-img">
+            Paolo Banchero
+          </li>
+          <li>
+            <img src="../playerIMGs/Lamelo.jpg" alt="LaMelo Ball" class="player-img">
+            LaMelo Ball
+          </li>
+        </ol>
+      </section>
+      
 
-    <section id="top-rated-players">
-      <h2>🏆 Top Rated Players</h2>
-      <ul>
-        <li>Player A</li>
-        <li>Player B</li>
-        <li>Player C</li>
-      </ul>
-    </section>
+      <section id="top-rated-players">
+        <h2>🏆 Top Rated Players</h2>
+        <ol>
+          <li>
+            <img src="../playerIMGs/Jokic.jpg" alt="Nikola Jokić" class="player-img">
+            Nikola Jokić
+          </li>
+          <li>
+            <img src="../playerIMGs/Antetokounmpo.jpg" alt="Giannis Antetokounmpo" class="player-img">
+            Giannis Antetokounmpo
+          </li>
+          <li>
+            <img src="../playerIMGs/SGA.jpg" alt="Shai Gilgeous-Alexander" class="player-img">
+            Shai Gilgeous-Alexander
+          </li>
+          <li>
+            <img src="../playerIMGs/Doncic.jpg" alt="Luka Dončić" class="player-img">
+            Luka Dončić
+          </li>
+          <li>
+            <img src="../playerIMGs/Lebron.jpg" alt="LeBron James" class="player-img">
+            LeBron James
+          </li>
+          <li>
+            <img src="../playerIMGs/Steph.jpg" alt="Stephen Curry" class="player-img">
+            Stephen Curry
+          </li>
+          <li>
+            <img src="../playerIMGs/Tatum.jpg" alt="Jayson Tatum" class="player-img">
+            Jayson Tatum
+          </li>
+          <li>
+            <img src="../playerIMGs/AD.jpg" alt="Anthony Davis" class="player-img">
+            Anthony Davis
+          </li>
+          <li>
+            <img src="../playerIMGs/Edwards.jpg" alt="Anthony Edwards" class="player-img">
+            Anthony Edwards
+          </li>
+          <li>
+            <img src="../playerIMGs/Mitchell.jpg" alt="Donovan Mitchell" class="player-img">
+            Donovan Mitchell
+          </li>
+        </ol>
+      </section>
+    </div>
 
     <section id="cta">
       <h2>Get Started</h2>
       <p><a href="#">Create an Account</a> or <a href="#">Log In</a> to start building your Top 10 list.</p>
     </section>
+
   </main>
 
   <footer>
@@ -59,3 +141,6 @@
 
 </body>
 </html>
+
+
+
