@@ -7,13 +7,13 @@
   <meta name="description" content="Browse NBA Players - MyNBAList" />
   <title>Browse NBA Players</title>
   <link rel="stylesheet" href="../css/homePage.css" />
-  <link rel="icon" href="../images/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="../icons/Basketball-icon.ico" type="image/x-icon" />
 </head>
 <body>
 
   <header>
     <div class="site-logo">
-      <img src="../images/site-icon.png" alt="Site Icon" class="logo-img">
+      <img src="../icons/Basketball-icon.jpg" alt="Site Icon" class="logo-img">
       <h1>MyNBAList</h1>
     </div>
     <nav>
@@ -38,7 +38,10 @@
     </section>
 
     <section id="search-filter">
+      <label for="search-bar" class="visually-hidden">Search Players</label>
       <input type="text" id="search-bar" placeholder="Search by name..." />
+
+      <label for="team-filter" class="visually-hidden">Filter by Team</label>
       <select id="team-filter">
         <option value="">All Teams</option>
         <option value="LAL">Los Angeles Lakers</option>
@@ -47,11 +50,20 @@
         <option value="DAL">Dallas Mavericks</option>
         <option value="SAS">San Antonio Spurs</option>
       </select>
+
+      <label for="position-filter" class="visually-hidden">Filter by Position</label>
       <select id="position-filter">
         <option value="">All Positions</option>
         <option value="G">Guard</option>
         <option value="F">Forward</option>
         <option value="C">Center</option>
+      </select>
+
+      <label for="conference-filter" class="visually-hidden">Filter by Conference</label>
+      <select id="conference-filter">
+        <option value="">All Conferences</option>
+        <option value="East">Eastern Conference</option>
+        <option value="West">Western Conference</option>
       </select>
     </section>
 
@@ -60,22 +72,26 @@
         <img src="../playerIMGs/Jokic.jpg" alt="Nikola Jokić">
         <h3>Nikola Jokić</h3>
         <p>Denver Nuggets | Center</p>
+        <p class="player-rating">⭐ 9.8</p>
       </div>
       <div class="player-card">
         <img src="../playerIMGs/Doncic.jpg" alt="Luka Dončić">
         <h3>Luka Dončić</h3>
         <p>Dallas Mavericks | Guard</p>
+        <p class="player-rating">⭐ 9.6</p>
       </div>
       <div class="player-card">
         <img src="../playerIMGs/Antetokounmpo.jpg" alt="Giannis Antetokounmpo">
         <h3>Giannis Antetokounmpo</h3>
         <p>Milwaukee Bucks | Forward</p>
+        <p class="player-rating">⭐ 9.7</p>
       </div>
       <a href="playerProfile.html" class="player-card-link">
         <div class="player-card">
           <img src="../playerIMGs/CP3.jpg" alt="Chris Paul">
           <h3>Chris Paul</h3>
           <p>San Antonio Spurs | Guard</p>
+          <p class="player-rating">⭐ 8.1</p>
         </div>
       </a>      
     </section>
@@ -88,4 +104,6 @@
 
 </body>
 </html>
+
+
 

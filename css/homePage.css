@@ -199,7 +199,7 @@ footer {
   margin-bottom: 2rem;
 }
 
-#search-bar, #team-filter, #position-filter {
+#search-bar, #team-filter, #position-filter, #conference-filter {
   padding: 0.5rem;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -261,6 +261,33 @@ footer {
   transform: scale(1.02);
   transition: transform 0.3s;
 }
+
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+.player-rating {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.leaderboard-description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
