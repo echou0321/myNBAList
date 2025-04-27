@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    font-family: 'Barlow', sans-serif;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+
+header {
+  background-color: #0b1f40;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+nav a:hover {
+  background-color: #c8102e;
+}
+
+main {
+  padding: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+#intro, #cta {
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #c8102e;
+}
+
+.player-lists {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+ol {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: item;
+}
+
+li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+}
+
+li::before {
+  content: counter(item);
+  counter-increment: item;
+  background-color: #0b1f40;
+  color: white;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+li:nth-child(1)::before {
+  background-color: gold;
+  color: #1a1a1a;
+}
+
+li:nth-child(2)::before {
+  background-color: silver;
+  color: #1a1a1a;
+}
+
+li:nth-child(3)::before {
+  background-color: #cd7f32; 
+  color: #ffffff;
+}
+
+.player-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+#cta a {
+  color: #0b1f40;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+#cta a:hover {
+  color: #ffffff;
+  background-color: #c8102e;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #0b1f40;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    text-align: left;
+  }
+
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .nav-left,
+  .nav-right {
+    flex-direction: row;
+  }
+
+  .player-lists {
+    flex-direction: row;
+  }
+
+  #trending-players, #top-rated-players {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  body {
+    font-size: 1.1rem;
+  }
+}
+#search-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+#search-bar, #team-filter, #position-filter {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#player-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.player-card {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.player-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  #search-filter {
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  #player-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+
+

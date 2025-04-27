@@ -1,0 +1,173 @@
+.player-header {
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2rem 3rem;
+    gap: 2rem;
+  }
+  
+  .team-logo {
+    width: 60px;
+    height: auto;
+  }
+  
+  .player-basic-info {
+    flex: 1;
+  }
+  
+  .player-basic-info h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .player-basic-info p {
+    font-size: 1.2rem;
+    color: #cccccc;
+  }
+  
+  .follow-btn {
+    background: none;
+    border: 2px solid white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .follow-btn:hover {
+    background-color: white;
+    color: black;
+  }
+  
+  .player-main {
+    background-color: #f4f4f4;
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 10px;
+  }
+  
+  .player-profile-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .player-photo {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #0b1f40;
+  }
+  
+  .player-stats {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .player-stats div {
+    background-color: #0b1f40;
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 90px;
+  }
+  
+  .player-stats span {
+    display: block;
+    font-size: 0.85rem;
+    color: #dddddd;
+  }
+  
+  .player-stats strong {
+    font-size: 1.5rem;
+  }
+  
+  .player-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .player-details div {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+  
+  .player-details span {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .last-five-games {
+    margin-top: 3rem;
+  }
+  
+  .games-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  
+  .games-table th,
+  .games-table td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: center;
+  }
+  
+  .games-table th {
+    background-color: #0b1f40;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .games-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .games-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .awards-section {
+    margin-top: 3rem;
+  }
+  
+  .awards-section h2 {
+    color: #c8102e;
+    margin-bottom: 1.5rem;
+  }
+  
+  .awards-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .awards-section li {
+    background-color: white;
+    margin-bottom: 0.75rem;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    font-size: 1rem;
+    font-weight: 500;
+    position: relative;
+  }
+  
+  .awards-section li::before {
+    display: none;
+    content: none;
+  }
