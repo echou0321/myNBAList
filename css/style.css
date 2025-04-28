@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;800&display=swap');
 
-/* Reset and Base Styles */
+/* Reset and General Styles */
 * {
   margin: 0;
   padding: 0;
@@ -8,13 +8,14 @@
 }
 
 body {
-  font-family: 'Barlow', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Barlow', sans-serif;
   background-color: #ffffff;
   color: #1a1a1a;
   line-height: 1.6;
   font-size: 1rem;
 }
 
+/* Header and Navigation */
 header {
   background-color: #0b1f40;
   padding: 1rem;
@@ -49,8 +50,7 @@ nav {
   gap: 0.5rem;
 }
 
-.nav-left,
-.nav-right {
+.nav-left, .nav-right {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -85,19 +85,20 @@ section {
   text-align: center;
 }
 
+/* Typography */
 h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: #c8102e;
 }
 
+/* Player Lists */
 .player-lists {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-/* Leaderboard Lists */
 ol {
   list-style: none;
   padding-left: 0;
@@ -128,20 +129,10 @@ li::before {
   font-size: 0.8rem;
 }
 
-li:nth-child(1)::before {
-  background-color: gold;
-  color: #1a1a1a;
-}
-
-li:nth-child(2)::before {
-  background-color: silver;
-  color: #1a1a1a;
-}
-
-li:nth-child(3)::before {
-  background-color: #cd7f32;
-  color: #ffffff;
-}
+/* Top 3 Colors */
+li:nth-child(1)::before { background-color: gold; color: #1a1a1a; }
+li:nth-child(2)::before { background-color: silver; color: #1a1a1a; }
+li:nth-child(3)::before { background-color: #cd7f32; color: #ffffff; }
 
 /* Player Images */
 .player-img {
@@ -152,7 +143,7 @@ li:nth-child(3)::before {
   border-radius: 50%;
 }
 
-/* CTA */
+/* CTA Links */
 #cta a {
   color: #0b1f40;
   font-weight: bold;
@@ -175,7 +166,7 @@ footer {
   color: #ffffff;
 }
 
-/* Browse Page */
+/* Browse Page Specific */
 #search-filter {
   display: flex;
   flex-direction: column;
@@ -223,13 +214,13 @@ footer {
   transition: transform 0.3s;
 }
 
-/* Accessibility */
+/* Accessibility Helpers */
 .visually-hidden {
   position: absolute;
   left: -9999px;
 }
 
-/* Ratings Display */
+/* Leaderboard Descriptions */
 .player-rating {
   font-size: 0.9rem;
   color: #555;
@@ -241,100 +232,7 @@ footer {
   margin-bottom: 1rem;
 }
 
-/* Player Profile Page Inputs */
-.player-rating-inputs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.rating-input-badge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100px;
-}
-
-.rating-input-badge input {
-  width: 60px;
-  padding: 0.2rem;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-top: 0.3rem;
-}
-
-.submit-rating {
-  width: 100%;
-  margin-top: 1rem;
-  text-align: center;
-}
-
-.submit-rating button {
-  padding: 0.5rem 1rem;
-  background-color: #c8102e;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.submit-rating button:hover {
-  background-color: #a50d22;
-}
-
-/* Responsive Media Queries */
-@media (min-width: 768px) {
-  header {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 1.5rem 2rem;
-    text-align: left;
-  }
-
-  nav {
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .nav-left,
-  .nav-right {
-    flex-direction: row;
-  }
-
-  .player-lists {
-    flex-direction: row;
-  }
-
-  #trending-players, #top-rated-players {
-    flex: 1;
-    background-color: #ffffff;
-    padding: 1rem;
-    border-radius: 8px;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  body {
-    font-size: 1.1rem;
-  }
-
-  #search-filter {
-    flex-direction: row;
-    justify-content: center;
-    gap: 2rem;
-  }
-
-  #player-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Player Profile Page Specific Layout */
+/* Player Profile Page */
 .player-header {
   background-color: #0b1f40;
   color: #ffffff;
@@ -371,7 +269,7 @@ footer {
   border-radius: 8px;
   font-weight: bold;
   text-align: center;
-  width: 80px;
+  width: 120px;
 }
 
 .rating-badge span {
@@ -385,6 +283,7 @@ footer {
   color: #ffffff;
 }
 
+/* Player Info Section */
 .player-main {
   margin-top: 2rem;
 }
@@ -439,6 +338,7 @@ footer {
   color: #0b1f40;
 }
 
+/* Game Table Section */
 .last-five-games {
   background-color: #ffffff;
   padding: 1rem;
@@ -458,6 +358,7 @@ footer {
   border-bottom: 1px solid #ccc;
 }
 
+/* Awards Section */
 .awards-section {
   background-color: #ffffff;
   padding: 1rem;
@@ -470,6 +371,7 @@ footer {
   color: #555;
 }
 
+/* User Rating Form */
 .user-rating-form {
   background-color: #0b1f40;
   padding: 2rem 1rem;
@@ -492,7 +394,7 @@ footer {
 }
 
 .rating-form input {
-  width: 100px;
+  width: 120px;
   height: 45px;
   padding: 0.5rem;
   font-size: 1rem;
@@ -501,6 +403,12 @@ footer {
   border-radius: 6px;
   background-color: #ffffff;
   color: #1a1a1a;
+}
+
+.rating-form input[readonly] {
+  background-color: #e0e0e0;
+  color: #555;
+  cursor: not-allowed;
 }
 
 .submit-rating {
@@ -524,23 +432,55 @@ footer {
   background-color: #a50d22;
 }
 
-.rating-form input {
-  width: 100px;
-  height: 45px;
-  padding: 0.5rem;
-  font-size: 1rem;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: #ffffff;
-  color: #1a1a1a;
+/* Media Queries */
+@media (min-width: 768px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    text-align: left;
+  }
+
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .nav-left, .nav-right {
+    flex-direction: row;
+  }
+
+  .player-lists {
+    flex-direction: row;
+  }
+
+  #trending-players, #top-rated-players {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  body {
+    font-size: 1.1rem;
+  }
+
+  #search-filter {
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  #player-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-.rating-form input[readonly] {
-  background-color: #e0e0e0; 
-  color: #555;
-  cursor: not-allowed;
-}
 
 
 
