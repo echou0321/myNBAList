@@ -768,3 +768,322 @@ footer {
 .submit-rating button:hover {
   background-color: #a50d22;
 }
+
+/* Team Builder Section */
+.team-builder-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.team-selector-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.team-selector {
+  flex: 1;
+  background-color: #f4f4f4;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.team-selector h3 {
+  color: #0b1f40;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.player-selection-area {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.position-selection {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.position-selection label {
+  min-width: 120px;
+  font-weight: bold;
+  color: #333;
+}
+
+.player-select, .team-name-input input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Barlow', sans-serif;
+}
+
+.team-name-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.simulator-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.simulate-button, .reset-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.simulate-button {
+  background-color: #c8102e;
+  color: white;
+}
+
+.simulate-button:hover {
+  background-color: #a50d22;
+}
+
+.reset-button {
+  background-color: #0b1f40;
+  color: white;
+}
+
+.reset-button:hover {
+  background-color: #071631;
+}
+
+/* Basketball Court Visualization */
+#court-visualization {
+  margin-bottom: 2rem;
+}
+
+#court-visualization h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.basketball-court {
+  background-color: #b38e5d;
+  height: 400px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.court-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid #ffffff;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.court-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.court-circle {
+  width: 60px;
+  height: 60px;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+}
+
+.versus {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-top: 0.5rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+  width: 45%;
+}
+
+.team-name {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ffffff;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.player-position {
+  position: relative;
+}
+
+.team-left .pg { top: -50px; left: 20%; }
+.team-left .sg { top: -100px; left: 70%; }
+.team-left .sf { top: -20px; left: 50%; }
+.team-left .pf { top: 60px; left: 20%; }
+.team-left .c { top: 30px; left: 70%; }
+
+.team-right .pg { top: -50px; left: 70%; }
+.team-right .sg { top: -100px; left: 20%; }
+.team-right .sf { top: -20px; left: 40%; }
+.team-right .pf { top: 60px; left: 70%; }
+.team-right .c { top: 30px; left: 20%; }
+
+.player-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  padding: 0.4rem;
+  width: 60px;
+}
+
+.player-marker .player-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #0b1f40;
+}
+
+.player-info {
+  text-align: center;
+  font-size: 0.7rem;
+  margin-top: 0.2rem;
+}
+
+.player-name {
+  font-weight: bold;
+  display: block;
+  color: #0b1f40;
+}
+
+.player-position-label {
+  font-size: 0.6rem;
+  color: #555;
+}
+
+/* Matchup Results Section */
+.results-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.winner-announcement {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.winner-badge {
+  background-color: #0b1f40;
+  color: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+.winner-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.winner-score {
+  font-size: 1.2rem;
+}
+
+.stat-comparison h3 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.stat-category {
+  margin-bottom: 1.5rem;
+}
+
+.category-name {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.comparison-bar {
+  display: flex;
+  height: 30px;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #f4f4f4;
+}
+
+.team1-bar, .team2-bar {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+}
+
+.team1-bar {
+  background-color: #c8102e;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.team2-bar {
+  background-color: #0b1f40;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.team-names {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+}
+
+/* Responsive layout for larger screens */
+@media (min-width: 768px) {
+  .team-selector-section {
+    flex-direction: row;
+  }
+  
+  .basketball-court {
+    height: 1000px;
+  }
+}
