@@ -708,3 +708,64 @@ footer {
     justify-content: flex-start;
   }
 }
+
+/* Fix for User Rating Form */
+.user-rating-form {
+  background-color: #0b1f40;
+  padding: 2rem 1rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.user-rating-form h3 {
+  color: #ffffff;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.rating-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.rating-form input {
+  width: 120px;
+  height: 45px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.rating-form input[readonly] {
+  background-color: #e0e0e0;
+  color: #555;
+  cursor: not-allowed;
+}
+
+.submit-rating {
+  width: 100%;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.submit-rating button {
+  padding: 0.75rem 2rem;
+  background-color: #c8102e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.submit-rating button:hover {
+  background-color: #a50d22;
+}
