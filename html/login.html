@@ -1,40 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="author" content="Eric Chou, Kevin Chuang, Arjun Supramaniam, Aakash Baheti">
-  <meta name="description" content="Static login page for NBA Player Comparison & Prediction Tool.">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Your Name" />
+  <meta name="description" content="Login - MyNBAList" />
   <title>Login - MyNBAList</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="../icons/Basketball-icon.ico" type="image/x-icon" />
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .background-container {
+      flex: 1;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .login-card {
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-card label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .login-card div.placeholder {
+      background-color: #ffffff;
+      padding: 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      color: #999;
+    }
+
+    .login-button {
+      width: 100%;
+      margin-top: 2rem;
+      background-color: #c8102e;
+      color: white;
+      font-weight: 600;
+      padding: 1rem;
+      border-radius: 5px;
+      text-align: center;
+      cursor: default;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .login-link a {
+      color: #0b1f40;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
+
   <header>
-    <h1>Login to Your Account</h1>
+    <div class="site-logo">
+      <img src="../icons/Basketball-icon.jpg" alt="Site Icon" class="logo-img">
+      <h1>MyNBAList</h1>
+    </div>
+    <nav>
+      <div class="nav-left">
+        <a href="../index.html">Home</a>
+        <a href="browse.html">Browse Players</a>
+        <a href="5v5.html">My NBA 5v5</a>
+        <a href="userProfile.html">My Profile</a>
+      </div>
+      <div class="nav-right">
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+      </div>
+    </nav>    
   </header>
 
-  <section>
-    <div style="margin-bottom: 1.2rem;">
-      <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Username</label>
-      <div style="width: 100%; padding: 0.6rem; background-color: #f1f5f9; border: 1px solid #ccc; border-radius: 8px; color: #888;">
-        (username)
+  <main>
+    <div class="background-container">
+      <div class="login-card">
+        <h2 style="text-align: center; color: #c8102e; margin-bottom: 2rem;">Login</h2>
+
+        <label>Username</label>
+        <div class="placeholder">(username)</div>
+
+        <label>Password</label>
+        <div class="placeholder">(password)</div>
+
+        <div class="login-button">Log In</div>
+
+        <div class="login-link">
+          <p>Don't have an account? <a href="register.html">Sign up here</a></p>
+        </div>
       </div>
     </div>
+  </main>
 
-    <div style="margin-bottom: 1.2rem;">
-      <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Password</label>
-      <div style="width: 100%; padding: 0.6rem; background-color: #f1f5f9; border: 1px solid #ccc; border-radius: 8px; color: #888;">
-        (password)
-      </div>
-    </div>
+  <footer>
+    <p>&copy; 2025 MyNBAList</p>
+  </footer>
 
-    <div style="width: 100%; padding: 0.8rem; background-color: #1e40af; color: white; font-weight: bold; border: none; border-radius: 8px; text-align: center; margin-top: 1rem;">
-      Log In
-    </div>
-
-    <p style="text-align: center; margin-top: 1rem;">
-      Don't have an account? <span style="color: #2563eb;">Sign up here</span>
-    </p>
-  </section>
 </body>
 </html>

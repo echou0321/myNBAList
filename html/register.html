@@ -1,54 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="author" content="Eric Chou, Kevin Chuang, Arjun Supramaniam, Aakash Baheti">
-  <meta name="description" content="Static registration page for NBA Player Comparison & Prediction Tool.">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="Your Name" />
+  <meta name="description" content="Register - MyNBAList" />
   <title>Register - MyNBAList</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="icon" href="../icons/Basketball-icon.ico" type="image/x-icon" />
 </head>
 <body>
+
   <header>
-    <h1>Create an Account</h1>
+    <div class="site-logo">
+      <img src="../icons/Basketball-icon.jpg" alt="Site Icon" class="logo-img">
+      <h1>MyNBAList</h1>
+    </div>
+    <nav>
+      <div class="nav-left">
+        <a href="index.html">Home</a>
+        <a href="browse.html">Browse Players</a>
+        <a href="5v5.html">My NBA 5v5</a>
+        <a href="userProfile.html">My Profile</a>
+      </div>
+      <div class="nav-right">
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+      </div>
+    </nav>    
   </header>
 
-  <section>
-    <div style="margin-bottom: 1.2rem;">
-      <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Username</label>
-      <div style="width: 100%; padding: 0.6rem; background-color: #f1f5f9; border: 1px solid #ccc; border-radius: 8px; color: #888;">
-        (username)
+  <main>
+    <section>
+      <h2>Create Account</h2>
+
+      <div style="margin-bottom: 1.5rem;">
+        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Username</label>
+        <div style="background-color: #f4f4f4; padding: 0.8rem; border: 1px solid #ccc; border-radius: 5px; color: #999;">
+          (username)
+        </div>
       </div>
-    </div>
 
-    <div style="margin-bottom: 1.2rem;">
-      <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Email</label>
-      <div style="width: 100%; padding: 0.6rem; background-color: #f1f5f9; border: 1px solid #ccc; border-radius: 8px; color: #888;">
-        (email)
+      <div style="margin-bottom: 1.5rem;">
+        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Email</label>
+        <div style="background-color: #f4f4f4; padding: 0.8rem; border: 1px solid #ccc; border-radius: 5px; color: #999;">
+          (email@example.com)
+        </div>
       </div>
-    </div>
 
-    <div style="margin-bottom: 1.2rem;">
-      <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Password</label>
-      <div style="width: 100%; padding: 0.6rem; background-color: #f1f5f9; border: 1px solid #ccc; border-radius: 8px; color: #888;">
-        (password)
+      <div style="margin-bottom: 1.5rem;">
+        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Password</label>
+        <div style="background-color: #f4f4f4; padding: 0.8rem; border: 1px solid #ccc; border-radius: 5px; color: #999;">
+          (password)
+        </div>
       </div>
-    </div>
 
-    <div style="margin-bottom: 1.2rem;">
-      <label style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Confirm Password</label>
-      <div style="width: 100%; padding: 0.6rem; background-color: #f1f5f9; border: 1px solid #ccc; border-radius: 8px; color: #888;">
-        (confirm password)
+      <div style="margin-bottom: 1.5rem;">
+        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Confirm Password</label>
+        <div style="background-color: #f4f4f4; padding: 0.8rem; border: 1px solid #ccc; border-radius: 5px; color: #999;">
+          (confirm password)
+        </div>
       </div>
-    </div>
 
-    <div style="width: 100%; padding: 0.8rem; background-color: #1e40af; color: white; font-weight: bold; border: none; border-radius: 8px; text-align: center; margin-top: 1rem;">
-      Register
-    </div>
+      <div style="text-align: center; background-color: #c8102e; color: #fff; font-weight: 600; padding: 0.8rem; border-radius: 5px; cursor: default;">
+        Register
+      </div>
 
-    <p style="text-align: center; margin-top: 1rem;">
-      Already have an account? <span style="color: #2563eb;">Log in here</span>
-    </p>
-  </section>
+      <p style="text-align: center; margin-top: 1.5rem;">
+        Already have an account? <a href="login.html" style="color: #0b1f40; font-weight: bold;">Log in here</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MyNBAList</p>
+  </footer>
+
 </body>
 </html>
