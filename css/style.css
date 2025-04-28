@@ -42,7 +42,6 @@ header h1 {
   margin-bottom: 0.5rem;
 }
 
-/* Adding styling for the basketball icon in header */
 header h1 img {
   width: 40px;
   height: 40px;
@@ -478,8 +477,8 @@ footer {
   color: #555;
 }
 
-/* User Profile Page Specific Styles - NEW SECTION */
-/* These styles only apply to elements on the user profile page */
+/* User Profile Page Specific Styles */
+
 
 /* Profile Header Section */
 .profile-header {
@@ -612,6 +611,7 @@ footer {
   height: 60px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center 25%;
   margin-right: 1rem;
   border: 2px solid #eee;
 }
@@ -709,7 +709,6 @@ footer {
   }
 }
 
-/* Fix for User Rating Form */
 .user-rating-form {
   background-color: #0b1f40;
   padding: 2rem 1rem;
