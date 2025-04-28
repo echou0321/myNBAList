@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;800&display=swap');
 
-/* Reset and General Styles */
+/* Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -8,14 +8,13 @@
 }
 
 body {
-  font-family: 'Barlow', sans-serif;
+  font-family: 'Barlow', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #ffffff;
   color: #1a1a1a;
   line-height: 1.6;
   font-size: 1rem;
 }
 
-/* Header and Navigation */
 header {
   background-color: #0b1f40;
   padding: 1rem;
@@ -43,6 +42,14 @@ header h1 {
   margin-bottom: 0.5rem;
 }
 
+/* Adding styling for the basketball icon in header */
+header h1 img {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
 nav {
   display: flex;
   flex-direction: column;
@@ -50,7 +57,8 @@ nav {
   gap: 0.5rem;
 }
 
-.nav-left, .nav-right {
+.nav-left,
+.nav-right {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -85,20 +93,19 @@ section {
   text-align: center;
 }
 
-/* Typography */
 h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: #c8102e;
 }
 
-/* Player Lists */
 .player-lists {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
+/* Leaderboard Lists */
 ol {
   list-style: none;
   padding-left: 0;
@@ -129,10 +136,20 @@ li::before {
   font-size: 0.8rem;
 }
 
-/* Top 3 Colors */
-li:nth-child(1)::before { background-color: gold; color: #1a1a1a; }
-li:nth-child(2)::before { background-color: silver; color: #1a1a1a; }
-li:nth-child(3)::before { background-color: #cd7f32; color: #ffffff; }
+li:nth-child(1)::before {
+  background-color: gold;
+  color: #1a1a1a;
+}
+
+li:nth-child(2)::before {
+  background-color: silver;
+  color: #1a1a1a;
+}
+
+li:nth-child(3)::before {
+  background-color: #cd7f32;
+  color: #ffffff;
+}
 
 /* Player Images */
 .player-img {
@@ -143,7 +160,7 @@ li:nth-child(3)::before { background-color: #cd7f32; color: #ffffff; }
   border-radius: 50%;
 }
 
-/* CTA Links */
+/* CTA */
 #cta a {
   color: #0b1f40;
   font-weight: bold;
@@ -166,7 +183,7 @@ footer {
   color: #ffffff;
 }
 
-/* Browse Page Specific */
+/* Browse Page */
 #search-filter {
   display: flex;
   flex-direction: column;
@@ -214,13 +231,13 @@ footer {
   transition: transform 0.3s;
 }
 
-/* Accessibility Helpers */
+/* Accessibility */
 .visually-hidden {
   position: absolute;
   left: -9999px;
 }
 
-/* Leaderboard Descriptions */
+/* Ratings Display */
 .player-rating {
   font-size: 0.9rem;
   color: #555;
@@ -232,7 +249,100 @@ footer {
   margin-bottom: 1rem;
 }
 
-/* Player Profile Page */
+/* Player Profile Page Inputs */
+.player-rating-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.rating-input-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+}
+
+.rating-input-badge input {
+  width: 60px;
+  padding: 0.2rem;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 0.3rem;
+}
+
+.submit-rating {
+  width: 100%;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.submit-rating button {
+  padding: 0.5rem 1rem;
+  background-color: #c8102e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-rating button:hover {
+  background-color: #a50d22;
+}
+
+/* Responsive Media Queries */
+@media (min-width: 768px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    text-align: left;
+  }
+
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .nav-left,
+  .nav-right {
+    flex-direction: row;
+  }
+
+  .player-lists {
+    flex-direction: row;
+  }
+
+  #trending-players, #top-rated-players {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  body {
+    font-size: 1.1rem;
+  }
+
+  #search-filter {
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  #player-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Player Profile Page Specific Layout */
 .player-header {
   background-color: #0b1f40;
   color: #ffffff;
@@ -269,7 +379,7 @@ footer {
   border-radius: 8px;
   font-weight: bold;
   text-align: center;
-  width: 120px;
+  width: 80px;
 }
 
 .rating-badge span {
@@ -283,7 +393,6 @@ footer {
   color: #ffffff;
 }
 
-/* Player Info Section */
 .player-main {
   margin-top: 2rem;
 }
@@ -338,7 +447,6 @@ footer {
   color: #0b1f40;
 }
 
-/* Game Table Section */
 .last-five-games {
   background-color: #ffffff;
   padding: 1rem;
@@ -358,7 +466,6 @@ footer {
   border-bottom: 1px solid #ccc;
 }
 
-/* Awards Section */
 .awards-section {
   background-color: #ffffff;
   padding: 1rem;
@@ -371,126 +478,233 @@ footer {
   color: #555;
 }
 
-/* User Rating Form */
-.user-rating-form {
-  background-color: #0b1f40;
-  padding: 2rem 1rem;
-  text-align: center;
-  margin-top: 0.5rem;
-}
+/* User Profile Page Specific Styles - NEW SECTION */
+/* These styles only apply to elements on the user profile page */
 
-.user-rating-form h3 {
-  color: #ffffff;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-}
-
-.rating-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-}
-
-.rating-form input {
-  width: 120px;
-  height: 45px;
-  padding: 0.5rem;
-  font-size: 1rem;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+/* Profile Header Section */
+.profile-header {
   background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #0b1f40;
+  object-fit: cover;
+}
+
+.profile-info {
+  text-align: center;
+}
+
+.profile-info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #0b1f40;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #c8102e;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Top Players List */
+.top-players-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.edit-button {
+  background-color: #0b1f40;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+  background-color: #163463;
+}
+
+.top-players-list {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.player-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  background-color: #ffffff;
+  transition: background-color 0.3s;
+}
+
+.player-item:hover {
+  background-color: #f7f7f7;
+}
+
+.player-rank {
+  font-size: 1.2rem;
+  font-weight: bold;
+  min-width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0b1f40;
+  color: white;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.player-item:nth-child(1) .player-rank {
+  background-color: gold;
   color: #1a1a1a;
 }
 
-.rating-form input[readonly] {
-  background-color: #e0e0e0;
-  color: #555;
-  cursor: not-allowed;
+.player-item:nth-child(2) .player-rank {
+  background-color: silver;
+  color: #1a1a1a;
 }
 
-.submit-rating {
-  width: 100%;
+.player-item:nth-child(3) .player-rank {
+  background-color: #cd7f32;
+  color: #ffffff;
+}
+
+.player-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1rem;
+  border: 2px solid #eee;
+}
+
+.player-info {
+  flex-grow: 1;
+}
+
+.player-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #0b1f40;
+}
+
+.player-team {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.drag-handle {
+  cursor: move;
+  font-size: 1.2rem;
+  color: #999;
+  padding: 0.5rem;
+}
+
+.add-player {
   text-align: center;
-  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  margin-top: 1rem;
+  cursor: pointer;
+  color: #0b1f40;
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
 
-.submit-rating button {
-  padding: 0.75rem 2rem;
+.add-player:hover {
+  background-color: #e7e7e7;
+}
+
+.save-changes {
   background-color: #c8102e;
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: bold;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
   cursor: pointer;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  display: block;
+  width: 100%;
+  transition: background-color 0.3s;
 }
 
-.submit-rating button:hover {
+.save-changes:hover {
   background-color: #a50d22;
 }
 
-/* Media Queries */
-@media (min-width: 768px) {
-  header {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 1.5rem 2rem;
-    text-align: left;
-  }
-
-  nav {
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .nav-left, .nav-right {
-    flex-direction: row;
-  }
-
-  .player-lists {
-    flex-direction: row;
-  }
-
-  #trending-players, #top-rated-players {
-    flex: 1;
-    background-color: #ffffff;
-    padding: 1rem;
-    border-radius: 8px;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  body {
-    font-size: 1.1rem;
-  }
-
-  #search-filter {
-    flex-direction: row;
-    justify-content: center;
-    gap: 2rem;
-  }
-
-  #player-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+/* Edit mode functionality */
+.edit-mode .player-item {
+  cursor: move;
+  position: relative;
 }
 
+.edit-mode .player-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
+/* Hide elements when not in edit mode */
+.save-changes, .add-player {
+  display: none;
+}
 
+.edit-mode .save-changes, .edit-mode .add-player {
+  display: block;
+}
 
-
-
-
-
-
-
-
-
-
-
+/* Media queries for the profile page */
+@media (min-width: 768px) {
+  .profile-header {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    padding: 2rem;
+  }
+  
+  .profile-info {
+    text-align: left;
+  }
+  
+  .profile-stats {
+    justify-content: flex-start;
+  }
+}
