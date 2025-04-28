@@ -27,7 +27,7 @@
     </nav>    
   </header>
 
-  <header class="player-header">
+  <div class="player-header">
     <img src="../teamIMGs/spurs.png" alt="San Antonio Spurs Logo" class="team-logo">
     
     <div class="player-basic-info">
@@ -36,7 +36,6 @@
     </div>
   
     <div class="player-ratings">
-      <div class="rating-badge myrating">My Ratings<br><span>8.5</span></div>
       <div class="rating-badge overall">Overall<br><span>8.0</span></div>
       <div class="rating-badge">Shooting<br><span>8.1</span></div>
       <div class="rating-badge">Dunking<br><span>4.0</span></div>
@@ -44,7 +43,24 @@
       <div class="rating-badge">Playmaking<br><span>8.5</span></div>
       <div class="rating-badge">Rebounding<br><span>4.4</span></div>
     </div>
-  </header>
+  </div>
+  
+  <div class="user-rating-form">
+    <h3>Your Ratings</h3>
+    <form class="rating-form">
+      <input type="number" id="input-shooting" name="input-shooting" step="0.1" min="1" max="10" placeholder="Shooting" aria-label="Shooting">
+      <input type="number" id="input-dunking" name="input-dunking" step="0.1" min="1" max="10" placeholder="Dunking" aria-label="Dunking">
+      <input type="number" id="input-defense" name="input-defense" step="0.1" min="1" max="10" placeholder="Defense" aria-label="Defense">
+      <input type="number" id="input-playmaking" name="input-playmaking" step="0.1" min="1" max="10" placeholder="Playmaking" aria-label="Playmaking">
+      <input type="number" id="input-rebounding" name="input-rebounding" step="0.1" min="1" max="10" placeholder="Rebounding" aria-label="Rebounding">
+  
+      <div class="submit-rating">
+        <button type="submit">Submit Your Ratings</button>
+      </div>
+    </form>
+  </div>
+  
+  
 
   <main class="player-main">
     <div class="player-profile-top">
