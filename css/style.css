@@ -15,7 +15,6 @@ body {
   font-size: 1rem;
 }
 
-/* Header and Navigation */
 header {
   background-color: #0b1f40;
   padding: 1rem;
@@ -334,6 +333,143 @@ footer {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* Player Profile Page Specific Layout */
+.player-header {
+  background-color: #0b1f40;
+  color: #ffffff;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+.team-logo {
+  width: 80px;
+  height: 80px;
+}
+
+.player-basic-info h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.player-ratings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.rating-badge {
+  background-color: #ffffff;
+  color: #0b1f40;
+  padding: 0.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  width: 80px;
+}
+
+.rating-badge span {
+  display: block;
+  font-size: 1.4rem;
+  margin-top: 0.2rem;
+}
+
+.overall {
+  background-color: #c8102e;
+  color: #ffffff;
+}
+
+.player-main {
+  margin-top: 2rem;
+}
+
+.player-profile-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.player-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.player-stats {
+  display: flex;
+  gap: 2rem;
+  text-align: center;
+}
+
+.player-stats div span {
+  display: block;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.player-stats div strong {
+  font-size: 1.5rem;
+}
+
+.player-details {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.player-details div {
+  font-size: 1rem;
+}
+
+.player-details span {
+  font-weight: bold;
+  color: #0b1f40;
+}
+
+.last-five-games {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.games-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.games-table th, .games-table td {
+  padding: 0.5rem;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.awards-section {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.awards-section ul {
+  list-style: disc inside;
+  margin-top: 1rem;
+  color: #555;
+}
+
 
 
 
