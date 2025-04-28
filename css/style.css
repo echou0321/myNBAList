@@ -524,6 +524,25 @@ footer {
   background-color: #a50d22;
 }
 
+.rating-form input {
+  width: 100px;
+  height: 45px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.rating-form input[readonly] {
+  background-color: #e0e0e0; 
+  color: #555;
+  cursor: not-allowed;
+}
+
+
 
 
 
