@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;800&display=swap');
 
+/* Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -7,13 +8,14 @@
 }
 
 body {
-    font-family: 'Barlow', sans-serif;
-    background-color: #ffffff;
-    color: #1a1a1a;
-    line-height: 1.6;
-    font-size: 1rem;
-  }
+  font-family: 'Barlow', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  line-height: 1.6;
+  font-size: 1rem;
+}
 
+/* Header and Navigation */
 header {
   background-color: #0b1f40;
   padding: 1rem;
@@ -23,11 +25,22 @@ header {
   text-align: center;
 }
 
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 2rem;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+}
+
 header h1 {
   font-size: 2rem;
   color: #ffffff;
   margin-bottom: 0.5rem;
-  margin-right: 2rem;
 }
 
 nav {
@@ -47,7 +60,7 @@ nav {
 nav a {
   text-decoration: none;
   color: #ffffff;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.7rem;
   border-radius: 5px;
   transition: background-color 0.3s;
 }
@@ -56,6 +69,7 @@ nav a:hover {
   background-color: #c8102e;
 }
 
+/* Main Layout */
 main {
   padding: 1.5rem;
   max-width: 1100px;
@@ -84,6 +98,7 @@ h2 {
   gap: 2rem;
 }
 
+/* Leaderboard Lists */
 ol {
   list-style: none;
   padding-left: 0;
@@ -125,17 +140,20 @@ li:nth-child(2)::before {
 }
 
 li:nth-child(3)::before {
-  background-color: #cd7f32; 
+  background-color: #cd7f32;
   color: #ffffff;
 }
 
+/* Player Images */
 .player-img {
   width: 40px;
   height: 40px;
   object-fit: cover;
+  object-position: center top;
   border-radius: 50%;
 }
 
+/* CTA */
 #cta a {
   color: #0b1f40;
   font-weight: bold;
@@ -149,6 +167,7 @@ li:nth-child(3)::before {
   border-radius: 4px;
 }
 
+/* Footer */
 footer {
   text-align: center;
   padding: 1rem;
@@ -157,6 +176,116 @@ footer {
   color: #ffffff;
 }
 
+/* Browse Page */
+#search-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+#search-bar, #team-filter, #position-filter, #conference-filter {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#player-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.player-card {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.player-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.player-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.player-card-link:hover .player-card {
+  transform: scale(1.02);
+  transition: transform 0.3s;
+}
+
+/* Accessibility */
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+/* Ratings Display */
+.player-rating {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.leaderboard-description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+/* Player Profile Page Inputs */
+.player-rating-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.rating-input-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+}
+
+.rating-input-badge input {
+  width: 60px;
+  padding: 0.2rem;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 0.3rem;
+}
+
+.submit-rating {
+  width: 100%;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.submit-rating button {
+  padding: 0.5rem 1rem;
+  background-color: #c8102e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-rating button:hover {
+  background-color: #a50d22;
+}
+
+/* Responsive Media Queries */
 @media (min-width: 768px) {
   header {
     flex-direction: row;
@@ -194,44 +323,7 @@ footer {
   body {
     font-size: 1.1rem;
   }
-}
-#search-filter {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
 
-#search-bar, #team-filter, #position-filter {
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-#player-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-.player-card {
-  background-color: #ffffff;
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.player-card img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 1rem;
-}
-
-@media (min-width: 768px) {
   #search-filter {
     flex-direction: row;
     justify-content: center;
@@ -242,6 +334,7 @@ footer {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
 
 
 
