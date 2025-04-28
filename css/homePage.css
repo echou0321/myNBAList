@@ -129,9 +129,11 @@ li:nth-child(3)::before {
 .player-img {
   width: 40px;
   height: 40px;
-  object-fit: cover;
   border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
 }
+
 
 #cta a {
   color: #0b1f40;
