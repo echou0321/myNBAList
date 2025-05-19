@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../css/style.css'    // make sure this path matches where your style.css lives
+import '../css/style.css'    
 
 export default function Register() {
   const [username, setUsername] = useState('')
@@ -19,13 +19,12 @@ export default function Register() {
       return
     }
     setError('')
-    // TODO: POST to your /api/register endpoint
     console.log('Registering:', { username, email, password })
   }
 
   return (
     <>
-      {/* Header/Nav */}
+      {}
       <header>
         <div className="site-logo">
           <img
@@ -49,7 +48,7 @@ export default function Register() {
         </nav>
       </header>
 
-      {/* Registration Form */}
+      {}
       <main>
         <div className="background-container">
           <div className="login-card">
@@ -62,7 +61,7 @@ export default function Register() {
               <input
                 type="text"
                 className="placeholder"
-                placeholder="username"
+                placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
@@ -80,7 +79,7 @@ export default function Register() {
               <input
                 type="password"
                 className="placeholder"
-                placeholder="password"
+                placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -89,7 +88,7 @@ export default function Register() {
               <input
                 type="password"
                 className="placeholder"
-                placeholder="confirm password"
+                placeholder="Confirm password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
@@ -113,7 +112,7 @@ export default function Register() {
         </div>
       </main>
 
-      {/* Footer */}
+      {}
       <footer>
         <p>&copy; 2025 MyNBAList</p>
       </footer>

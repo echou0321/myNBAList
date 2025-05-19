@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../css/style.css'  // adjust path if your CSS lives elsewhere
+import '../css/style.css'  
 
 export default function Login() {
   const [username, setUsername] = useState('')
@@ -13,13 +13,12 @@ export default function Login() {
       return
     }
     setError('')
-    // TODO: hook this up to your real auth API
     console.log('Login attempt:', { username, password })
   }
 
   return (
     <>
-      {/* Header/Nav */}
+      {}
       <header>
         <div className="site-logo">
           <img src="/icons/Basketball-icon.jpg" alt="Site Icon" className="logo-img" />
@@ -39,7 +38,7 @@ export default function Login() {
         </nav>
       </header>
 
-      {/* Login Form */}
+      {}
       <main>
         <div className="background-container">
           <div className="login-card">
@@ -51,7 +50,7 @@ export default function Login() {
               <input
                 type="text"
                 className="placeholder"
-                placeholder="username"
+                placeholder="Username"
                 value={username}
                 onChange={e => setUsername(e.target.value)}
               />
@@ -60,7 +59,7 @@ export default function Login() {
               <input
                 type="password"
                 className="placeholder"
-                placeholder="password"
+                placeholder="Password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
               />
@@ -81,7 +80,7 @@ export default function Login() {
         </div>
       </main>
 
-      {/* Footer */}
+      {}
       <footer>
         <p>&copy; 2025 MyNBAList</p>
       </footer>

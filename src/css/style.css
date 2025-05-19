@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;800&display=swap');
 
-/* Set up full-page flex layout */
+
 html, body, #root {
   height: 100%;
   margin: 0;
@@ -13,17 +13,17 @@ html, body, #root {
 }
 
 main {
-  flex: 1;                /* grow to fill space between header & footer */
-  display: flex;          /* center bg-container vertically */
+  flex: 1;                
+  display: flex;        
   flex-direction: column;
 }
 
 .background-container {
-  flex: 1;                /* fill all of main */
+  flex: 1;               
 }
 
 
-/* Reset and Base Styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -98,7 +98,7 @@ nav a:hover {
   background-color: #c8102e;
 }
 
-/* Main Layout */
+
 main {
   padding: 1.5rem;
   max-width: 1100px;
@@ -127,7 +127,6 @@ h2 {
   gap: 2rem;
 }
 
-/* Leaderboard Lists */
 ol {
   list-style: none;
   padding-left: 0;
@@ -173,7 +172,7 @@ li:nth-child(3)::before {
   color: #ffffff;
 }
 
-/* Player Images */
+
 .player-img {
   width: 40px;
   height: 40px;
@@ -182,7 +181,7 @@ li:nth-child(3)::before {
   border-radius: 50%;
 }
 
-/* CTA */
+
 #cta a {
   color: #0b1f40;
   font-weight: bold;
@@ -196,7 +195,7 @@ li:nth-child(3)::before {
   border-radius: 4px;
 }
 
-/* Footer */
+
 footer {
   text-align: center;
   padding: 1rem;
@@ -205,7 +204,7 @@ footer {
   color: #ffffff;
 }
 
-/* Browse Page */
+
 #search-filter {
   display: flex;
   flex-direction: column;
@@ -253,13 +252,11 @@ footer {
   transition: transform 0.3s;
 }
 
-/* Accessibility */
 .visually-hidden {
   position: absolute;
   left: -9999px;
 }
 
-/* Ratings Display */
 .player-rating {
   font-size: 0.9rem;
   color: #555;
@@ -271,7 +268,6 @@ footer {
   margin-bottom: 1rem;
 }
 
-/* Player Profile Page Inputs */
 .player-rating-inputs {
   display: flex;
   flex-wrap: wrap;
@@ -314,7 +310,6 @@ footer {
   background-color: #a50d22;
 }
 
-/* Responsive Media Queries */
 @media (min-width: 768px) {
   header {
     flex-direction: row;
@@ -364,7 +359,6 @@ footer {
   }
 }
 
-/* Player Profile Page Specific Layout */
 .player-header {
   background-color: #0b1f40;
   color: #ffffff;
@@ -500,10 +494,7 @@ footer {
   color: #555;
 }
 
-/* User Profile Page Specific Styles */
 
-
-/* Profile Header Section */
 .profile-header {
   background-color: #ffffff;
   padding: 1.5rem;
@@ -556,7 +547,7 @@ footer {
   color: #555;
 }
 
-/* Top Players List */
+
 .top-players-header {
   display: flex;
   justify-content: space-between;
@@ -695,7 +686,7 @@ footer {
   background-color: #a50d22;
 }
 
-/* Edit mode functionality */
+
 .edit-mode .player-item {
   cursor: move;
   position: relative;
@@ -705,7 +696,7 @@ footer {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Hide elements when not in edit mode */
+
 .save-changes, .add-player {
   display: none;
 }
@@ -714,7 +705,7 @@ footer {
   display: block;
 }
 
-/* Media queries for the profile page */
+
 @media (min-width: 768px) {
   .profile-header {
     flex-direction: row;
@@ -792,7 +783,7 @@ footer {
   background-color: #a50d22;
 }
 
-/* Team Builder Section */
+
 .team-builder-container {
   background-color: #ffffff;
   border-radius: 8px;
@@ -889,7 +880,7 @@ footer {
   background-color: #071631;
 }
 
-/* Basketball Court Visualization */
+
 #court-visualization {
   margin-bottom: 2rem;
 }
@@ -1018,7 +1009,6 @@ footer {
   color: #555;
 }
 
-/* Matchup Results Section */
 .results-container {
   background-color: #ffffff;
   border-radius: 8px;
@@ -1100,7 +1090,6 @@ footer {
   margin-top: 0.3rem;
 }
 
-/* Responsive layout for larger screens */
 @media (min-width: 768px) {
   .team-selector-section {
     flex-direction: row;
@@ -1111,7 +1100,7 @@ footer {
   }
 }
 
-/* Login Styling */
+
 body {
   min-height: 100vh;
   display: flex;
