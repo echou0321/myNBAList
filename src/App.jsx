@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import FiveVFive from './components/FiveVFive.jsx';
-import Login from './components/Login.jsx';
-import Register from './components/Register.jsx';
-import './css'; // Assumes style.css is copied here
+import Login from './components/login.jsx';
+import Register from './components/register.jsx';
+import './css/style.css'; // Assumes style.css is copied here
 
 function App() {
   return (

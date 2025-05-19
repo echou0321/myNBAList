@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../css'; // Assumes style.css is copied to App.css
+import '../css/style.css'; // Assumes style.css is copied to App.css
 
 function FiveVFive() {
   const [team1, setTeam1] = useState({
