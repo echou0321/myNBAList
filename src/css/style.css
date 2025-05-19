@@ -1,5 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;800&display=swap');
 
+/* Set up full-page flex layout */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+main {
+  flex: 1;                /* grow to fill space between header & footer */
+  display: flex;          /* center bg-container vertically */
+  flex-direction: column;
+}
+
+.background-container {
+  flex: 1;                /* fill all of main */
+}
+
+
 /* Reset and Base Styles */
 * {
   margin: 0;

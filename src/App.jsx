@@ -1,34 +1,93 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react'
+import './css/style.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+
+  const handleLogin = (e) => {
+    e.preventDefault()
+    if (!username.trim() || !password) {
+      setError('Please enter both username and password.')
+      return
+    }
+    setError('')
+    // TODO: Integrate real auth here
+    console.log('Login attempt:', { username, password })
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="app-container">
+      {/* Header */}
+      <header>
+        <div className="site-logo">
+          <img src="/icons/Basketball-icon.jpg" alt="Site Icon" className="logo-img" />
+          <h1>MyNBAList</h1>
+        </div>
+        <nav>
+          <div className="nav-left">
+            <a href="/">Home</a>
+            <a href="/browse">Browse Players</a>
+            <a href="/5v5">My NBA 5v5</a>
+            <a href="/userProfile">My Profile</a>
+          </div>
+          <div className="nav-right">
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+          </div>
+        </nav>
+      </header>
+
+      {/* Main Login Section */}
+      <main>
+        <div className="background-container">
+          <div className="login-card">
+            <h2 style={{ textAlign: 'center', color: '#c8102e', marginBottom: '2rem' }}>
+              Login
+            </h2>
+            <form onSubmit={handleLogin}>
+              <label>Username</label>
+              <input
+                type="text"
+                className="placeholder"
+                placeholder="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+
+              <label>Password</label>
+              <input
+                type="password"
+                className="placeholder"
+                placeholder="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+
+              {error && (
+                <p style={{ color: '#c8102e', marginTop: '0.5rem' }}>{error}</p>
+              )}
+
+              <button type="submit" className="login-button">
+                Log In
+              </button>
+            </form>
+
+            <div className="login-link">
+              <p>
+                Don't have an account? <a href="/register">Sign up here</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer>
+        <p>&copy; 2025 MyNBAList</p>
+      </footer>
+    </div>
   )
 }
 
