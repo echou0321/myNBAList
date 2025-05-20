@@ -8,12 +8,12 @@ import {
   Navigate
 } from 'react-router-dom'
 
-import FiveVFive from './components/FiveVFive.jsx'
-import Login     from './components/login.jsx'
-import Register  from './components/register.jsx'
-import HomePage from './components/index.jsx'
+import FiveVFive from './FiveVFive.jsx'
+import Login     from './login.jsx'
+import Register  from './register.jsx'
+import HomePage from './index.jsx'
 
-import './css/style.css'
+import '../css/style.css'
 
 export default function App() {
   return (
