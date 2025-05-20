@@ -11,6 +11,7 @@ import {
 import FiveVFive from './components/FiveVFive.jsx'
 import Login     from './components/login.jsx'
 import Register  from './components/register.jsx'
+import HomePage from './components/index.jsx'
 
 import './css/style.css'
 
@@ -19,7 +20,7 @@ export default function App() {
     <Router>
       <Routes>
         {}
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<Navigate to="/home" replace />} />
 
         {}
         <Route path="/login"  element={<Login />} />
@@ -28,6 +29,8 @@ export default function App() {
 
         {}
         <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="/home" element={<HomePage />} />
+
       </Routes>
     </Router>
   )
