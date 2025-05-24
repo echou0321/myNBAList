@@ -12,6 +12,7 @@ import FiveVFive from './FiveVFive.jsx'
 import Login     from './login.jsx'
 import Register  from './register.jsx'
 import HomePage from './index.jsx'
+import PlayerProfile from './playerProfile.jsx'
 
 import '../css/style.css'
 
@@ -30,6 +31,7 @@ export default function App() {
         {}
         <Route path="*" element={<Navigate to="/login" replace />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/playerprofile" element={<PlayerProfile />} />
 
       </Routes>
     </Router>
