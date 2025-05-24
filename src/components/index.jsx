@@ -30,7 +30,7 @@ const topRatedPlayers = [
 
 const HomePage = () => {
   return (
-    <div>
+    <>
       <header>
         <div className="site-logo">
           <img src="/icons/Basketball-icon.jpg" alt="Site Icon" className="logo-img" />
@@ -51,66 +51,69 @@ const HomePage = () => {
       </header>
 
       <main>
-        <section id="intro">
-          <h2>Welcome to MyNBAList</h2>
-          <p>Rate, rank, and discover NBA players based on fan opinions and official stats.</p>
-        </section>
-
-        <div className="player-lists">
-          <section id="trending-players">
-            <h2>🔥 Trending Players</h2>
-            <p className="leaderboard-description">
-              Trending players are ranked based on the number of votes received or changes in fan ratings this month.
-            </p>
-            <ol>
-              {trendingPlayers.map((player) => (
-                <li key={player.name}>
-                  <img
-                    src={`/playerIMGs/${player.img}.jpg`}
-                    alt={player.name}
-                    className="player-img"
-                  />
-                  {` ${player.name} — ⭐ ${player.rating}`}
-                </li>
-              ))}
-            </ol>
+        <div className="container">
+          <section id="intro">
+            <h2>Welcome to MyNBAList</h2>
+            <p>Rate, rank, and discover NBA players based on fan opinions and official stats.</p>
           </section>
 
-          <section id="top-rated-players">
-            <h2>🏆 Top Rated Players</h2>
-            <p className="leaderboard-description">
-              Top rated players are ranked based on their highest overall fan rating across all categories.
+          <div className="player-lists">
+            <section id="trending-players">
+              <h2>🔥 Trending Players</h2>
+              <p className="leaderboard-description">
+                Trending players are ranked based on the number of votes received or changes in fan ratings this month.
+              </p>
+              <ol>
+                {trendingPlayers.map((player) => (
+                  <li key={player.name}>
+                    <img
+                      src={`/playerIMGs/${player.img}.jpg`}
+                      alt={player.name}
+                      className="player-img"
+                    />
+                    {` ${player.name} — ⭐ ${player.rating}`}
+                  </li>
+                ))}
+              </ol>
+            </section>
+
+            <section id="top-rated-players">
+              <h2>🏆 Top Rated Players</h2>
+              <p className="leaderboard-description">
+                Top rated players are ranked based on their highest overall fan rating across all categories.
+              </p>
+              <ol>
+                {topRatedPlayers.map((player) => (
+                  <li key={player.name}>
+                    <img
+                      src={`/playerIMGs/${player.img}.jpg`}
+                      alt={player.name}
+                      className="player-img"
+                    />
+                    {` ${player.name} — ⭐ ${player.rating}`}
+                  </li>
+                ))}
+              </ol>
+            </section>
+          </div>
+
+          <section id="cta">
+            <h2>Get Started</h2>
+            <p>
+              <Link to="/register">Create an Account</Link> or{" "}
+              <Link to="/login">Log In</Link> to start building your Top 10 list.
             </p>
-            <ol>
-              {topRatedPlayers.map((player) => (
-                <li key={player.name}>
-                  <img
-                    src={`/playerIMGs/${player.img}.jpg`}
-                    alt={player.name}
-                    className="player-img"
-                  />
-                  {` ${player.name} — ⭐ ${player.rating}`}
-                </li>
-              ))}
-            </ol>
           </section>
         </div>
-
-        <section id="cta">
-          <h2>Get Started</h2>
-          <p>
-            <Link to="/register">Create an Account</Link> or{" "}
-            <Link to="/login">Log In</Link> to start building your Top 10 list.
-          </p>
-        </section>
       </main>
 
       <footer>
         <p>&copy; 2025 MyNBAList</p>
       </footer>
-    </div>
+    </>
   );
 };
 
 export default HomePage;
+
 

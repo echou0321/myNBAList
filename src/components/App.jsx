@@ -1,39 +1,36 @@
 // src/App.jsx
 
-import React from 'react'
+import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate
-} from 'react-router-dom'
+} from 'react-router-dom';
 
-import FiveVFive from './FiveVFive.jsx'
-import Login     from './login.jsx'
-import Register  from './register.jsx'
-import HomePage from './index.jsx'
-import PlayerProfile from './playerProfile.jsx'
+import FiveVFive from './FiveVFive.jsx';
+import Login from './login.jsx';
+import Register from './register.jsx';
+import HomePage from './index.jsx';
+import PlayerProfile from './playerProfile.jsx';
 
-import '../css/style.css'
+import '../css/style.css';
 
 export default function App() {
   return (
     <Router>
-      <Routes>
-        {}
-        <Route path="/" element={<Navigate to="/home" replace />} />
-
-        {}
-        <Route path="/login"  element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/5v5"    element={<FiveVFive />} />
-
-        {}
-        <Route path="*" element={<Navigate to="/login" replace />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/playerprofile" element={<PlayerProfile />} />
-
-      </Routes>
+      <div className="app-wrapper">
+        <Routes>
+          <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/5v5" element={<FiveVFive />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/playerprofile" element={<PlayerProfile />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
+      </div>
     </Router>
-  )
+  );
 }
+
