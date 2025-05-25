@@ -520,6 +520,15 @@ footer {
   margin-bottom: 2rem;
 }
 
+.last-five-games {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.last-five-games .games-table {
+  min-width: 700px;
+}
+
 .games-table {
   width: 100%;
   border-collapse: collapse;
@@ -539,9 +548,30 @@ footer {
 }
 
 .awards-section ul {
-  list-style: disc inside;
+  list-style: none;
+  padding-left: 0;
   margin-top: 1rem;
-  color: #555;
+  color: #333;
+}
+
+.awards-section li {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.awards-section li::before {
+  content: "🌟";
+  position: absolute;
+  left: 0;
+  font-size: 1.2rem;
+  color: #c8102e;
+  line-height: 1;
 }
 
 /* Profile Header */

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Register() {
   const [username, setUsername] = useState('')
@@ -23,98 +24,139 @@ export default function Register() {
 
   return (
     <>
-      {}
       <header>
         <div className="site-logo">
-          <img
-            src="/icons/Basketball-icon.jpg"
-            alt="Site Icon"
-            className="logo-img"
-          />
+          <img src="/icons/Basketball-icon.jpg" alt="Site Icon" className="logo-img" />
           <h1>MyNBAList</h1>
         </div>
         <nav>
           <div className="nav-left">
-            <a href="/">Home</a>
-            <a href="/browse">Browse Players</a>
-            <a href="/5v5">My NBA 5v5</a>
-            <a href="/userProfile">My Profile</a>
+            <Link to="/home">Home</Link>
+            <Link to="/browse">Browse Players</Link>
+            <Link to="/5v5">My NBA 5v5</Link>
+            <Link to="/userProfile">My Profile</Link>
           </div>
           <div className="nav-right">
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
           </div>
         </nav>
       </header>
 
-      {}
       <main>
-        <div className="background-container">
-          <div className="login-card">
-            <h2 style={{ textAlign: 'center', color: '#c8102e', marginBottom: '2rem' }}>
+        <div className="background-container" style={{ paddingTop: '4rem', paddingBottom: '4rem' }}>
+          <div
+            className="login-card"
+            style={{
+              backgroundColor: 'rgb(241, 242, 243)',
+              backdropFilter: 'blur(12px)',
+              padding: '3rem 2.5rem',
+              borderRadius: '12px',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
+              maxWidth: '400px',
+              width: '100%',
+              margin: '0 auto',
+              textAlign: 'center',
+            }}
+          >
+            <h2 style={{ color: '#c8102e', marginBottom: '0.5rem', fontSize: '2rem' }}>
               Create Account
             </h2>
 
-            <form onSubmit={handleRegister}>
-              <label>Username</label>
-              <input
-                type="text"
-                className="placeholder"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
+            <form onSubmit={handleRegister} style={{ display: 'flex', flexDirection: 'column', gap: '0.50rem' }}>
+              <div style={{ textAlign: 'left' }}>
+                <label htmlFor="username" style={{ fontWeight: '600' }}>Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  placeholder="Enter your username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  style={inputStyle}
+                />
+              </div>
 
-              <label>Email</label>
-              <input
-                type="email"
-                className="placeholder"
-                placeholder="email@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <div style={{ textAlign: 'left' }}>
+                <label htmlFor="email" style={{ fontWeight: '600' }}>Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="email@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  style={inputStyle}
+                />
+              </div>
 
-              <label>Password</label>
-              <input
-                type="password"
-                className="placeholder"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <div style={{ textAlign: 'left' }}>
+                <label htmlFor="password" style={{ fontWeight: '600' }}>Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Enter password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  style={inputStyle}
+                />
+              </div>
 
-              <label>Confirm Password</label>
-              <input
-                type="password"
-                className="placeholder"
-                placeholder="Confirm password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
+              <div style={{ textAlign: 'left' }}>
+                <label htmlFor="confirmPassword" style={{ fontWeight: '600' }}>Confirm Password</label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  placeholder="Re-enter password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  style={inputStyle}
+                />
+              </div>
 
               {error && (
-                <p style={{ color: '#c8102e', marginTop: '0.5rem' }}>{error}</p>
+                <p style={{ color: '#c8102e', fontWeight: '500', fontSize: '0.95rem' }}>{error}</p>
               )}
 
-              <button type="submit" className="login-button">
+              <button
+                type="submit"
+                style={{
+                  marginTop: '0.75rem',
+                  padding: '0.75rem',
+                  backgroundColor: '#c8102e',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '6px',
+                  fontWeight: '600',
+                  fontSize: '1rem',
+                  cursor: 'pointer',
+                  transition: 'background-color 0.3s',
+                }}
+              >
                 Register
               </button>
             </form>
 
-            <p style={{ textAlign: 'center', marginTop: '1.5rem' }}>
+            <p style={{ marginTop: '1.5rem', fontSize: '0.95rem' }}>
               Already have an account?{' '}
-              <a href="/login" style={{ color: '#0b1f40', fontWeight: 'bold' }}>
+              <Link to="/login" style={{ color: '#0b1f40', fontWeight: '600', textDecoration: 'underline' }}>
                 Log in here
-              </a>
+              </Link>
             </p>
           </div>
         </div>
       </main>
 
-      {}
       <footer>
         <p>&copy; 2025 MyNBAList</p>
       </footer>
     </>
   )
+}
+
+const inputStyle = {
+  width: '100%',
+  padding: '0.75rem',
+  marginTop: '0.25rem',
+  border: '1px solid #ccc',
+  borderRadius: '6px',
+  fontSize: '1rem',
 }
