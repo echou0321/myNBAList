@@ -1,7 +1,5 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../css/style.css';
 
 export default function PlayerProfile() {
   const [ratings, setRatings] = useState({

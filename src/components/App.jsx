@@ -14,8 +14,6 @@ import Register from './register.jsx';
 import HomePage from './index.jsx';
 import PlayerProfile from './playerProfile.jsx';
 import PlayerSearchPage from './playerSearchPage.jsx' 
-
-
 import '../css/style.css';
 
 export default function App() {

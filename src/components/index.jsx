@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../css/style.css";
 
 const trendingPlayers = [
   { name: "Victor Wembanyama", img: "Wembanyama", rating: 9.0 },

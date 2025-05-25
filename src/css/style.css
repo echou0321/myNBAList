@@ -1,33 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;800&display=swap');
 
-
-html, body, #root {
-  height: 100%;
-  margin: 0;
-}
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-main {
-  flex: 1;                
-  display: flex;        
-  flex-direction: column;
-}
-
-.background-container {
-  flex: 1;               
-}
-
-
-
+/* Global and Base Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
 }
 
 body {
@@ -38,6 +20,40 @@ body {
   font-size: 1rem;
 }
 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Layout Containers */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+}
+
+.background-container {
+  flex: 1;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Header Styles */
 header {
   background-color: #0b1f40;
   padding: 1rem;
@@ -72,6 +88,7 @@ header h1 img {
   margin-right: 10px;
 }
 
+/* Navigation Styles */
 nav {
   display: flex;
   flex-direction: column;
@@ -98,15 +115,7 @@ nav a:hover {
   background-color: #c8102e;
 }
 
-
-main {
-  padding: 1.5rem;
-  max-width: 1100px;
-  margin: 0 auto;
-  background-color: #f4f4f4;
-  border-radius: 8px;
-}
-
+/* Section and Content Styles */
 section {
   margin-bottom: 2rem;
 }
@@ -121,6 +130,20 @@ h2 {
   color: #c8102e;
 }
 
+#cta a {
+  color: #0b1f40;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+#cta a:hover {
+  color: #ffffff;
+  background-color: #c8102e;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+/* Player Lists and Rankings */
 .player-lists {
   display: flex;
   flex-direction: column;
@@ -172,7 +195,6 @@ li:nth-child(3)::before {
   color: #ffffff;
 }
 
-
 .player-img {
   width: 40px;
   height: 40px;
@@ -181,44 +203,13 @@ li:nth-child(3)::before {
   border-radius: 50%;
 }
 
-
-#cta a {
-  color: #0b1f40;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-#cta a:hover {
-  color: #ffffff;
-  background-color: #c8102e;
-  padding: 0.2rem 0.4rem;
-  border-radius: 4px;
-}
-
-
-footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: #0b1f40;
+.leaderboard-description {
   font-size: 0.9rem;
-  color: #ffffff;
+  color: #666;
+  margin-bottom: 1rem;
 }
 
-
-#search-filter {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-#search-bar, #team-filter, #position-filter, #conference-filter {
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
+/* Player Grid and Cards */
 #player-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -231,6 +222,7 @@ footer {
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .player-card img {
@@ -249,25 +241,131 @@ footer {
 
 .player-card-link:hover .player-card {
   transform: scale(1.02);
-  transition: transform 0.3s;
-}
-
-.visually-hidden {
-  position: absolute;
-  left: -9999px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .player-rating {
   font-size: 0.9rem;
   color: #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
 }
 
-.leaderboard-description {
-  font-size: 0.9rem;
-  color: #666;
+/* Search and Filter Styles */
+#search-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+#search-bar,
+#team-filter,
+#position-filter,
+#conference-filter,
+#rating-filter {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  margin-left: 0.5rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
   margin-bottom: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
+#search-filter button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #0b1f40;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#search-filter button:hover {
+  background-color: #c8102e;
+  transform: scale(1.03);
+}
+
+#search-filter button {
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  font-family: 'Barlow', sans-serif;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#search-filter button:first-child {
+  background-color: #c8102e;
+  color: white;
+}
+
+#search-filter button:first-child:hover {
+  background-color: #a50d22;
+}
+
+#search-filter button:last-child {
+  background-color: #0b1f40;
+  color: white;
+}
+
+#search-filter button:last-child:hover {
+  background-color: #071631;
+}
+
+/* Buttons */
+button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #0b1f40;
+  color: white;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #163463;
+}
+
+button.reset-button {
+  background-color: white;
+  color: #0b1f40;
+  border: 1px solid #0b1f40;
+}
+
+button.reset-button:hover {
+  background-color: #f4f4f4;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #0b1f40;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+/* Player Rating Inputs */
 .player-rating-inputs {
   display: flex;
   flex-wrap: wrap;
@@ -310,55 +408,7 @@ footer {
   background-color: #a50d22;
 }
 
-@media (min-width: 768px) {
-  header {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 1.5rem 2rem;
-    text-align: left;
-  }
-
-  nav {
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .nav-left,
-  .nav-right {
-    flex-direction: row;
-  }
-
-  .player-lists {
-    flex-direction: row;
-  }
-
-  #trending-players, #top-rated-players {
-    flex: 1;
-    background-color: #ffffff;
-    padding: 1rem;
-    border-radius: 8px;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  body {
-    font-size: 1.1rem;
-  }
-
-  #search-filter {
-    flex-direction: row;
-    justify-content: center;
-    gap: 2rem;
-  }
-
-  #player-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
+/* Player Profile */
 .player-header {
   background-color: #0b1f40;
   color: #ffffff;
@@ -494,7 +544,7 @@ footer {
   color: #555;
 }
 
-
+/* Profile Header */
 .profile-header {
   background-color: #ffffff;
   padding: 1.5rem;
@@ -547,7 +597,7 @@ footer {
   color: #555;
 }
 
-
+/* Top Players */
 .top-players-header {
   display: flex;
   justify-content: space-between;
@@ -686,6 +736,9 @@ footer {
   background-color: #a50d22;
 }
 
+.save-changes, .add-player {
+  display: none;
+}
 
 .edit-mode .player-item {
   cursor: move;
@@ -696,33 +749,11 @@ footer {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-
-.save-changes, .add-player {
-  display: none;
-}
-
 .edit-mode .save-changes, .edit-mode .add-player {
   display: block;
 }
 
-
-@media (min-width: 768px) {
-  .profile-header {
-    flex-direction: row;
-    text-align: left;
-    align-items: flex-start;
-    padding: 2rem;
-  }
-  
-  .profile-info {
-    text-align: left;
-  }
-  
-  .profile-stats {
-    justify-content: flex-start;
-  }
-}
-
+/* User Rating Form */
 .user-rating-form {
   background-color: #0b1f40;
   padding: 2rem 1rem;
@@ -762,28 +793,7 @@ footer {
   cursor: not-allowed;
 }
 
-.submit-rating {
-  width: 100%;
-  text-align: center;
-  margin-top: 1.5rem;
-}
-
-.submit-rating button {
-  padding: 0.75rem 2rem;
-  background-color: #c8102e;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.submit-rating button:hover {
-  background-color: #a50d22;
-}
-
-
+/* Team Builder */
 .team-builder-container {
   background-color: #ffffff;
   border-radius: 8px;
@@ -880,7 +890,7 @@ footer {
   background-color: #071631;
 }
 
-
+/* Court Visualization */
 #court-visualization {
   margin-bottom: 2rem;
 }
@@ -958,10 +968,6 @@ footer {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-.player-position {
-  position: relative;
-}
-
 .team-left .pg { top: -50px; left: 20%; }
 .team-left .sg { top: -100px; left: 70%; }
 .team-left .sf { top: -20px; left: 50%; }
@@ -1009,6 +1015,7 @@ footer {
   color: #555;
 }
 
+/* Results */
 .results-container {
   background-color: #ffffff;
   border-radius: 8px;
@@ -1090,38 +1097,7 @@ footer {
   margin-top: 0.3rem;
 }
 
-@media (min-width: 768px) {
-  .team-selector-section {
-    flex-direction: row;
-  }
-  
-  .basketball-court {
-    height: 1000px;
-  }
-}
-
-
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.background-container {
-  flex: 1;
-  background-color: #f4f4f4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-}
-
+/* Login Card */
 .login-card {
   background-color: #ffffff;
   padding: 2rem;
@@ -1167,4 +1143,95 @@ main {
   color: #0b1f40;
   font-weight: bold;
   text-decoration: none;
+}
+
+/* Utility */
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    text-align: left;
+  }
+
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .nav-left,
+  .nav-right {
+    flex-direction: row;
+  }
+
+  .player-lists {
+    flex-direction: row;
+  }
+
+  #trending-players, #top-rated-players {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  body {
+    font-size: 1.1rem;
+  }
+
+  #search-filter {
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  #search-filter button {
+    margin-top: 0;
+  }
+
+  #player-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .profile-header {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    padding: 2rem;
+  }
+
+  .profile-info {
+    text-align: left;
+  }
+
+  .profile-stats {
+    justify-content: flex-start;
+  }
+
+  .team-selector-section {
+    flex-direction: row;
+  }
+
+  .basketball-court {
+    height: 1000px;
+  }
+
+  #rating-filter {
+    min-width: 150px;
+  }
 }
