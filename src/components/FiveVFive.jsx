@@ -305,7 +305,7 @@ function FiveVFive() {
             <Link to="/home" className="hover:text-gray-300">Home</Link>
             <Link to="/browse" className="hover:text-gray-300">Browse Players</Link>
             <Link to="/5v5" className="hover:text-gray-300">My NBA 5v5</Link>
-            <Link to="/playerprofile" className="hover:text-gray-300">My Profile</Link>
+            <Link to="/profile" className="hover:text-gray-300">My Profile</Link>
           </div>
           <div className="nav-right flex space-x-4">
             <Link to="/login" className="hover:text-gray-300">Login</Link>
