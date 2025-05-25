@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../css/style.css';
 
 // TeamSelector Component
 function TeamSelector({ teamNumber, setPlayers, selectedPlayers }) {
@@ -129,70 +127,96 @@ function TeamSelector({ teamNumber, setPlayers, selectedPlayers }) {
 
 // CourtVisualization Component
 function CourtVisualization({ team1Players, team2Players }) {
-  const defaultTeam1Players = [
-    { name: 'S. Curry', position: 'PG', img: '/playerIMGs/Steph.jpg' },
-    { name: 'D. Booker', position: 'SG', img: '/playerIMGs/booker.jpg' },
-    { name: 'L. James', position: 'SF', img: '/playerIMGs/Lebron.jpg' },
-    { name: 'G. Antetokounmpo', position: 'PF', img: '/playerIMGs/Antetokounmpo.jpg' },
-    { name: 'N. Jokić', position: 'C', img: '/playerIMGs/Jokic.jpg' },
-  ];
+  const defaultTeam1Players = {
+    pg: { name: 'S. Curry', position: 'PG', img: '/playerIMGs/Steph.jpg' },
+    sg: { name: 'D. Booker', position: 'SG', img: '/playerIMGs/booker.jpg' },
+    sf: { name: 'L. James', position: 'SF', img: '/playerIMGs/Lebron.jpg' },
+    pf: { name: 'G. Antetokounmpo', position: 'PF', img: '/playerIMGs/Antetokounmpo.jpg' },
+    c: { name: 'N. Jokić', position: 'C', img: '/playerIMGs/Jokic.jpg' },
+  };
 
-  const defaultTeam2Players = [
-    { name: 'J. Morant', position: 'PG', img: '/playerIMGs/Morant.jpg' },
-    { name: 'D. Mitchell', position: 'SG', img: '/playerIMGs/Mitchell.jpg' },
-    { name: 'K. Leonard', position: 'SF', img: '/playerIMGs/kawhi.jpg' },
-    { name: 'D. Green', position: 'PF', img: '/playerIMGs/draymond.jpg' },
-    { name: 'V. Wembanyama', position: 'C', img: '/playerIMGs/Wembanyama.jpg' },
-  ];
+  const defaultTeam2Players = {
+    pg: { name: 'J. Morant', position: 'PG', img: '/playerIMGs/Morant.jpg' },
+    sg: { name: 'D. Mitchell', position: 'SG', img: '/playerIMGs/Mitchell.jpg' },
+    sf: { name: 'K. Leonard', position: 'SF', img: '/playerIMGs/kawhi.jpg' },
+    pf: { name: 'D. Green', position: 'PF', img: '/playerIMGs/draymond.jpg' },
+    c: { name: 'V. Wembanyama', position: 'C', img: '/playerIMGs/Wembanyama.jpg' },
+  };
 
-  const renderTeam1 = Object.values(team1Players.players || {})
-    .filter((player) => player)
-    .length > 0
-    ? Object.values(team1Players.players).filter((player) => player)
-    : defaultTeam1Players;
+  // Get team players or use defaults
+  const getTeamPlayers = (teamPlayers, defaultPlayers) => {
+    const result = {};
+    ['pg', 'sg', 'sf', 'pf', 'c'].forEach(position => {
+      result[position] = teamPlayers.players?.[position] || defaultPlayers[position];
+    });
+    return result;
+  };
 
-  const renderTeam2 = Object.values(team2Players.players || {})
-    .filter((player) => player)
-    .length > 0
-    ? Object.values(team2Players.players).filter((player) => player)
-    : defaultTeam2Players;
+  const team1PlayersToRender = getTeamPlayers(team1Players, defaultTeam1Players);
+  const team2PlayersToRender = getTeamPlayers(team2Players, defaultTeam2Players);
 
   return (
     <section id="court-visualization" className="p-4">
-      <h3 className="text-xl font-semibold mb-4">Team Matchup Visualization</h3>
-      <div className="basketball-court relative flex justify-between">
-        <div className="court-lines absolute inset-0 bg-gray-200"></div>
-        <div className="team team-left w-1/3 space-y-4">
-          <div className="team-name text-lg font-bold">{team1Players.teamName || 'Team 1'}</div>
-          {renderTeam1.map((player) => (
-            <div className={`player-position ${player.position.toLowerCase()}`} key={player.position}>
-              <div className="player-marker flex items-center">
-                <img src={player.img} alt={player.position} className="player-img w-12 h-12 rounded-full mr-2" />
-                <div className="player-info">
-                  <span className="player-name">{player.name}</span>
-                  <span className="player-position-label">{player.position}</span>
+      <h3 className="text-xl font-semibold mb-4 text-center">Team Matchup Visualization</h3>
+      <div className="basketball-court">
+        <div className="court-lines"></div>
+
+        {/* Team 1 (left side) */}
+        <div className="team team-left">
+          <div className="team-name">
+            {team1Players.teamName || 'Team 1'}
+          </div>
+          
+          {['pg', 'sg', 'sf', 'pf', 'c'].map((position) => {
+            const player = team1PlayersToRender[position];
+            return (
+              <div className={`player-position ${position}`} key={position}>
+                <div className="player-marker">
+                  <img
+                    src={player.img}
+                    alt={player.position}
+                    className="player-img"
+                  />
+                  <div className="player-info">
+                    <span className="player-name">{player.name}</span>
+                    <span className="player-position-label">{player.position}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
-        <div className="court-center flex flex-col items-center justify-center">
-          <div className="court-circle w-12 h-12 rounded-full border-2 border-black"></div>
-          <div className="versus text-2xl font-bold">VS</div>
+
+        {/* Center Circle and VS */}
+        <div className="court-center">
+          <div className="court-circle"></div>
+          <div className="versus">VS</div>
         </div>
-        <div className="team team-right w-1/3 space-y-4">
-          <div className="team-name text-lg font-bold">{team2Players.teamName || 'Team 2'}</div>
-          {renderTeam2.map((player) => (
-            <div className={`player-position ${player.position.toLowerCase()}`} key={player.position}>
-              <div className="player-marker flex items-center">
-                <img src={player.img} alt={player.position} className="player-img w-12 h-12 rounded-full mr-2" />
-                <div className="player-info">
-                  <span className="player-name">{player.name}</span>
-                  <span className="player-position-label">{player.position}</span>
+
+        {/* Team 2 (right side) */}
+        <div className="team team-right">
+          <div className="team-name">
+            {team2Players.teamName || 'Team 2'}
+          </div>
+          
+          {['pg', 'sg', 'sf', 'pf', 'c'].map((position) => {
+            const player = team2PlayersToRender[position];
+            return (
+              <div className={`player-position ${position}`} key={position}>
+                <div className="player-marker">
+                  <img
+                    src={player.img}
+                    alt={player.position}
+                    className="player-img"
+                  />
+                  <div className="player-info">
+                    <span className="player-name">{player.name}</span>
+                    <span className="player-position-label">{player.position}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
@@ -302,14 +326,14 @@ function FiveVFive() {
         </div>
         <nav className="flex justify-between w-full">
           <div className="nav-left flex space-x-4">
-            <Link to="/home" className="hover:text-gray-300">Home</Link>
-            <Link to="/browse" className="hover:text-gray-300">Browse Players</Link>
-            <Link to="/5v5" className="hover:text-gray-300">My NBA 5v5</Link>
-            <Link to="/profile" className="hover:text-gray-300">My Profile</Link>
+            <a href="/home" className="hover:text-gray-300">Home</a>
+            <a href="/browse" className="hover:text-gray-300">Browse Players</a>
+            <a href="/5v5" className="hover:text-gray-300">My NBA 5v5</a>
+            <a href="/profile" className="hover:text-gray-300">My Profile</a>
           </div>
           <div className="nav-right flex space-x-4">
-            <Link to="/login" className="hover:text-gray-300">Login</Link>
-            <Link to="/register" className="hover:text-gray-300">Register</Link>
+            <a href="/login" className="hover:text-gray-300">Login</a>
+            <a href="/register" className="hover:text-gray-300">Register</a>
           </div>
         </nav>
       </header>
