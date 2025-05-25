@@ -14,6 +14,7 @@ import Register from './register.jsx';
 import HomePage from './index.jsx';
 import PlayerProfile from './playerProfile.jsx';
 import PlayerSearchPage from './playerSearchPage.jsx' 
+import UserProfile from './userProfile.jsx'
 import '../css/style.css';
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/5v5" element={<FiveVFive />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<UserProfile />} />
           <Route path="/playerprofile" element={<PlayerProfile />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
           <Route path="/browse" element={<PlayerSearchPage />} />
