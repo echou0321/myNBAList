@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../css/style.css';
 
 function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
