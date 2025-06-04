@@ -126,12 +126,20 @@ export default function Browse() {
           <div className="nav-right">
             {currentUser ? (
               <>
-                <span className="font-semibold">
+                <span style={{ color: '#fff', fontWeight: '600', marginRight: '1rem' }}>
                   Hello, {currentUser.displayName || currentUser.email}
                 </span>
                 <button
                   onClick={handleLogout}
-                  className="ml-4 text-white border border-white px-3 py-1 rounded hover:bg-gray-700"
+                  style={{
+                    backgroundColor: 'transparent',
+                    border: '1px solid white',
+                    color: 'white',
+                    padding: '0.5rem 1rem',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontWeight: '600',
+                  }}
                 >
                   Logout
                 </button>
