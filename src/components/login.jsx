@@ -1,23 +1,30 @@
 // src/components/Login.jsx
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-// ← Firebase imports
+// Firebase imports
 import { auth } from '../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 
 export default function Login() {
-  // Rename “username” state to hold the email string
-  const [email, setEmail] = useState('');
+  const [email, setEmail]       = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError]       = useState('');
+  const [currentUser, setCurrentUser] = useState(null);
 
   const navigate = useNavigate();
 
+  // Subscribe to auth‐state changes
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
+
   const handleLogin = async (e) => {
     e.preventDefault();
-
     if (!email.trim() || !password) {
       setError('Please enter both email and password.');
       return;
@@ -25,18 +32,20 @@ export default function Login() {
     setError('');
 
     try {
-      // Sign in with Firebase Auth
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
       console.log('Logged in:', userCredential.user);
-
-      // Redirect to "/home" (or any protected route)
       navigate('/home');
     } catch (firebaseError) {
       setError(firebaseError.message);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate('/login');
+    } catch (err) {
+      console.error('Logout failed:', err);
     }
   };
 
@@ -56,11 +65,35 @@ export default function Login() {
             <Link to="/home">Home</Link>
             <Link to="/browse">Browse Players</Link>
             <Link to="/5v5">My NBA 5v5</Link>
-            <Link to="/userProfile">My Profile</Link>
+            <Link to="/profile">My Profile</Link>
           </div>
           <div className="nav-right">
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            {currentUser ? (
+              <>
+                <span style={{ color: '#fff', fontWeight: '600', marginRight: '1rem' }}>
+                  Hello, {currentUser.displayName || currentUser.email}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  style={{
+                    backgroundColor: 'transparent',
+                    border: '1px solid white',
+                    color: 'white',
+                    padding: '0.5rem 1rem',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontWeight: '600',
+                  }}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+              </>
+            )}
           </div>
         </nav>
       </header>

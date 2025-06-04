@@ -1,5 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+// src/components/index.jsx
+
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+// Firebase imports
+import { auth } from '../firebase';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 const trendingPlayers = [
   { name: "Victor Wembanyama", img: "Wembanyama", rating: 9.0 },
@@ -28,11 +34,34 @@ const topRatedPlayers = [
 ];
 
 const HomePage = () => {
+  const [currentUser, setCurrentUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate('/login');
+    } catch (err) {
+      console.error('Logout failed:', err);
+    }
+  };
+
   return (
     <>
       <header>
         <div className="site-logo">
-          <img src="/icons/Basketball-icon.jpg" alt="Site Icon" className="logo-img" />
+          <img
+            src="/icons/Basketball-icon.jpg"
+            alt="Site Icon"
+            className="logo-img"
+          />
           <h1>MyNBAList</h1>
         </div>
         <nav>
@@ -43,8 +72,32 @@ const HomePage = () => {
             <Link to="/profile">My Profile</Link>
           </div>
           <div className="nav-right">
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            {currentUser ? (
+              <>
+                <span style={{ color: '#fff', fontWeight: '600', marginRight: '1rem' }}>
+                  Hello, {currentUser.displayName || currentUser.email}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  style={{
+                    backgroundColor: 'transparent',
+                    border: '1px solid white',
+                    color: 'white',
+                    padding: '0.5rem 1rem',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontWeight: '600',
+                  }}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+              </>
+            )}
           </div>
         </nav>
       </header>
@@ -53,7 +106,9 @@ const HomePage = () => {
         <div className="container">
           <section id="intro">
             <h2>Welcome to MyNBAList</h2>
-            <p>Rate, rank, and discover NBA players based on fan opinions and official stats.</p>
+            <p>
+              Rate, rank, and discover NBA players based on fan opinions and official stats.
+            </p>
           </section>
 
           <div className="player-lists">
@@ -99,7 +154,7 @@ const HomePage = () => {
           <section id="cta">
             <h2>Get Started</h2>
             <p>
-              <Link to="/register">Create an Account</Link> or{" "}
+              <Link to="/register">Create an Account</Link> or{' '}
               <Link to="/login">Log In</Link> to start building your Top 10 list.
             </p>
           </section>
@@ -114,5 +169,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-

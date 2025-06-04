@@ -1,27 +1,36 @@
 // src/components/Register.jsx
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-// ← Firebase imports
+// Firebase imports
 import { auth } from '../firebase';
 import {
   createUserWithEmailAndPassword,
   updateProfile,
+  onAuthStateChanged,
+  signOut,
 } from 'firebase/auth';
 
 export default function Register() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail]       = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername]         = useState('');
+  const [email, setEmail]               = useState('');
+  const [password, setPassword]         = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError]       = useState('');
+  const [error, setError]               = useState('');
+  const [currentUser, setCurrentUser]   = useState(null);
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
+
   const handleRegister = async (e) => {
     e.preventDefault();
-
     if (!username.trim() || !email.trim() || !password) {
       setError('All fields are required.');
       return;
@@ -33,23 +42,25 @@ export default function Register() {
     setError('');
 
     try {
-      // 1) Create new Firebase Auth user
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       console.log('Registered user:', userCredential.user);
 
-      // 2) Update the Firebase user’s displayName to be the “username”
       await updateProfile(userCredential.user, {
         displayName: username,
       });
 
-      // 3) Redirect to /home (or any other page)
       navigate('/home');
     } catch (firebaseError) {
       setError(firebaseError.message);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate('/login');
+    } catch (err) {
+      console.error('Logout failed:', err);
     }
   };
 
@@ -69,11 +80,35 @@ export default function Register() {
             <Link to="/home">Home</Link>
             <Link to="/browse">Browse Players</Link>
             <Link to="/5v5">My NBA 5v5</Link>
-            <Link to="/userProfile">My Profile</Link>
+            <Link to="/profile">My Profile</Link>
           </div>
           <div className="nav-right">
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            {currentUser ? (
+              <>
+                <span style={{ color: '#fff', fontWeight: '600', marginRight: '1rem' }}>
+                  Hello, {currentUser.displayName || currentUser.email}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  style={{
+                    backgroundColor: 'transparent',
+                    border: '1px solid white',
+                    color: 'white',
+                    padding: '0.5rem 1rem',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontWeight: '600',
+                  }}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+              </>
+            )}
           </div>
         </nav>
       </header>
@@ -216,7 +251,6 @@ export default function Register() {
   );
 }
 
-// Shared input style constant
 const inputStyle = {
   width: '100%',
   padding: '0.75rem',
