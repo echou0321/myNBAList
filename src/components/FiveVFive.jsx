@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // TeamSelector Component
 function TeamSelector({ teamNumber, setPlayers, selectedPlayers }) {
@@ -86,29 +87,33 @@ function TeamSelector({ teamNumber, setPlayers, selectedPlayers }) {
     setPlayers((prev) => ({ ...prev, teamName: e.target.value }));
   };
 
+  // Extract mapped player selections
+  const playerSelections = ['pg', 'sg', 'sf', 'pf', 'c'].map((position) => (
+    <div className="position-selection flex items-center" key={position}>
+      <label htmlFor={`team${teamNumber}-${position}`} className="mr-2">
+        {position.toUpperCase()}:
+      </label>
+      <select
+        id={`team${teamNumber}-${position}`}
+        className="player-select border p-2 rounded"
+        value={selectedPlayers[position] || ''}
+        onChange={(e) => handlePlayerChange(position, e.target.value)}
+        aria-label={`Select ${position.toUpperCase()} player for Team ${teamNumber}`}
+      >
+        {players[position].map((player) => (
+          <option key={player.value} value={player.value}>
+            {player.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  ));
+
   return (
     <div className="team-selector p-4">
       <h3 className="text-xl font-semibold mb-4">Select Players for Team {teamNumber}</h3>
       <div className="player-selection-area space-y-4">
-        {['pg', 'sg', 'sf', 'pf', 'c'].map((position) => (
-          <div className="position-selection flex items-center" key={position}>
-            <label htmlFor={`team${teamNumber}-${position}`} className="mr-2">
-              {position.toUpperCase()}:
-            </label>
-            <select
-              id={`team${teamNumber}-${position}`}
-              className="player-select border p-2 rounded"
-              value={selectedPlayers[position] || ''}
-              onChange={(e) => handlePlayerChange(position, e.target.value)}
-            >
-              {players[position].map((player) => (
-                <option key={player.value} value={player.value}>
-                  {player.label}
-                </option>
-              ))}
-            </select>
-          </div>
-        ))}
+        {playerSelections}
         <div className="team-name-input flex items-center">
           <label htmlFor={`team${teamNumber}-name`} className="mr-2">Team Name:</label>
           <input
@@ -118,6 +123,7 @@ function TeamSelector({ teamNumber, setPlayers, selectedPlayers }) {
             className="border p-2 rounded"
             value={selectedPlayers.teamName || ''}
             onChange={handleTeamNameChange}
+            aria-label={`Enter name for Team ${teamNumber}`}
           />
         </div>
       </div>
@@ -155,68 +161,66 @@ function CourtVisualization({ team1Players, team2Players }) {
   const team1PlayersToRender = getTeamPlayers(team1Players, defaultTeam1Players);
   const team2PlayersToRender = getTeamPlayers(team2Players, defaultTeam2Players);
 
+  // Extract Team 1 players
+  const team1PlayerElements = ['pg', 'sg', 'sf', 'pf', 'c'].map((position) => {
+    const player = team1PlayersToRender[position];
+    return (
+      <div className={`player-position ${position}`} key={position}>
+        <div className="player-marker">
+          <img
+            src={player.img}
+            alt={player.name}
+            className="player-img w-12 h-12 object-cover rounded-full"
+          />
+          <div className="player-info">
+            <span className="player-name text-sm">{player.name}</span>
+            <span className="player-position-label text-xs">{player.position}</span>
+          </div>
+        </div>
+      </div>
+    );
+  });
+
+  // Extract Team 2 players
+  const team2PlayerElements = ['pg', 'sg', 'sf', 'pf', 'c'].map((position) => {
+    const player = team2PlayersToRender[position];
+    return (
+      <div className={`player-position ${position}`} key={position}>
+        <div className="player-marker">
+          <img
+            src={player.img}
+            alt={player.name}
+            className="player-img w-12 h-12 object-cover rounded-full"
+          />
+          <div className="player-info">
+            <span className="player-name text-sm">{player.name}</span>
+            <span className="player-position-label text-xs">{player.position}</span>
+          </div>
+        </div>
+      </div>
+    );
+  });
+
   return (
     <section id="court-visualization" className="p-4">
       <h3 className="text-xl font-semibold mb-4 text-center">Team Matchup Visualization</h3>
-      <div className="basketball-court">
-        <div className="court-lines"></div>
-
-        {/* Team 1 (left side) */}
-        <div className="team team-left">
-          <div className="team-name">
+      <div className="basketball-court relative mx-auto max-w-4xl bg-green-900 rounded-lg overflow-hidden">
+        <div className="court-lines absolute inset-0 bg-[url('/court-bg.jpg')] bg-cover opacity-50"></div>
+        <div className="court-center absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="court-circle w-16 h-16 border-2 border-white rounded-full"></div>
+          <div className="versus text-white text-2xl font-bold">VS</div>
+        </div>
+        <div className="team team-left absolute left-0 top-0 w-1/2 p-4 flex flex-col space-y-2">
+          <div className="team-name text-white text-lg font-semibold">
             {team1Players.teamName || 'Team 1'}
           </div>
-          
-          {['pg', 'sg', 'sf', 'pf', 'c'].map((position) => {
-            const player = team1PlayersToRender[position];
-            return (
-              <div className={`player-position ${position}`} key={position}>
-                <div className="player-marker">
-                  <img
-                    src={player.img}
-                    alt={player.position}
-                    className="player-img"
-                  />
-                  <div className="player-info">
-                    <span className="player-name">{player.name}</span>
-                    <span className="player-position-label">{player.position}</span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {team1PlayerElements}
         </div>
-
-        {/* Center Circle and VS */}
-        <div className="court-center">
-          <div className="court-circle"></div>
-          <div className="versus">VS</div>
-        </div>
-
-        {/* Team 2 (right side) */}
-        <div className="team team-right">
-          <div className="team-name">
+        <div className="team team-right absolute right-0 top-0 w-1/2 p-4 flex flex-col space-y-2">
+          <div className="team-name text-white text-lg font-semibold">
             {team2Players.teamName || 'Team 2'}
           </div>
-          
-          {['pg', 'sg', 'sf', 'pf', 'c'].map((position) => {
-            const player = team2PlayersToRender[position];
-            return (
-              <div className={`player-position ${position}`} key={position}>
-                <div className="player-marker">
-                  <img
-                    src={player.img}
-                    alt={player.position}
-                    className="player-img"
-                  />
-                  <div className="player-info">
-                    <span className="player-name">{player.name}</span>
-                    <span className="player-position-label">{player.position}</span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {team2PlayerElements}
         </div>
       </div>
     </section>
@@ -239,6 +243,25 @@ function MatchupResults({ team1Players, team2Players }) {
     ? team1Players.teamName || 'Team 1'
     : team2Players.teamName || 'Team 2';
 
+  // Extract mapped stats
+  const statElements = stats.map((stat) => (
+    <div className="stat-category mb-4" key={stat.category}>
+      <div className="category-name font-semibold">{stat.category}</div>
+      <div className="comparison-bar flex">
+        <div className="team1-bar bg-blue-500 text-white text-center" style={{ width: stat.team1.width }}>
+          {stat.team1.score}
+        </div>
+        <div className="team2-bar bg-red-500 text-white text-center" style={{ width: stat.team2.width }}>
+          {stat.team2.score}
+        </div>
+      </div>
+      <div className="team-names flex justify-between">
+        <span>{team1Players.teamName || 'Team 1'}</span>
+        <span>{team2Players.teamName || 'Team 2'}</span>
+      </div>
+    </div>
+  ));
+
   return (
     <section id="matchup-results" className="p-4">
       <div className="results-container space-y-4">
@@ -251,23 +274,7 @@ function MatchupResults({ team1Players, team2Players }) {
         </div>
         <div className="stat-comparison">
           <h3 className="text-xl font-semibold mb-4">Team Comparison</h3>
-          {stats.map((stat) => (
-            <div className="stat-category mb-4" key={stat.category}>
-              <div className="category-name font-semibold">{stat.category}</div>
-              <div className="comparison-bar flex">
-                <div className="team1-bar bg-blue-500 text-white text-center" style={{ width: stat.team1.width }}>
-                  {stat.team1.score}
-                </div>
-                <div className="team2-bar bg-red-500 text-white text-center" style={{ width: stat.team2.width }}>
-                  {stat.team2.score}
-                </div>
-              </div>
-              <div className="team-names flex justify-between">
-                <span>{team1Players.teamName || 'Team 1'}</span>
-                <span>{team2Players.teamName || 'Team 2'}</span>
-              </div>
-            </div>
-          ))}
+          {statElements}
         </div>
       </div>
     </section>
@@ -326,14 +333,14 @@ function FiveVFive() {
         </div>
         <nav className="flex justify-between w-full">
           <div className="nav-left flex space-x-4">
-            <a href="/home" className="hover:text-gray-300">Home</a>
-            <a href="/browse" className="hover:text-gray-300">Browse Players</a>
-            <a href="/5v5" className="hover:text-gray-300">My NBA 5v5</a>
-            <a href="/profile" className="hover:text-gray-300">My Profile</a>
+            <Link to="/home" className="hover:text-gray-300">Home</Link>
+            <Link to="/browse" className="hover:text-gray-300">Browse Players</Link>
+            <Link to="/5v5" className="hover:text-gray-300">My NBA 5v5</Link>
+            <Link to="/profile" className="hover:text-gray-300">My Profile</Link>
           </div>
           <div className="nav-right flex space-x-4">
-            <a href="/login" className="hover:text-gray-300">Login</a>
-            <a href="/register" className="hover:text-gray-300">Register</a>
+            <Link to="/login" className="hover:text-gray-300">Login</Link>
+            <Link to="/register" className="hover:text-gray-300">Register</Link>
           </div>
         </nav>
       </header>
@@ -353,12 +360,14 @@ function FiveVFive() {
               <button
                 className="simulate-button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                 onClick={handleSimulate}
+                aria-label="Simulate 5v5 matchup"
               >
                 Simulate 5v5 Matchup
               </button>
               <button
                 className="reset-button bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
                 onClick={handleReset}
+                aria-label="Reset team selections"
               >
                 Reset Teams
               </button>
@@ -375,4 +384,4 @@ function FiveVFive() {
   );
 }
 
-export default FiveVFive;
+export default React.memo(FiveVFive);
