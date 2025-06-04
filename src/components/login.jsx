@@ -1,26 +1,54 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+// src/components/Login.jsx
+
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+// ← Firebase imports
+import { auth } from '../firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function Login() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
+  // Rename “username” state to hold the email string
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleLogin = (e) => {
-    e.preventDefault()
-    if (!username.trim() || !password) {
-      setError('Please enter both username and password.')
-      return
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    if (!email.trim() || !password) {
+      setError('Please enter both email and password.');
+      return;
     }
-    setError('')
-    console.log('Login attempt:', { username, password })
-  }
+    setError('');
+
+    try {
+      // Sign in with Firebase Auth
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log('Logged in:', userCredential.user);
+
+      // Redirect to "/home" (or any protected route)
+      navigate('/home');
+    } catch (firebaseError) {
+      setError(firebaseError.message);
+    }
+  };
 
   return (
     <>
       <header>
         <div className="site-logo">
-          <img src="/icons/Basketball-icon.jpg" alt="Site Icon" className="logo-img" />
+          <img
+            src="/icons/Basketball-icon.jpg"
+            alt="Site Icon"
+            className="logo-img"
+          />
           <h1>MyNBAList</h1>
         </div>
         <nav>
@@ -38,13 +66,15 @@ export default function Login() {
       </header>
 
       <main>
-        <div className="background-container" style={{ paddingTop: '4rem', paddingBottom: '4rem' }}>
+        <div
+          className="background-container"
+          style={{ paddingTop: '4rem', paddingBottom: '4rem' }}
+        >
           <div
             className="login-card"
             style={{
               backgroundColor: 'rgb(241, 242, 243)',
               backdropFilter: 'blur(12px)',
-
               padding: '3rem 2.5rem',
               borderRadius: '12px',
               boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
@@ -54,19 +84,30 @@ export default function Login() {
               textAlign: 'center',
             }}
           >
-            <h2 style={{ color: '#c8102e', marginBottom: '0.5rem', fontSize: '2rem' }}>Login</h2>
+            <h2
+              style={{
+                color: '#c8102e',
+                marginBottom: '0.5rem',
+                fontSize: '2rem',
+              }}
+            >
+              Login
+            </h2>
 
-            <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <form
+              onSubmit={handleLogin}
+              style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}
+            >
               <div style={{ textAlign: 'left' }}>
-                <label htmlFor="username" style={{ fontWeight: '600' }}>
-                  Username
+                <label htmlFor="email" style={{ fontWeight: '600' }}>
+                  Email
                 </label>
                 <input
-                  type="text"
-                  id="username"
-                  placeholder="Enter your username"
-                  value={username}
-                  onChange={e => setUsername(e.target.value)}
+                  type="email"
+                  id="email"
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   style={{
                     width: '100%',
                     padding: '0.75rem',
@@ -87,7 +128,7 @@ export default function Login() {
                   id="password"
                   placeholder="Enter your password"
                   value={password}
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                   style={{
                     width: '100%',
                     padding: '0.75rem',
@@ -100,7 +141,9 @@ export default function Login() {
               </div>
 
               {error && (
-                <p style={{ color: '#c8102e', fontWeight: '500', fontSize: '0.95rem' }}>{error}</p>
+                <p style={{ color: '#c8102e', fontWeight: '500', fontSize: '0.95rem' }}>
+                  {error}
+                </p>
               )}
 
               <button
@@ -123,7 +166,14 @@ export default function Login() {
 
             <p style={{ marginTop: '1.5rem', fontSize: '0.95rem' }}>
               Don’t have an account?{' '}
-              <Link to="/register" style={{ color: '#0b1f40', fontWeight: '600', textDecoration: 'underline' }}>
+              <Link
+                to="/register"
+                style={{
+                  color: '#0b1f40',
+                  fontWeight: '600',
+                  textDecoration: 'underline',
+                }}
+              >
                 Sign up here
               </Link>
             </p>
@@ -135,5 +185,5 @@ export default function Login() {
         <p>&copy; 2025 MyNBAList</p>
       </footer>
     </>
-  )
+  );
 }
