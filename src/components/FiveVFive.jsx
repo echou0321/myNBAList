@@ -125,6 +125,7 @@ function TeamSelector({ teamNumber, setPlayers, selectedPlayers }) {
             className="border p-2 rounded"
             value={selectedPlayers.teamName || ''}
             onChange={handleTeamNameChange}
+            aria-label={`Enter name for Team ${teamNumber}`}
           />
         </div>
       </div>
@@ -241,6 +242,25 @@ function MatchupResults({ team1Players, team2Players }) {
     overallStat.team1.score > overallStat.team2.score
       ? team1Players.teamName || 'Team 1'
       : team2Players.teamName || 'Team 2';
+
+  // Extract mapped stats
+  const statElements = stats.map((stat) => (
+    <div className="stat-category mb-4" key={stat.category}>
+      <div className="category-name font-semibold">{stat.category}</div>
+      <div className="comparison-bar flex">
+        <div className="team1-bar bg-blue-500 text-white text-center" style={{ width: stat.team1.width }}>
+          {stat.team1.score}
+        </div>
+        <div className="team2-bar bg-red-500 text-white text-center" style={{ width: stat.team2.width }}>
+          {stat.team2.score}
+        </div>
+      </div>
+      <div className="team-names flex justify-between">
+        <span>{team1Players.teamName || 'Team 1'}</span>
+        <span>{team2Players.teamName || 'Team 2'}</span>
+      </div>
+    </div>
+  ));
 
   return (
     <section id="matchup-results" className="p-4">
@@ -361,6 +381,10 @@ function FiveVFive() {
             <Link to="/browse" className="hover:text-gray-300">Browse Players</Link>
             <Link to="/5v5" className="hover:text-gray-300">My NBA 5v5</Link>
             <Link to="/profile" className="hover:text-gray-300">My Profile</Link>
+            <Link to="/home" className="hover:text-gray-300">Home</Link>
+            <Link to="/browse" className="hover:text-gray-300">Browse Players</Link>
+            <Link to="/5v5" className="hover:text-gray-300">My NBA 5v5</Link>
+            <Link to="/profile" className="hover:text-gray-300">My Profile</Link>
           </div>
           <div className="nav-right flex space-x-4">
             {currentUser ? (
@@ -414,12 +438,14 @@ function FiveVFive() {
               <button
                 className="simulate-button bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                 onClick={handleSimulate}
+                aria-label="Simulate 5v5 matchup"
               >
                 Simulate 5v5 Matchup
               </button>
               <button
                 className="reset-button bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
                 onClick={handleReset}
+                aria-label="Reset team selections"
               >
                 Reset Teams
               </button>
