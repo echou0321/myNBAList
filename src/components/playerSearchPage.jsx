@@ -1,6 +1,11 @@
-// src/components/Browse.jsx
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+// src/components/playerSearchPage.jsx
+
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+// Firebase imports
+import { auth } from '../firebase';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 const playerData = [
   { name: 'Anthony Davis', team: 'DAL', teamName: 'Dallas Mavericks', position: 'C', conference: 'West', img: 'AD', rating: 8.9 },
@@ -28,76 +33,115 @@ const playerData = [
 ];
 
 export default function Browse() {
-  const [search, setSearch] = useState('')
-  const [team, setTeam] = useState('')
-  const [position, setPosition] = useState('')
-  const [conference, setConference] = useState('')
-  const [ratingFilter, setRatingFilter] = useState('')
-  const [sortBy, setSortBy] = useState('first') // 'first' | 'last' | ''
-  const [sortByRating, setSortByRating] = useState('') // 'asc' | 'desc' | ''
+  const [search, setSearch]               = useState('');
+  const [team, setTeam]                   = useState('');
+  const [position, setPosition]           = useState('');
+  const [conference, setConference]       = useState('');
+  const [ratingFilter, setRatingFilter]   = useState('');
+  const [sortBy, setSortBy]               = useState('first'); // 'first' | 'last' | ''
+  const [sortByRating, setSortByRating]   = useState('');     // 'asc' | 'desc' | ''
+  const [currentUser, setCurrentUser]     = useState(null);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate('/login');
+    } catch (err) {
+      console.error('Logout failed:', err);
+    }
+  };
 
   const filteredPlayers = playerData.filter(player => {
-    const ratingInt = Math.floor(player.rating)
+    const ratingInt = Math.floor(player.rating);
     return (
       player.name.toLowerCase().includes(search.toLowerCase()) &&
       (team === '' || player.team === team) &&
       (position === '' || player.position === position) &&
       (conference === '' || player.conference === conference) &&
       (ratingFilter === '' || ratingInt.toString() === ratingFilter)
-    )
-  })
+    );
+  });
 
   const sortedPlayers = [...filteredPlayers].sort((a, b) => {
     if (sortByRating !== '') {
-      return sortByRating === 'desc' ? b.rating - a.rating : a.rating - b.rating
+      return sortByRating === 'desc' ? b.rating - a.rating : a.rating - b.rating;
     } else if (sortBy === 'last') {
-      const lastA = a.name.split(' ').slice(-1)[0]
-      const lastB = b.name.split(' ').slice(-1)[0]
-      return lastA.localeCompare(lastB)
+      const lastA = a.name.split(' ').slice(-1)[0];
+      const lastB = b.name.split(' ').slice(-1)[0];
+      return lastA.localeCompare(lastB);
     } else {
-      const firstA = a.name.split(' ')[0]
-      const firstB = b.name.split(' ')[0]
-      return firstA.localeCompare(firstB)
+      const firstA = a.name.split(' ')[0];
+      const firstB = b.name.split(' ')[0];
+      return firstA.localeCompare(firstB);
     }
-  })
+  });
 
   const handleNameSortToggle = () => {
-    setSortByRating('') // clear rating sort
-    setSortBy(prev => (prev === 'first' ? 'last' : 'first'))
-  }
+    setSortByRating(''); // clear rating sort
+    setSortBy(prev => (prev === 'first' ? 'last' : 'first'));
+  };
 
   const handleRatingSortToggle = () => {
-    setSortBy('') // clear name sort
-    setSortByRating(prev => (prev === 'desc' ? 'asc' : 'desc'))
-  }
+    setSortBy(''); // clear name sort
+    setSortByRating(prev => (prev === 'desc' ? 'asc' : 'desc'));
+  };
 
   const resetFilters = () => {
-    setSearch('')
-    setTeam('')
-    setPosition('')
-    setConference('')
-    setRatingFilter('')
-    setSortBy('first')
-    setSortByRating('')
-  }
+    setSearch('');
+    setTeam('');
+    setPosition('');
+    setConference('');
+    setRatingFilter('');
+    setSortBy('first');
+    setSortByRating('');
+  };
 
   return (
     <>
       <header>
         <div className="site-logo">
-          <img src="/icons/Basketball-icon.jpg" alt="Site Icon" className="logo-img" />
+          <img
+            src="/icons/Basketball-icon.jpg"
+            alt="Site Icon"
+            className="logo-img"
+          />
           <h1>MyNBAList</h1>
         </div>
         <nav>
           <div className="nav-left">
-            <Link to="/">Home</Link>
+            <Link to="/home">Home</Link>
             <Link to="/browse">Browse Players</Link>
             <Link to="/5v5">My NBA 5v5</Link>
             <Link to="/profile">My Profile</Link>
           </div>
           <div className="nav-right">
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            {currentUser ? (
+              <>
+                <span className="font-semibold">
+                  Hello, {currentUser.displayName || currentUser.email}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="ml-4 text-white border border-white px-3 py-1 rounded hover:bg-gray-700"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+              </>
+            )}
           </div>
         </nav>
       </header>
@@ -122,12 +166,12 @@ export default function Browse() {
             {[...new Set(playerData.map(p => `${p.team}|${p.teamName}`))]
               .sort((a, b) => a.split('|')[1].localeCompare(b.split('|')[1]))
               .map(entry => {
-                const [teamCode, teamName] = entry.split('|')
+                const [teamCode, teamName] = entry.split('|');
                 return (
                   <option key={teamCode} value={teamCode}>
                     {teamName}
                   </option>
-                )
+                );
               })}
           </select>
 
@@ -166,9 +210,16 @@ export default function Browse() {
           {sortedPlayers.map((player) => (
             <Link to="/playerprofile" className="player-card-link" key={player.name}>
               <div className="player-card">
-                <img src={`/playerIMGs/${player.img}.jpg`} alt={player.name} className="player-img" />
+                <img
+                  src={`/playerIMGs/${player.img}.jpg`}
+                  alt={player.name}
+                  className="player-img"
+                />
                 <h3>{player.name}</h3>
-                <p>{player.teamName} | {player.position === 'G' ? 'Guard' : player.position === 'F' ? 'Forward' : 'Center'}</p>
+                <p>
+                  {player.teamName} |{' '}
+                  {player.position === 'G' ? 'Guard' : player.position === 'F' ? 'Forward' : 'Center'}
+                </p>
                 <p className="player-rating">⭐ {player.rating}</p>
               </div>
             </Link>
@@ -180,6 +231,5 @@ export default function Browse() {
         <p>&copy; 2025 MyNBAList</p>
       </footer>
     </>
-  )
+  );
 }
-
