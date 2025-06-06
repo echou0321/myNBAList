@@ -734,14 +734,15 @@ footer {
 }
 
 .player-pic {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center 25%;
-  margin-right: 1rem;
-  border: 2px solid #eee;
+  width: 60px;            /* Fixed size for the player box */
+  height: 60px;           /* Same height to make it square */
+  border-radius: 50%;     /* Make the box round */
+  object-fit: cover;      /* Ensure the image covers the box without stretching */
+  object-position: center 25%; /* Ensure the image is centered */
+  margin-right: 1rem;     /* Space to the right */
+  border: 2px solid #eee; /* Add a border around the icon */
 }
+
 
 .player-info {
   flex-grow: 1;
@@ -751,6 +752,10 @@ footer {
   font-weight: bold;
   font-size: 1.1rem;
   color: #0b1f40;
+  max-width: 60px;        /* Prevent name from overflowing */
+  overflow: hidden;       /* Hide text that overflows */
+  text-overflow: ellipsis; /* Add '...' if the text is too long */
+  white-space: nowrap;    /* Prevent text from wrapping */
 }
 
 .player-team {
@@ -930,18 +935,23 @@ footer {
   width: 100%;
   max-width: 1100px;
 
+  /* Keep the correct court ratio, but never let it shrink below 650px tall */
   aspect-ratio: 94 / 50;
   height: auto;
+  min-height: 650px;        /* ← bump this up or down until no player‐boxes get cut off */
 
   background-color: #b38e5d;
   border: 2px solid #0b1f40;
   border-radius: 8px;
   margin: 0 auto;
-  overflow: hidden;
+
+  /* Allow any “overflow” from slightly taller player elements to still show */
+  overflow: visible;
 
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /* Force both team columns to start at the top edge of the court */
+  align-items: flex-start;
 
   padding: 1rem;
 }
