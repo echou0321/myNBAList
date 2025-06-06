@@ -1,5 +1,11 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// src/components/UserProfile.jsx
+
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+// Firebase imports
+import { auth } from '../firebase';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -15,6 +21,25 @@ function UserProfile() {
     { rank: 9, name: 'Donovan Mitchell', team: 'Cleveland Cavaliers', img: '/playerIMGs/Mitchell.jpg' },
     { rank: 10, name: 'Anthony Davis', team: 'Los Angeles Lakers', img: '/playerIMGs/AD.jpg' },
   ]);
+
+  const [currentUser, setCurrentUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate('/login');
+    } catch (err) {
+      console.error('Logout failed:', err);
+    }
+  };
 
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
@@ -61,7 +86,11 @@ function UserProfile() {
     <div className="min-h-screen bg-gray-100">
       <header className="flex justify-between items-center p-4 bg-gray-800 text-white">
         <div className="site-logo flex items-center">
-          <img src="/icons/Basketball-icon.jpg" alt="Site Icon" className="logo-img w-10 h-10 mr-2" />
+          <img
+            src="/icons/Basketball-icon.jpg"
+            alt="Site Icon"
+            className="logo-img w-10 h-10 mr-2"
+          />
           <h1 className="text-2xl font-bold">MyNBAList</h1>
         </div>
         <nav className="flex justify-between w-full">
@@ -72,8 +101,32 @@ function UserProfile() {
             <Link to="/profile" className="hover:text-gray-300">My Profile</Link>
           </div>
           <div className="nav-right flex space-x-4">
-            <Link to="/login" className="hover:text-gray-300">Login</Link>
-            <Link to="/register" className="hover:text-gray-300">Register</Link>
+            {currentUser ? (
+              <>
+                <span style={{ color: '#fff', fontWeight: '600', marginRight: '1rem' }}>
+                  Hello, {currentUser.displayName || currentUser.email}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  style={{
+                    backgroundColor: 'transparent',
+                    border: '1px solid white',
+                    color: 'white',
+                    padding: '0.5rem 1rem',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontWeight: '600',
+                  }}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="hover:text-gray-300">Login</Link>
+                <Link to="/register" className="hover:text-gray-300">Register</Link>
+              </>
+            )}
           </div>
         </nav>
       </header>
@@ -86,7 +139,7 @@ function UserProfile() {
             className="profile-pic w-24 h-24 rounded-full mr-4"
           />
           <div className="profile-info">
-            <h2 className="text-2xl font-bold">Lebron Fan</h2>
+            <h2 className="text-2xl font-bold">{currentUser?.displayName || 'Guest User'}</h2>
             <p>Member since January 2025</p>
             <div className="profile-stats flex space-x-4">
               <div className="stat text-center">
@@ -126,15 +179,23 @@ function UserProfile() {
                 onDragOver={handleDragOver}
                 onDrop={(e) => isEditing && handleDrop(e, index)}
               >
-                <div className="player-rank text-lg font-semibold w-8">{player.rank}</div>
-                <img src={player.img} alt={player.name} className="player-pic w-12 h-12 rounded-full mr-4" />
+                <div className="player-rank text-lg font-semibold w-8">
+                  {player.rank}
+                </div>
+                <img
+                  src={player.img}
+                  alt={player.name}
+                  className="player-pic w-12 h-12 rounded-full mr-4"
+                />
                 <div className="player-info flex-1">
                   <div className="player-name font-semibold">{player.name}</div>
                   <div className="player-team text-gray-600">{player.team}</div>
                 </div>
                 {isEditing && (
                   <>
-                    <div className="drag-handle cursor-move text-gray-500 mr-4">☰</div>
+                    <div className="drag-handle cursor-move text-gray-500 mr-4">
+                      ☰
+                    </div>
                     <button
                       className="remove-button text-red-500 hover:text-red-700"
                       onClick={() => handleRemovePlayer(index)}

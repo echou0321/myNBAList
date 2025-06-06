@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+// src/components/FiveVFive.jsx
+
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+// Firebase imports
+import { auth } from '../firebase';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 // TeamSelector Component
 function TeamSelector({ teamNumber, setPlayers, selectedPlayers }) {
-  const players = {
+  const playersByPosition = {
     pg: teamNumber === 1
       ? [
           { value: '', label: 'Select a Player', img: '' },
           { value: 'stephen-curry', label: 'Stephen Curry', img: '/playerIMGs/Steph.jpg' },
           { value: 'luka-doncic', label: 'Luka Dončić', img: '/playerIMGs/Doncic.jpg' },
-          { value: 'damian-lillard', label: 'Lamelo Ball', img: '/playerIMGs/Lamelo.jpg' },
+          { value: 'damian-lillard', label: 'LaMelo Ball', img: '/playerIMGs/Lamelo.jpg' },
         ]
       : [
           { value: '', label: 'Select a Player', img: '' },
@@ -71,26 +78,28 @@ function TeamSelector({ teamNumber, setPlayers, selectedPlayers }) {
   };
 
   const handlePlayerChange = (position, value) => {
-    const selectedPlayer = players[position].find((player) => player.value === value);
-    setPlayers((prev) => ({
+    const selected = playersByPosition[position].find(p => p.value === value);
+    setPlayers(prev => ({
       ...prev,
       [position]: value,
       players: {
         ...prev.players,
-        [position]: selectedPlayer && value ? { name: selectedPlayer.label, position: position.toUpperCase(), img: selectedPlayer.img } : null,
-      },
+        [position]: selected && value
+          ? { name: selected.label, position: position.toUpperCase(), img: selected.img }
+          : null,
+      }
     }));
   };
 
-  const handleTeamNameChange = (e) => {
-    setPlayers((prev) => ({ ...prev, teamName: e.target.value }));
+  const handleTeamNameChange = e => {
+    setPlayers(prev => ({ ...prev, teamName: e.target.value }));
   };
 
   return (
     <div className="team-selector p-4">
       <h3 className="text-xl font-semibold mb-4">Select Players for Team {teamNumber}</h3>
       <div className="player-selection-area space-y-4">
-        {['pg', 'sg', 'sf', 'pf', 'c'].map((position) => (
+        {['pg', 'sg', 'sf', 'pf', 'c'].map(position => (
           <div className="position-selection flex items-center" key={position}>
             <label htmlFor={`team${teamNumber}-${position}`} className="mr-2">
               {position.toUpperCase()}:
@@ -99,9 +108,9 @@ function TeamSelector({ teamNumber, setPlayers, selectedPlayers }) {
               id={`team${teamNumber}-${position}`}
               className="player-select border p-2 rounded"
               value={selectedPlayers[position] || ''}
-              onChange={(e) => handlePlayerChange(position, e.target.value)}
+              onChange={e => handlePlayerChange(position, e.target.value)}
             >
-              {players[position].map((player) => (
+              {playersByPosition[position].map(player => (
                 <option key={player.value} value={player.value}>
                   {player.label}
                 </option>
@@ -143,43 +152,41 @@ function CourtVisualization({ team1Players, team2Players }) {
     c: { name: 'V. Wembanyama', position: 'C', img: '/playerIMGs/Wembanyama.jpg' },
   };
 
-  // Get team players or use defaults
-  const getTeamPlayers = (teamPlayers, defaultPlayers) => {
+  const getTeamPlayers = (teamPlayers, defaults) => {
     const result = {};
-    ['pg', 'sg', 'sf', 'pf', 'c'].forEach(position => {
-      result[position] = teamPlayers.players?.[position] || defaultPlayers[position];
+    ['pg', 'sg', 'sf', 'pf', 'c'].forEach(pos => {
+      result[pos] = teamPlayers.players?.[pos] || defaults[pos];
     });
     return result;
   };
 
-  const team1PlayersToRender = getTeamPlayers(team1Players, defaultTeam1Players);
-  const team2PlayersToRender = getTeamPlayers(team2Players, defaultTeam2Players);
+  const team1ToShow = getTeamPlayers(team1Players, defaultTeam1Players);
+  const team2ToShow = getTeamPlayers(team2Players, defaultTeam2Players);
 
   return (
     <section id="court-visualization" className="p-4">
-      <h3 className="text-xl font-semibold mb-4 text-center">Team Matchup Visualization</h3>
+      <h3 className="text-xl font-semibold mb-4 text-center">
+        Team Matchup Visualization
+      </h3>
       <div className="basketball-court">
-        <div className="court-lines"></div>
+        <div className="court-lines" />
 
-        {/* Team 1 (left side) */}
+        {/* Team 1 (left) */}
         <div className="team team-left">
           <div className="team-name">
             {team1Players.teamName || 'Team 1'}
           </div>
-          
-          {['pg', 'sg', 'sf', 'pf', 'c'].map((position) => {
-            const player = team1PlayersToRender[position];
+          {['pg', 'sg', 'sf', 'pf', 'c'].map(pos => {
+            const player = team1ToShow[pos];
             return (
-              <div className={`player-position ${position}`} key={position}>
+              <div className={`player-position ${pos}`} key={pos}>
                 <div className="player-marker">
-                  <img
-                    src={player.img}
-                    alt={player.position}
-                    className="player-img"
-                  />
+                  <img src={player.img} alt={player.position} className="player-img" />
                   <div className="player-info">
                     <span className="player-name">{player.name}</span>
-                    <span className="player-position-label">{player.position}</span>
+                    <span className="player-position-label">
+                      {player.position}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -187,31 +194,28 @@ function CourtVisualization({ team1Players, team2Players }) {
           })}
         </div>
 
-        {/* Center Circle and VS */}
+        {/* Center Circle & VS */}
         <div className="court-center">
-          <div className="court-circle"></div>
+          <div className="court-circle" />
           <div className="versus">VS</div>
         </div>
 
-        {/* Team 2 (right side) */}
+        {/* Team 2 (right) */}
         <div className="team team-right">
           <div className="team-name">
             {team2Players.teamName || 'Team 2'}
           </div>
-          
-          {['pg', 'sg', 'sf', 'pf', 'c'].map((position) => {
-            const player = team2PlayersToRender[position];
+          {['pg', 'sg', 'sf', 'pf', 'c'].map(pos => {
+            const player = team2ToShow[pos];
             return (
-              <div className={`player-position ${position}`} key={position}>
+              <div className={`player-position ${pos}`} key={pos}>
                 <div className="player-marker">
-                  <img
-                    src={player.img}
-                    alt={player.position}
-                    className="player-img"
-                  />
+                  <img src={player.img} alt={player.position} className="player-img" />
                   <div className="player-info">
                     <span className="player-name">{player.name}</span>
-                    <span className="player-position-label">{player.position}</span>
+                    <span className="player-position-label">
+                      {player.position}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -234,10 +238,11 @@ function MatchupResults({ team1Players, team2Players }) {
     { category: 'Overall', team1: { score: 9.0, width: '69%' }, team2: { score: 8.2, width: '63%' } },
   ];
 
-  const winner = stats.find((stat) => stat.category === 'Overall').team1.score >
-                stats.find((stat) => stat.category === 'Overall').team2.score
-    ? team1Players.teamName || 'Team 1'
-    : team2Players.teamName || 'Team 2';
+  const overallStat = stats.find(s => s.category === 'Overall');
+  const winner =
+    overallStat.team1.score > overallStat.team2.score
+      ? team1Players.teamName || 'Team 1'
+      : team2Players.teamName || 'Team 2';
 
   return (
     <section id="matchup-results" className="p-4">
@@ -251,14 +256,20 @@ function MatchupResults({ team1Players, team2Players }) {
         </div>
         <div className="stat-comparison">
           <h3 className="text-xl font-semibold mb-4">Team Comparison</h3>
-          {stats.map((stat) => (
+          {stats.map(stat => (
             <div className="stat-category mb-4" key={stat.category}>
               <div className="category-name font-semibold">{stat.category}</div>
               <div className="comparison-bar flex">
-                <div className="team1-bar bg-blue-500 text-white text-center" style={{ width: stat.team1.width }}>
+                <div
+                  className="team1-bar bg-blue-500 text-white text-center"
+                  style={{ width: stat.team1.width }}
+                >
                   {stat.team1.score}
                 </div>
-                <div className="team2-bar bg-red-500 text-white text-center" style={{ width: stat.team2.width }}>
+                <div
+                  className="team2-bar bg-red-500 text-white text-center"
+                  style={{ width: stat.team2.width }}
+                >
                   {stat.team2.score}
                 </div>
               </div>
@@ -297,10 +308,28 @@ function FiveVFive() {
   });
 
   const [error, setError] = useState('');
+  const [currentUser, setCurrentUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
+      setCurrentUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate('/login');
+    } catch (err) {
+      console.error('Logout failed:', err);
+    }
+  };
 
   const handleSimulate = () => {
-    const team1Selected = Object.values(team1Players.players).filter((player) => player).length === 5;
-    const team2Selected = Object.values(team2Players.players).filter((player) => player).length === 5;
+    const team1Selected = Object.values(team1Players.players).filter(p => p).length === 5;
+    const team2Selected = Object.values(team2Players.players).filter(p => p).length === 5;
 
     if (!team1Selected || !team2Selected) {
       setError('Please select all players for both teams.');
@@ -321,32 +350,74 @@ function FiveVFive() {
     <div className="min-h-screen bg-gray-100">
       <header className="flex justify-between items-center p-4 bg-gray-800 text-white">
         <div className="site-logo flex items-center">
-          <img src="/icons/Basketball-icon.jpg" alt="Site Icon" className="logo-img w-10 h-10 mr-2" />
+          <img
+            src="/icons/Basketball-icon.jpg"
+            alt="Site Icon"
+            className="logo-img w-10 h-10 mr-2"
+          />
           <h1 className="text-2xl font-bold">MyNBAList</h1>
         </div>
         <nav className="flex justify-between w-full">
           <div className="nav-left flex space-x-4">
-            <a href="/home" className="hover:text-gray-300">Home</a>
-            <a href="/browse" className="hover:text-gray-300">Browse Players</a>
-            <a href="/5v5" className="hover:text-gray-300">My NBA 5v5</a>
-            <a href="/profile" className="hover:text-gray-300">My Profile</a>
+            <Link to="/home" className="hover:text-gray-300">Home</Link>
+            <Link to="/browse" className="hover:text-gray-300">Browse Players</Link>
+            <Link to="/5v5" className="hover:text-gray-300">My NBA 5v5</Link>
+            <Link to="/profile" className="hover:text-gray-300">My Profile</Link>
           </div>
           <div className="nav-right flex space-x-4">
-            <a href="/login" className="hover:text-gray-300">Login</a>
-            <a href="/register" className="hover:text-gray-300">Register</a>
+            {currentUser ? (
+              <>
+                <span style={{ color: '#fff', fontWeight: '600', marginRight: '1rem' }}>
+                  Hello, {currentUser.displayName || currentUser.email}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  style={{
+                    backgroundColor: 'transparent',
+                    border: '1px solid white',
+                    color: 'white',
+                    padding: '0.5rem 1rem',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontWeight: '600',
+                  }}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="hover:text-gray-300">Login</Link>
+                <Link to="/register" className="hover:text-gray-300">Register</Link>
+              </>
+            )}
           </div>
         </nav>
       </header>
+
       <main className="container mx-auto p-4">
         <section id="intro" className="text-center mb-8">
-          <h2 className="text-2xl font-bold">5 vs. 5 Custom Team Builder & Match Simulator</h2>
-          <p className="subtitle text-lg">Create your dream lineups and see which team would come out on top!</p>
+          <h2 className="text-2xl font-bold">
+            5 vs. 5 Custom Team Builder & Match Simulator
+          </h2>
+          <p className="subtitle text-lg">
+            Create your dream lineups and see which team would come out on top!
+          </p>
         </section>
+
         <section id="team-builder" className="mb-8">
           <div className="team-builder-container">
             <div className="team-selector-section flex justify-between space-x-4">
-              <TeamSelector teamNumber={1} setPlayers={setTeam1Players} selectedPlayers={team1Players} />
-              <TeamSelector teamNumber={2} setPlayers={setTeam2Players} selectedPlayers={team2Players} />
+              <TeamSelector
+                teamNumber={1}
+                setPlayers={setTeam1Players}
+                selectedPlayers={team1Players}
+              />
+              <TeamSelector
+                teamNumber={2}
+                setPlayers={setTeam2Players}
+                selectedPlayers={team2Players}
+              />
             </div>
             {error && <p className="text-red-500 text-center mt-4">{error}</p>}
             <div className="simulator-actions flex justify-center space-x-4 mt-4">
@@ -365,9 +436,17 @@ function FiveVFive() {
             </div>
           </div>
         </section>
-        <CourtVisualization team1Players={team1Players} team2Players={team2Players} />
-        <MatchupResults team1Players={team1Players} team2Players={team2Players} />
+
+        <CourtVisualization
+          team1Players={team1Players}
+          team2Players={team2Players}
+        />
+        <MatchupResults
+          team1Players={team1Players}
+          team2Players={team2Players}
+        />
       </main>
+
       <footer className="text-center p-4 bg-gray-800 text-white">
         <p>© 2025 MyNBAList</p>
       </footer>

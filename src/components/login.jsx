@@ -1,26 +1,63 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+// src/components/Login.jsx
+
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+// Firebase imports
+import { auth } from '../firebase';
+import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 
 export default function Login() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
+  const [email, setEmail]       = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError]       = useState('');
+  const [currentUser, setCurrentUser] = useState(null);
 
-  const handleLogin = (e) => {
-    e.preventDefault()
-    if (!username.trim() || !password) {
-      setError('Please enter both username and password.')
-      return
+  const navigate = useNavigate();
+
+  // Subscribe to auth‐state changes
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (!email.trim() || !password) {
+      setError('Please enter both email and password.');
+      return;
     }
-    setError('')
-    console.log('Login attempt:', { username, password })
-  }
+    setError('');
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      console.log('Logged in:', userCredential.user);
+      navigate('/home');
+    } catch (firebaseError) {
+      setError(firebaseError.message);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate('/login');
+    } catch (err) {
+      console.error('Logout failed:', err);
+    }
+  };
 
   return (
     <>
       <header>
         <div className="site-logo">
-          <img src="/icons/Basketball-icon.jpg" alt="Site Icon" className="logo-img" />
+          <img
+            src="/icons/Basketball-icon.jpg"
+            alt="Site Icon"
+            className="logo-img"
+          />
           <h1>MyNBAList</h1>
         </div>
         <nav>
@@ -28,23 +65,49 @@ export default function Login() {
             <Link to="/home">Home</Link>
             <Link to="/browse">Browse Players</Link>
             <Link to="/5v5">My NBA 5v5</Link>
-            <Link to="/userProfile">My Profile</Link>
+            <Link to="/profile">My Profile</Link>
           </div>
           <div className="nav-right">
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            {currentUser ? (
+              <>
+                <span style={{ color: '#fff', fontWeight: '600', marginRight: '1rem' }}>
+                  Hello, {currentUser.displayName || currentUser.email}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  style={{
+                    backgroundColor: 'transparent',
+                    border: '1px solid white',
+                    color: 'white',
+                    padding: '0.5rem 1rem',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontWeight: '600',
+                  }}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+              </>
+            )}
           </div>
         </nav>
       </header>
 
       <main>
-        <div className="background-container" style={{ paddingTop: '4rem', paddingBottom: '4rem' }}>
+        <div
+          className="background-container"
+          style={{ paddingTop: '4rem', paddingBottom: '4rem' }}
+        >
           <div
             className="login-card"
             style={{
               backgroundColor: 'rgb(241, 242, 243)',
               backdropFilter: 'blur(12px)',
-
               padding: '3rem 2.5rem',
               borderRadius: '12px',
               boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
@@ -54,19 +117,30 @@ export default function Login() {
               textAlign: 'center',
             }}
           >
-            <h2 style={{ color: '#c8102e', marginBottom: '0.5rem', fontSize: '2rem' }}>Login</h2>
+            <h2
+              style={{
+                color: '#c8102e',
+                marginBottom: '0.5rem',
+                fontSize: '2rem',
+              }}
+            >
+              Login
+            </h2>
 
-            <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <form
+              onSubmit={handleLogin}
+              style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}
+            >
               <div style={{ textAlign: 'left' }}>
-                <label htmlFor="username" style={{ fontWeight: '600' }}>
-                  Username
+                <label htmlFor="email" style={{ fontWeight: '600' }}>
+                  Email
                 </label>
                 <input
-                  type="text"
-                  id="username"
-                  placeholder="Enter your username"
-                  value={username}
-                  onChange={e => setUsername(e.target.value)}
+                  type="email"
+                  id="email"
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   style={{
                     width: '100%',
                     padding: '0.75rem',
@@ -87,7 +161,7 @@ export default function Login() {
                   id="password"
                   placeholder="Enter your password"
                   value={password}
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                   style={{
                     width: '100%',
                     padding: '0.75rem',
@@ -100,7 +174,9 @@ export default function Login() {
               </div>
 
               {error && (
-                <p style={{ color: '#c8102e', fontWeight: '500', fontSize: '0.95rem' }}>{error}</p>
+                <p style={{ color: '#c8102e', fontWeight: '500', fontSize: '0.95rem' }}>
+                  {error}
+                </p>
               )}
 
               <button
@@ -123,7 +199,14 @@ export default function Login() {
 
             <p style={{ marginTop: '1.5rem', fontSize: '0.95rem' }}>
               Don’t have an account?{' '}
-              <Link to="/register" style={{ color: '#0b1f40', fontWeight: '600', textDecoration: 'underline' }}>
+              <Link
+                to="/register"
+                style={{
+                  color: '#0b1f40',
+                  fontWeight: '600',
+                  textDecoration: 'underline',
+                }}
+              >
                 Sign up here
               </Link>
             </p>
@@ -135,5 +218,5 @@ export default function Login() {
         <p>&copy; 2025 MyNBAList</p>
       </footer>
     </>
-  )
+  );
 }
