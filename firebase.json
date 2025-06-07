@@ -6,6 +6,17 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "headers": [
+      {
+        "source": "/playerIMGs/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=300"
+          }
+        ]
+      }
+    ],
     "rewrites": [
       {
         "source": "**",
@@ -14,3 +25,4 @@
     ]
   }
 }
+
