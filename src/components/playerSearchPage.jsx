@@ -1,4 +1,3 @@
-// src/components/playerSearchPage.jsx
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
@@ -125,6 +124,33 @@ export default function Browse() {
     setSortByRating('');
   };
 
+  const playerCards = sortedPlayers.map((player) => (
+    <Link to={`/playerprofile/${player.id}`} className="player-card-link" key={player.id}>
+      <div className="player-card">
+        <img
+          src={`/playerIMGs/${player.img}.jpg`}
+          alt={player.name}
+          className="player-img"
+        />
+        <h3>{player.name}</h3>
+        <p>
+          {player.teamName} |{' '}
+          {(() => {
+            switch (player.position) {
+              case 'PG': return 'PG';
+              case 'SG': return 'SG';
+              case 'SF': return 'SF';
+              case 'PF': return 'PF';
+              case 'C':  return 'C';
+              default: return player.position;
+            }
+          })()}
+        </p>
+        <p class="player-rating">⭐ {player.rating}</p>
+      </div>
+    </Link>
+  ));
+
   return (
     <>
       <header>
@@ -233,39 +259,13 @@ export default function Browse() {
         </section>
 
         <section id="player-grid">
-          {sortedPlayers.map((player) => (
-            <Link to={`/playerprofile/${player.id}`} className="player-card-link" key={player.id}>
-              <div className="player-card">
-                <img
-                  src={`/playerIMGs/${player.img}.jpg`}
-                  alt={player.name}
-                  className="player-img"
-                />
-                <h3>{player.name}</h3>
-                <p>
-                  {player.teamName} |{' '}
-                  {(() => {
-                    switch (player.position) {
-                      case 'PG': return 'PG';
-                      case 'SG': return 'SG';
-                      case 'SF': return 'SF';
-                      case 'PF': return 'PF';
-                      case 'C':  return 'C';
-                      default: return player.position; // fallback
-                    }
-                  })()}
-                </p>
-                <p className="player-rating">⭐ {player.rating}</p>
-              </div>
-            </Link>
-          ))}
+          {playerCards}
         </section>
       </main>
 
       <footer>
-        <p>&copy; 2025 MyNBAList</p>
+        <p>© 2025 MyNBAList</p>
       </footer>
     </>
   );
 }
-
