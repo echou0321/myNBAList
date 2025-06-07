@@ -161,65 +161,59 @@ function CourtVisualization({ team1Players, team2Players }) {
 
   const team1ToShow = getTeamPlayers(team1Players, defaultTeam1Players);
   const team2ToShow = getTeamPlayers(team2Players, defaultTeam2Players);
+  
+  const team1PlayerElements = ['pg', 'sg', 'sf', 'pf', 'c'].map(pos => {
+    const player = team1ToShow[pos];
+    return (
+      <div className={`player-position ${pos}`} key={pos}>
+        <div className="player-marker" data-tooltip={`${player.name}: ${player.position}`}> {/* Added data-tooltip */}
+          <img src={player.img} alt={player.position} className="player-img" />
+          <div className="player-info">
+            <span className="player-name">{player.name}</span>
+            <span className="player-position-label">{player.position}</span>
+          </div>
+        </div>
+      </div>
+    );
+  });
+
+  const team2PlayerElements = ['pg', 'sg', 'sf', 'pf', 'c'].map(pos => {
+    const player = team2ToShow[pos];
+    return (
+      <div className={`player-position ${pos}`} key={pos}>
+        <div className="player-marker" data-tooltip={`${player.name}: ${player.position}`}> {/* Added data-tooltip */}
+          <img src={player.img} alt={player.position} className="player-img" />
+          <div className="player-info">
+            <span className="player-name">{player.name}</span>
+            <span className="player-position-label">{player.position}</span>
+          </div>
+        </div>
+      </div>
+    );
+  });
 
   return (
     <section id="court-visualization" className="p-4">
       <h3 className="text-xl font-semibold mb-4 text-center">
         Team Matchup Visualization
       </h3>
-      <div className="basketball-court">
+      <div className="basketball-court" style={{ position: 'relative' }}> {/* Added position: relative */}
         <div className="court-lines" />
-
-        {/* Team 1 (left) */}
         <div className="team team-left">
           <div className="team-name">
             {team1Players.teamName || 'Team 1'}
           </div>
-          {['pg', 'sg', 'sf', 'pf', 'c'].map(pos => {
-            const player = team1ToShow[pos];
-            return (
-              <div className={`player-position ${pos}`} key={pos}>
-                <div className="player-marker">
-                  <img src={player.img} alt={player.position} className="player-img" />
-                  <div className="player-info">
-                    <span className="player-name">{player.name}</span>
-                    <span className="player-position-label">
-                      {player.position}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {team1PlayerElements} {/* Updated to use refactored elements */}
         </div>
-
-        {/* Center Circle & VS */}
         <div className="court-center">
           <div className="court-circle" />
           <div className="versus">VS</div>
         </div>
-
-        {/* Team 2 (right) */}
         <div className="team team-right">
           <div className="team-name">
             {team2Players.teamName || 'Team 2'}
           </div>
-          {['pg', 'sg', 'sf', 'pf', 'c'].map(pos => {
-            const player = team2ToShow[pos];
-            return (
-              <div className={`player-position ${pos}`} key={pos}>
-                <div className="player-marker">
-                  <img src={player.img} alt={player.position} className="player-img" />
-                  <div className="player-info">
-                    <span className="player-name">{player.name}</span>
-                    <span className="player-position-label">
-                      {player.position}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {team2PlayerElements} {/* Updated to use refactored elements */}
         </div>
       </div>
     </section>

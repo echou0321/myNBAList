@@ -1,8 +1,5 @@
-// src/components/UserProfile.jsx
-
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
 import { auth } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
@@ -80,6 +77,43 @@ function UserProfile() {
     setIsEditing(false);
     console.log('Saved player list:', players);
   };
+
+  const playerItems = players.map((player, index) => (
+    <div
+      key={player.rank}
+      className="player-item flex items-center"
+      draggable={isEditing}
+      onDragStart={(e) => isEditing && handleDragStart(e, index)}
+      onDragOver={handleDragOver}
+      onDrop={(e) => isEditing && handleDrop(e, index)}
+    >
+      <div className="player-rank text-lg font-semibold w-8">
+        {player.rank}
+      </div>
+      <img
+        src={player.img}
+        alt={player.name}
+        className="player-pic w-12 h-12 rounded-full mr-4"
+      />
+      <div className="player-info flex-1">
+        <div className="player-name font-semibold">{player.name}</div>
+        <div className="player-team text-gray-600">{player.team}</div>
+      </div>
+      {isEditing && (
+        <>
+          <div className="drag-handle cursor-move text-gray-500 mr-4">
+            ☰
+          </div>
+          <button
+            className="remove-button text-red-500 hover:text-red-700"
+            onClick={() => handleRemovePlayer(index)}
+          >
+            ✕
+          </button>
+        </>
+      )}
+    </div>
+  ));
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -169,42 +203,7 @@ function UserProfile() {
           </div>
 
           <div className="top-players-list space-y-4">
-            {players.map((player, index) => (
-              <div
-                key={player.rank}
-                className="player-item flex items-center"
-                draggable={isEditing}
-                onDragStart={(e) => isEditing && handleDragStart(e, index)}
-                onDragOver={handleDragOver}
-                onDrop={(e) => isEditing && handleDrop(e, index)}
-              >
-                <div className="player-rank text-lg font-semibold w-8">
-                  {player.rank}
-                </div>
-                <img
-                  src={player.img}
-                  alt={player.name}
-                  className="player-pic w-12 h-12 rounded-full mr-4"
-                />
-                <div className="player-info flex-1">
-                  <div className="player-name font-semibold">{player.name}</div>
-                  <div className="player-team text-gray-600">{player.team}</div>
-                </div>
-                {isEditing && (
-                  <>
-                    <div className="drag-handle cursor-move text-gray-500 mr-4">
-                      ☰
-                    </div>
-                    <button
-                      className="remove-button text-red-500 hover:text-red-700"
-                      onClick={() => handleRemovePlayer(index)}
-                    >
-                      ✕
-                    </button>
-                  </>
-                )}
-              </div>
-            ))}
+            {playerItems}
             {isEditing && (
               <div
                 className="add-player text-blue-500 cursor-pointer hover:text-blue-700"
