@@ -32,6 +32,7 @@ export default function App() {
           <Route path="/browse" element={<PlayerSearchPage />} />
           {}
           <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="/browse" element={<PlayerSearchPage />} />
         </Routes>
       </div>
     </Router>

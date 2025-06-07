@@ -7,29 +7,29 @@ import { auth } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 const trendingPlayers = [
-  { name: "Victor Wembanyama", img: "Wembanyama", rating: 9.0 },
-  { name: "Anthony Edwards", img: "Edwards", rating: 9.2 },
-  { name: "Ja Morant", img: "Morant", rating: 8.5 },
-  { name: "Luka Dončić", img: "Doncic", rating: 9.6 },
-  { name: "Tyrese Haliburton", img: "Haliburton", rating: 8.7 },
-  { name: "Chet Holmgren", img: "Holmgren", rating: 8.3 },
-  { name: "Zion Williamson", img: "Williamson", rating: 8.4 },
-  { name: "Jalen Green", img: "JalenGreen", rating: 7.8 },
-  { name: "Paolo Banchero", img: "Banchero", rating: 8.2 },
-  { name: "LaMelo Ball", img: "Lamelo", rating: 8.0 },
+  { name: "Victor Wembanyama", img: "Victor-Wembanyama", rating: 9.0 },
+  { name: "Anthony Edwards", img: "Anthony-Edwards", rating: 9.2 },
+  { name: "Ja Morant", img: "Ja-Morant", rating: 8.5 },
+  { name: "Luka Dončić", img: "Luka-Dončić", rating: 9.6 },
+  { name: "Tyrese Haliburton", img: "Tyrese-Haliburton", rating: 8.7 },
+  { name: "Chet Holmgren", img: "Chet-Holmgren", rating: 8.3 },
+  { name: "Zion Williamson", img: "Zion-Williamson", rating: 8.4 },
+  { name: "Jalen Green", img: "Jalen-Green", rating: 7.8 },
+  { name: "Paolo Banchero", img: "Paolo-Banchero", rating: 8.2 },
+  { name: "LaMelo Ball", img: "LaMelo-Ball", rating: 8.0 },
 ];
 
 const topRatedPlayers = [
-  { name: "Nikola Jokić", img: "Jokic", rating: 9.8 },
-  { name: "Giannis Antetokounmpo", img: "Antetokounmpo", rating: 9.7 },
-  { name: "Shai Gilgeous-Alexander", img: "SGA", rating: 9.6 },
-  { name: "Luka Dončić", img: "Doncic", rating: 9.5 },
-  { name: "LeBron James", img: "Lebron", rating: 9.3 },
-  { name: "Stephen Curry", img: "Steph", rating: 9.3 },
-  { name: "Jayson Tatum", img: "Tatum", rating: 9.2 },
-  { name: "Anthony Edwards", img: "Edwards", rating: 9.0 },
-  { name: "Donovan Mitchell", img: "Mitchell", rating: 8.9 },
-  { name: "Anthony Davis", img: "AD", rating: 8.7 },
+  { name: "Nikola Jokić", img: "Nikola-Jokić", rating: 9.8 },
+  { name: "Giannis Antetokounmpo", img: "Giannis-Antetokounmpo", rating: 9.7 },
+  { name: "Shai Gilgeous-Alexander", img: "Shai-Gilgeous-Alexander", rating: 9.6 },
+  { name: "Luka Dončić", img: "Luka-Dončić", rating: 9.5 },
+  { name: "LeBron James", img: "LeBron-James", rating: 9.3 },
+  { name: "Stephen Curry", img: "Stephen-Curry", rating: 9.3 },
+  { name: "Jayson Tatum", img: "Jayson-Tatum", rating: 9.2 },
+  { name: "Anthony Edwards", img: "Anthony-Edwards", rating: 9.0 },
+  { name: "Donovan Mitchell", img: "Donovan-Mitchell", rating: 8.9 },
+  { name: "Anthony Davis", img: "Anthony-Davis", rating: 8.7 },
 ];
 
 const HomePage = () => {
