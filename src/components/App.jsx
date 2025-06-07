@@ -28,7 +28,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<UserProfile />} />
-          <Route path="/playerprofile" element={<PlayerProfile />} />
+          <Route path="/playerprofile/:id" element={<PlayerProfile />} />
           <Route path="/browse" element={<PlayerSearchPage />} />
           {}
           <Route path="*" element={<Navigate to="/login" replace />} />
