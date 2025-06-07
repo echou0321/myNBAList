@@ -7,13 +7,13 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 export default function Browse() {
   const teamFullNames = {
     ATL: 'Atlanta Hawks', BOS: 'Boston Celtics', BRK: 'Brooklyn Nets',
-    CHA: 'Charlotte Hornets', CHI: 'Chicago Bulls', CLE: 'Cleveland Cavaliers',
+    CHO: 'Charlotte Hornets', CHI: 'Chicago Bulls', CLE: 'Cleveland Cavaliers',
     DAL: 'Dallas Mavericks', DEN: 'Denver Nuggets', DET: 'Detroit Pistons',
     GSW: 'Golden State Warriors', HOU: 'Houston Rockets', IND: 'Indiana Pacers',
     LAC: 'Los Angeles Clippers', LAL: 'Los Angeles Lakers', MEM: 'Memphis Grizzlies',
     MIA: 'Miami Heat', MIL: 'Milwaukee Bucks', MIN: 'Minnesota Timberwolves',
     NOP: 'New Orleans Pelicans', NYK: 'New York Knicks', OKC: 'Oklahoma City Thunder',
-    ORL: 'Orlando Magic', PHI: 'Philadelphia 76ers', PHX: 'Phoenix Suns',
+    ORL: 'Orlando Magic', PHI: 'Philadelphia 76ers', PHO: 'Phoenix Suns',
     POR: 'Portland Trail Blazers', SAC: 'Sacramento Kings', SAS: 'San Antonio Spurs',
     TOR: 'Toronto Raptors', UTA: 'Utah Jazz', WAS: 'Washington Wizards'
   };
@@ -55,7 +55,7 @@ export default function Browse() {
             position: latest.Pos, 
             conference: ['BOS','NYK','MIA','PHI','MIL','IND','ORL','CLE','ATL','TOR','WAS','CHI','CHA','DET','BRK','BKN'].includes(latest.Team) ? 'East' : 'West',
             rating: "-", // placeholder for future average
-            img: latest.Player.replace(/\s+/g, ''),
+            img: latest.Player.replace(/\s+/g, '-'),
           };
         });
 
