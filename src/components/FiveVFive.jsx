@@ -1,8 +1,5 @@
-// src/components/FiveVFive.jsx
-
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
 import { auth } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
@@ -11,73 +8,124 @@ function TeamSelector({ teamNumber, setPlayers, selectedPlayers }) {
   const playersByPosition = {
     pg: teamNumber === 1
       ? [
-          { value: '', label: 'Select a Player', img: '' },
-          { value: 'stephen-curry', label: 'Stephen Curry', img: '/playerIMGs/Steph.jpg' },
-          { value: 'luka-doncic', label: 'Luka Dončić', img: '/playerIMGs/Doncic.jpg' },
-          { value: 'damian-lillard', label: 'LaMelo Ball', img: '/playerIMGs/Lamelo.jpg' },
+          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
+          { value: 'stephen-curry', label: 'Stephen Curry', img: '/playerIMGs/Stephen-Curry.jpg' },
+          { value: 'luka-doncic', label: 'Luka Dončić', img: 'public/playerIMGs/Luka-Dončić.jpg' },
+          { value: 'shai-gilgeous-alexander', label: 'Shai Gilgeous-Alexander', img: '/playerIMGs/Shai-Gilgeous-Alexander.jpg' },
+          { value: 'damian-lillard', label: 'Damian Lillard', img: '/playerIMGs/Damian-Lillard.jpg' },
+          { value: 'tyrese-haliburton', label: 'Tyrese Haliburton', img: '/playerIMGs/Tyrese-Haliburton.jpg' },
+          { value: 'jalen-brunson', label: 'Jalen Brunson', img: '/playerIMGs/Jalen-Brunson.jpg' },
+          { value: 'trae-young', label: 'Trae Young', img: 'public/playerIMGs/Trae-Young.jpg' },
+          { value: 'deaaron-fox', label: 'De’Aaron Fox', img: "public/playerIMGs/De'Aaron-Fox.jpg" },
         ]
       : [
-          { value: '', label: 'Select a Player', img: '' },
-          { value: 'ja-morant', label: 'Ja Morant', img: '/playerIMGs/Morant.jpg' },
-          { value: 'trae-young', label: 'Trae Young', img: '/playerIMGs/Trae.jpg' },
-          { value: 'jalen-brunson', label: 'Jalen Brunson', img: '/playerIMGs/Brunson.jpg' },
+          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
+          { value: 'ja-morant', label: 'Ja Morant', img: '/playerIMGs/Ja-Morant.jpg' },
+          { value: 'kyrie-irving', label: 'Kyrie Irving', img: '/playerIMGs/Kyrie-Irving.jpg' },
+          { value: 'darius-garland', label: 'Darius Garland', img: '/playerIMGs/Darius-Garland.jpg' },
+          { value: 'lamelo-ball', label: 'LaMelo Ball', img: '/playerIMGs/Lamelo-Ball.jpg' },
+          { value: 'cade-cunningham', label: 'Cade Cunningham', img: '/playerIMGs/Cade-Cunningham.jpg' },
+          { value: 'tyrese-maxey', label: 'Tyrese Maxey', img: '/playerIMGs/Tyrese-Maxey.jpg' },
+          { value: 'jamal-murray', label: 'Jamal Murray', img: '/playerIMGs/Jamal-Murray.jpg' },
+          { value: 'donovan-mitchell', label: 'Donovan Mitchell', img: '/playerIMGs/Donovan-Mitchell.jpg' },
         ],
     sg: teamNumber === 1
       ? [
-          { value: '', label: 'Select a Player', img: '' },
-          { value: 'devin-booker', label: 'Devin Booker', img: '/playerIMGs/booker.jpg' },
-          { value: 'anthony-edwards', label: 'Anthony Edwards', img: '/playerIMGs/Edwards.jpg' },
-          { value: 'jaylen-brown', label: 'Jaylen Brown', img: '/playerIMGs/Brown.jpg' },
+          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
+          { value: 'devin-booker', label: 'Devin Booker', img: '/playerIMGs/Devin-Booker.jpg' },
+          { value: 'anthony-edwards', label: 'Anthony Edwards', img: '/playerIMGs/Anthony-Edwards.jpg' },
+          { value: 'jaylen-brown', label: 'Jaylen Brown', img: '/playerIMGs/Jaylen-Brown.jpg' },
+          { value: 'bradley-beal', label: 'Bradley Beal', img: '/playerIMGs/Bradley-Beal.jpg' },
+          { value: 'zach-lavine', label: 'Zach LaVine', img: 'public/playerIMGs/Zach-Lavine.jpg' },
+          { value: 'demar-derozan', label: 'DeMar DeRozan', img: '/playerIMGs/DeMar-DeRozan.jpg' },
+          { value: 'desmond-bane', label: 'Desmond Bane', img: '/playerIMGs/Desmond-Bane.jpg' },
+          { value: 'jalen-green', label: 'Jalen Green', img: '/playerIMGs/Jalen-Green.jpg' },
         ]
       : [
-          { value: '', label: 'Select a Player', img: '' },
-          { value: 'donovan-mitchell', label: 'Donovan Mitchell', img: '/playerIMGs/Mitchell.jpg' },
-          { value: 'bradley-beal', label: 'Bradley Beal', img: '/playerIMGs/Beal.jpg' },
-          { value: 'klay-thompson', label: 'Klay Thompson', img: '/playerIMGs/Klay.jpg' },
+          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
+          { value: 'donovan-mitchell', label: 'Donovan Mitchell', img: '/playerIMGs/Donovan-Mitchell.jpg' },
+          { value: 'mikal-bridges', label: 'Mikal Bridges', img: '/playerIMGs/Mikal-Bridges.jpg' },
+          { value: 'jalen-williams', label: 'Jalen Williams', img: '/playerIMGs/Jalen-Williams.jpg' },
+          { value: 'tyler-herro', label: 'Tyler Herro', img: '/playerIMGs/Tyler-Herro.jpg' },
+          { value: 'austin-reaves', label: 'Austin Reaves', img: '/playerIMGs/Austin-Reaves.jpg' },
+          { value: 'anfernee-simons', label: 'Anfernee Simons', img: '/playerIMGs/Anfernee-Simons.jpg' },
+          { value: 'cj-mccollum', label: 'C.J. McCollum', img: '/playerIMGs/CJ-McCollum.jpg' },
+          { value: 'devin-vassell', label: 'Devin Vassell', img: '/playerIMGs/Devin-Vassell.jpg' },
         ],
     sf: teamNumber === 1
       ? [
-          { value: '', label: 'Select a Player', img: '' },
-          { value: 'lebron-james', label: 'LeBron James', img: '/playerIMGs/Lebron.jpg' },
-          { value: 'kevin-durant', label: 'Kevin Durant', img: '/playerIMGs/Durant.jpg' },
-          { value: 'jayson-tatum', label: 'Jayson Tatum', img: '/playerIMGs/Tatum.jpg' },
+          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
+          { value: 'lebron-james', label: 'LeBron James', img: '/playerIMGs/LeBron-James.jpg' },
+          { value: 'kevin-durant', label: 'Kevin Durant', img: '/playerIMGs/Kevin-Durant.jpg' },
+          { value: 'jayson-tatum', label: 'Jayson Tatum', img: '/playerIMGs/Jayson-Tatum.jpg' },
+          { value: 'jimmy-butler', label: 'Jimmy Butler', img: '/playerIMGs/Jimmy-Butler.jpg' },
+          { value: 'paul-george', label: 'Paul George', img: '/playerIMGs/Paul-George.jpg' },
+          { value: 'brandon-ingram', label: 'Brandon Ingram', img: '/playerIMGs/Brandon-Ingram.jpg' },
+          { value: 'scottie-barnes', label: 'Scottie Barnes', img: '/playerIMGs/Scottie-Barnes.jpg' },
+          { value: 'franz-wagner', label: 'Franz Wagner', img: '/playerIMGs/Franz-Wagner.jpg' },
         ]
       : [
-          { value: '', label: 'Select a Player', img: '' },
-          { value: 'kawhi-leonard', label: 'Kawhi Leonard', img: '/playerIMGs/kawhi.jpg' },
-          { value: 'jimmy-butler', label: 'Jimmy Butler', img: '/playerIMGs/Butler.jpg' },
-          { value: 'paul-george', label: 'Paul George', img: '/playerIMGs/George.jpg' },
+          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
+          { value: 'kawhi-leonard', label: 'Kawhi Leonard', img: '/playerIMGs/Kawhi-Leonard.jpg' },
+          { value: 'khris-middleton', label: 'Khris Middleton', img: '/playerIMGs/Khris-Middleton.jpg' },
+          { value: 'mikal-bridges', label: 'Mikal Bridges', img: '/playerIMGs/Mikal-Bridges.jpg' },
+          { value: 'klay-thompson', label: 'Klay Thompson', img: '/playerIMGs/Klay-Thompson.jpg' },
+          { value: 'og-anunoby', label: 'OG Anunoby', img: '/playerIMGs/OG-Anunoby.jpg' },
+          { value: 'deandre-hunter', label: 'De’Andre Hunter', img: "public/playerIMGs/De'Andre-Hunter.jpg" },
+          { value: 'kyle-kuzma', label: 'Kyle Kuzma', img: '/playerIMGs/Kyle-Kuzma.jpg' },
+          { value: 'jaden-mcdaniels', label: 'Jaden McDaniels', img: 'public/playerIMGs/Jaden-Mcdaniels.jpg' },
         ],
     pf: teamNumber === 1
       ? [
-          { value: '', label: 'Select a Player', img: '' },
-          { value: 'giannis-antetokounmpo', label: 'Giannis Antetokounmpo', img: '/playerIMGs/Antetokounmpo.jpg' },
-          { value: 'anthony-davis', label: 'Anthony Davis', img: '/playerIMGs/AD.jpg' },
-          { value: 'zion-williamson', label: 'Zion Williamson', img: '/playerIMGs/Williamson.jpg' },
+          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
+          { value: 'giannis-antetokounmpo', label: 'Giannis Antetokounmpo', img: '/playerIMGs/Giannis-Antetokounmpo.jpg' },
+          { value: 'anthony-davis', label: 'Anthony Davis', img: '/playerIMGs/Anthony-Davis.jpg' },
+          { value: 'zion-williamson', label: 'Zion Williamson', img: '/playerIMGs/Zion-Williamson.jpg' },
+          { value: 'pascal-siakam', label: 'Pascal Siakam', img: '/playerIMGs/Pascal-Siakam.jpg' },
+          { value: 'evan-mobley', label: 'Evan Mobley', img: '/playerIMGs/Evan-Mobley.jpg' },
+          { value: 'karl-anthony-towns', label: 'Karl-Anthony Towns', img: '/playerIMGs/Karl-Anthony-Towns.jpg' },
+          { value: 'lauri-markkanen', label: 'Lauri Markkanen', img: '/playerIMGs/Lauri-Markkanen.jpg' },
+          { value: 'paolo-banchero', label: 'Paolo Banchero', img: '/playerIMGs/Paolo-Banchero.jpg' },
         ]
       : [
-          { value: '', label: 'Select a Player', img: '' },
-          { value: 'kevin-love', label: 'Kevin Love', img: '/playerIMGs/Love.jpg' },
-          { value: 'draymond-green', label: 'Draymond Green', img: '/playerIMGs/draymond.jpg' },
-          { value: 'pascal-siakam', label: 'Pascal Siakam', img: '/playerIMGs/Siakam.jpg' },
+          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
+          { value: 'draymond-green', label: 'Draymond Green', img: 'public/playerIMGs/Draymond-Green.jpg'},
+          { value: 'karl-anthony-towns', label: 'Karl-Anthony Towns', img: '/playerIMGs/Karl-Anthony-Towns.jpg' },
+          { value: 'domantas-sabonis', label: 'Domantas Sabonis', img: '/playerIMGs/Domantas-Sabonis.jpg' },
+          { value: 'julius-randle', label: 'Julius Randle', img: '/playerIMGs/Julius-Randle.jpg' },
+          { value: 'john-collins', label: 'John Collins', img: '/playerIMGs/John-Collins.jpg' },
+          { value: 'aaron-gordon', label: 'Aaron Gordon', img: '/playerIMGs/Aaron-Gordon.jpg' },
+          { value: 'jaren-jackson-jr', label: 'Jaren Jackson Jr.', img: 'public/playerIMGs/Jaren-Jackson-Jr..jpg' },
+          { value: 'chet-holmgren', label: 'Chet Holmgren', img: '/playerIMGs/Chet-Holmgren.jpg' },
         ],
     c: teamNumber === 1
       ? [
-          { value: '', label: 'Select a Player', img: '' },
-          { value: 'nikola-jokic', label: 'Nikola Jokić', img: '/playerIMGs/Jokic.jpg' },
-          { value: 'joel-embiid', label: 'Joel Embiid', img: '/playerIMGs/Embiid.jpg' },
-          { value: 'bam-adebayo', label: 'Bam Adebayo', img: '/playerIMGs/Adebayo.jpg' },
+          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
+          { value: 'nikola-jokic', label: 'Nikola Jokić', img: 'public/playerIMGs/Nikola-Jokić.jpg' },
+          { value: 'joel-embiid', label: 'Joel Embiid', img: '/playerIMGs/Joel-Embiid.jpg' },
+          { value: 'bam-adebayo', label: 'Bam Adebayo', img: '/playerIMGs/Bam-Adebayo.jpg' },
+          { value: 'victor-wembanyama', label: 'Victor Wembanyama', img: '/playerIMGs/Victor-Wembanyama.jpg' },
+          { value: 'rudy-gobert', label: 'Rudy Gobert', img: '/playerIMGs/Rudy-Gobert.jpg' },
+          { value: 'al-horford', label: 'Al Horford', img: '/playerIMGs/Al-Horford.jpg' },
+          { value: 'myles-turner', label: 'Myles Turner', img: '/playerIMGs/Myles-Turner.jpg' },
+          { value: 'walker-kessler', label: 'Walker Kessler', img: '/playerIMGs/Walker-Kessler.jpg' },
         ]
       : [
-          { value: '', label: 'Select a Player', img: '' },
-          { value: 'victor-wembanyama', label: 'Victor Wembanyama', img: '/playerIMGs/Wembanyama.jpg' },
-          { value: 'rudy-gobert', label: 'Rudy Gobert', img: '/playerIMGs/Gobert.jpg' },
-          { value: 'domantas-sabonis', label: 'Domantas Sabonis', img: '/playerIMGs/Sabonis.jpg' },
+          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
+          { value: 'domantas-sabonis', label: 'Domantas Sabonis', img: '/playerIMGs/Domantas-Sabonis.jpg' },
+          { value: 'jarrett-allen', label: 'Jarrett Allen', img: '/playerIMGs/Jarrett-Allen.jpg' },
+          { value: 'deandre-ayton', label: 'Deandre Ayton', img: '/playerIMGs/Deandre-Ayton.jpg' },
+          { value: 'brook-lopez', label: 'Brook Lopez', img: '/playerIMGs/Brook-Lopez.jpg' },
+          { value: 'clint-capela', label: 'Clint Capela', img: '/playerIMGs/Clint-Capela.jpg' },
+          { value: 'nikola-vucevic', label: 'Nikola Vučević', img: 'public/playerIMGs/Nikola-Vučević.jpg' },
+          { value: 'zach-edey', label: 'Zach Edey', img: '/playerIMGs/Zach-Edey.jpg' },
+          { value: 'daniel-gafford', label: 'Daniel Gafford', img: '/playerIMGs/Daniel-Gafford.jpg' },
         ],
   };
 
   const handlePlayerChange = (position, value) => {
     const selected = playersByPosition[position].find(p => p.value === value);
+    console.log(`Selected player for ${position}:`, selected); // Debug log
     setPlayers(prev => ({
       ...prev,
       [position]: value,
@@ -136,90 +184,88 @@ function TeamSelector({ teamNumber, setPlayers, selectedPlayers }) {
 // CourtVisualization Component
 function CourtVisualization({ team1Players, team2Players }) {
   const defaultTeam1Players = {
-    pg: { name: 'S. Curry', position: 'PG', img: '/playerIMGs/Steph.jpg' },
-    sg: { name: 'D. Booker', position: 'SG', img: '/playerIMGs/booker.jpg' },
-    sf: { name: 'L. James', position: 'SF', img: '/playerIMGs/Lebron.jpg' },
-    pf: { name: 'G. Antetokounmpo', position: 'PF', img: '/playerIMGs/Antetokounmpo.jpg' },
-    c: { name: 'N. Jokić', position: 'C', img: '/playerIMGs/Jokic.jpg' },
+    pg: { name: 'Player 1', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    sg: { name: 'Player 2', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    sf: { name: 'Player 3', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    pf: { name: 'Player 4', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    c: { name: 'Player 5', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
   };
 
   const defaultTeam2Players = {
-    pg: { name: 'J. Morant', position: 'PG', img: '/playerIMGs/Morant.jpg' },
-    sg: { name: 'D. Mitchell', position: 'SG', img: '/playerIMGs/Mitchell.jpg' },
-    sf: { name: 'K. Leonard', position: 'SF', img: '/playerIMGs/kawhi.jpg' },
-    pf: { name: 'D. Green', position: 'PF', img: '/playerIMGs/draymond.jpg' },
-    c: { name: 'V. Wembanyama', position: 'C', img: '/playerIMGs/Wembanyama.jpg' },
+    pg: { name: 'Player 1', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    sg: { name: 'Player 2', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    sf: { name: 'Player 3', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    pf: { name: 'Player 4', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    c: { name: 'Player 5', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
   };
 
   const getTeamPlayers = (teamPlayers, defaults) => {
     const result = {};
     ['pg', 'sg', 'sf', 'pf', 'c'].forEach(pos => {
       result[pos] = teamPlayers.players?.[pos] || defaults[pos];
+      // Ensure img is never undefined
+      if (!result[pos].img) {
+        result[pos].img = '/playerIMGs/placeholder.jpg';
+      }
     });
     return result;
   };
 
   const team1ToShow = getTeamPlayers(team1Players, defaultTeam1Players);
   const team2ToShow = getTeamPlayers(team2Players, defaultTeam2Players);
+  
+  const team1PlayerElements = ['pg', 'sg', 'sf', 'pf', 'c'].map(pos => {
+    const player = team1ToShow[pos];
+    return (
+      <div className={`player-position ${pos}`} key={pos}>
+        <div className="player-marker" data-tooltip={`${player.name}: ${player.position}`}>
+          <img src={player.img} alt={player.position} className="player-img" />
+          <div className="player-info">
+            <span className="player-name">{player.name}</span>
+            <span className="player-position-label">{player.position}</span>
+          </div>
+        </div>
+      </div>
+    );
+  });
+
+  const team2PlayerElements = ['pg', 'sg', 'sf', 'pf', 'c'].map(pos => {
+    const player = team2ToShow[pos];
+    return (
+      <div className={`player-position ${pos}`} key={pos}>
+        <div className="player-marker" data-tooltip={`${player.name}: ${player.position}`}>
+          <img src={player.img} alt={player.position} className="player-img" />
+          <div className="player-info">
+            <span className="player-name">{player.name}</span>
+            <span className="player-position-label">{player.position}</span>
+          </div>
+        </div>
+      </div>
+    );
+  });
 
   return (
     <section id="court-visualization" className="p-4">
       <h3 className="text-xl font-semibold mb-4 text-center">
         Team Matchup Visualization
       </h3>
-      <div className="basketball-court">
+      <div className="basketball-court" style={{ position: 'relative' }}>
         <div className="court-lines" />
-
-        {/* Team 1 (left) */}
         <div className="team team-left">
           <div className="team-name">
             {team1Players.teamName || 'Team 1'}
           </div>
-          {['pg', 'sg', 'sf', 'pf', 'c'].map(pos => {
-            const player = team1ToShow[pos];
-            return (
-              <div className={`player-position ${pos}`} key={pos}>
-                <div className="player-marker">
-                  <img src={player.img} alt={player.position} className="player-img" />
-                  <div className="player-info">
-                    <span className="player-name">{player.name}</span>
-                    <span className="player-position-label">
-                      {player.position}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {team1PlayerElements}
         </div>
-
-        {/* Center Circle & VS */}
         <div className="court-center">
           <div className="court-circle" />
           <div className="versus">VS</div>
         </div>
-
-        {/* Team 2 (right) */}
         <div className="team team-right">
           <div className="team-name">
             {team2Players.teamName || 'Team 2'}
           </div>
-          {['pg', 'sg', 'sf', 'pf', 'c'].map(pos => {
-            const player = team2ToShow[pos];
-            return (
-              <div className={`player-position ${pos}`} key={pos}>
-                <div className="player-marker">
-                  <img src={player.img} alt={player.position} className="player-img" />
-                  <div className="player-info">
-                    <span className="player-name">{player.name}</span>
-                    <span className="player-position-label">
-                      {player.position}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {team2PlayerElements}
         </div>
       </div>
     </section>
