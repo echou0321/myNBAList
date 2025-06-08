@@ -19,7 +19,8 @@ import '../css/style.css';
 
 export default function App() {
   return (
-    <Router>
+    // Entire class wrapped in React Router
+    <Router> 
       <div className="app-wrapper">
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />

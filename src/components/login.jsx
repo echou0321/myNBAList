@@ -14,7 +14,7 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-
+  // 1) Subscribe to Firebase auth state changes so we know if someone is logged in
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
@@ -24,13 +24,14 @@ export default function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    // 2) Basic validation: ensure both fields are filled in
     if (!email.trim() || !password) {
       setError('Please enter both email and password.');
       return;
     }
     setError('');
 
-    try {
+    try { // 3) Sign in via Firebase Authentication
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       console.log('Logged in:', userCredential.user);
       navigate('/home');
