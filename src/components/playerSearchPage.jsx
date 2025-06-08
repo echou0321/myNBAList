@@ -46,7 +46,7 @@ export default function Browse() {
         const transformed = Object.entries(grouped).map(([name, entries]) => {
           const latest = entries[entries.length - 1];
           return {
-            id: `${latest.Player}-${latest.Team}`.replace(/\s+/g, '_').toLowerCase(),
+            id: `${latest.Player.replace(/\s+/g, '-').toLowerCase()}-${latest.Team.toLowerCase()}`,
             name: latest.Player,
             team: latest.Team,
             teamName: teamFullNames[latest.Team] || latest.Team,
