@@ -21,6 +21,7 @@ export default function Register() {
 
   const navigate = useNavigate();
 
+  // 1) Keep track of auth status so we can show logout if already signed in
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
@@ -30,6 +31,7 @@ export default function Register() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    // 2) Make sure all fields are filled and passwords match
     if (!username.trim() || !email.trim() || !password) {
       setError('All fields are required.');
       return;
@@ -44,11 +46,12 @@ export default function Register() {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       console.log('Registered user:', userCredential.user);
 
+      // 3) Immediately set the displayName to the chosen username
       await updateProfile(userCredential.user, {
         displayName: username,
       });
 
-      navigate('/home');
+      navigate('/home'); // 4) Redirect to home page after successful sign-up
     } catch (firebaseError) {
       setError(firebaseError.message);
     }
