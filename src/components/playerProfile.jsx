@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { auth } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { collection, addDoc, serverTimestamp, doc, setDoc, getDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 function PlayerProfile() {
   const { id } = useParams();
@@ -35,6 +37,39 @@ function PlayerProfile() {
       .catch(err => console.error("Failed to load player data", err));
   }, [id]);
 
+  useEffect(() => {
+  const fetchUserRating = async () => {
+    if (player && currentUser) {
+      const docId = `${id}_${currentUser.uid}`;
+      const ratingRef = doc(db, 'ratings', docId);
+      const snapshot = await getDoc(ratingRef);
+
+      if (snapshot.exists()) {
+        const data = snapshot.data();
+        setRatings({
+          shooting: data.shooting || '',
+          dunking: data.dunking || '',
+          defense: data.defense || '',
+          playmaking: data.playmaking || '',
+          rebounding: data.rebounding || '',
+        });
+
+        const avg =
+          (parseFloat(data.shooting) +
+            parseFloat(data.dunking) +
+            parseFloat(data.defense) +
+            parseFloat(data.playmaking) +
+            parseFloat(data.rebounding)) / 5;
+
+        const overallField = document.getElementById('user-overall');
+        if (overallField) overallField.value = avg.toFixed(1);
+      }
+    }
+  };
+
+  fetchUserRating();
+}, [player, currentUser, id]);
+
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -49,16 +84,52 @@ function PlayerProfile() {
     setRatings(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    if (!currentUser) {
+      const proceed = window.confirm("You need to be logged in to submit ratings. Would you like to register now?");
+      if (proceed) navigate('/register');
+      return;
+    }
+
     const { shooting, dunking, defense, playmaking, rebounding } = ratings;
+
+    if (![shooting, dunking, defense, playmaking, rebounding].every(val => val !== '')) {
+      alert("Please fill out all rating fields before submitting.");
+      return;
+    }
+
+    const playerId = id;
+    const userId = currentUser.uid;
+    const docId = `${playerId}_${userId}`;
+    const ratingRef = doc(db, 'ratings', docId);
+
     const overall = (
-      (parseFloat(shooting || 0) +
-        parseFloat(dunking || 0) +
-        parseFloat(defense || 0) +
-        parseFloat(playmaking || 0) +
-        parseFloat(rebounding || 0)) / 5
+      (parseFloat(shooting) +
+      parseFloat(dunking) +
+      parseFloat(defense) +
+      parseFloat(playmaking) +
+      parseFloat(rebounding)) / 5
     ).toFixed(1);
+
     document.getElementById('user-overall').value = overall;
+
+    try {
+      await setDoc(ratingRef, {
+        playerId,
+        userId,
+        shooting: parseFloat(shooting),
+        dunking: parseFloat(dunking),
+        defense: parseFloat(defense),
+        playmaking: parseFloat(playmaking),
+        rebounding: parseFloat(rebounding),
+        overall: parseFloat(overall),
+        submittedAt: new Date(),
+      });
+      alert("Your rating was submitted successfully!");
+    } catch (err) {
+      console.error("Error submitting rating:", err);
+      alert("There was a problem submitting your rating.");
+    }
   };
 
   if (!player) {
