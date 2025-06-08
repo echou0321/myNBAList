@@ -185,18 +185,18 @@ function TeamSelector({ teamNumber, setPlayers, selectedPlayers }) {
 function CourtVisualization({ team1Players, team2Players }) {
   const defaultTeam1Players = {
     pg: { name: 'Player 1', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    sg: { name: 'Player 2', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    sf: { name: 'Player 3', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    pf: { name: 'Player 4', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    c: { name: 'Player 5', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    sg: { name: 'Player 2', position: 'SG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    sf: { name: 'Player 3', position: 'SF', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    pf: { name: 'Player 4', position: 'PF', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    c: { name: 'Player 5', position: 'C', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
   };
 
   const defaultTeam2Players = {
     pg: { name: 'Player 1', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    sg: { name: 'Player 2', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    sf: { name: 'Player 3', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    pf: { name: 'Player 4', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    c: { name: 'Player 5', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    sg: { name: 'Player 2', position: 'SG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    sf: { name: 'Player 3', position: 'SF', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    pf: { name: 'Player 4', position: 'PF', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    c: { name: 'Player 5', position: 'C', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
   };
 
   const getTeamPlayers = (teamPlayers, defaults) => {
