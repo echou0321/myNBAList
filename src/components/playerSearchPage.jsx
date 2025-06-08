@@ -45,18 +45,20 @@ export default function Browse() {
 
         const transformed = Object.entries(grouped).map(([name, entries]) => {
           const latest = entries[entries.length - 1];
+          const playerName = latest.Player || 'Unknown';
+          const teamCode = latest.Team || 'Unknown';
+
           return {
-            id: `${latest.Player.replace(/\s+/g, '-').toLowerCase()}-${latest.Team.toLowerCase()}`,
-            name: latest.Player,
-            team: latest.Team,
-            teamName: teamFullNames[latest.Team] || latest.Team,
+            id: `${playerName.replace(/\s+/g, '-').toLowerCase()}-${teamCode.toLowerCase()}`, 
+            name: playerName,
+            team: teamCode,
+            teamName: teamFullNames[teamCode] || teamCode,
             position: latest.Pos,
-            conference: ['BOS','NYK','MIA','PHI','MIL','IND','ORL','CLE','ATL','TOR','WAS','CHI','CHA','DET','BRK','BKN'].includes(latest.Team) ? 'East' : 'West',
-            img: latest.Player.replace(/\s+/g, '-'),
+            conference: ['BOS','NYK','MIA','PHI','MIL','IND','ORL','CLE','ATL','TOR','WAS','CHI','CHA','DET','BRK','BKN'].includes(teamCode) ? 'East' : 'West',
+            img: playerName.replace(/\s+/g, '-'), // preserve case for image filenames
           };
         });
 
-        // Fetch ratings from Firestore
         const ratingsSnapshot = await getDocs(collection(db, 'ratings'));
         const ratingsMap = {};
 
@@ -168,7 +170,7 @@ export default function Browse() {
             }
           })()}
         </p>
-        <p class="player-rating">⭐ {player.rating}</p>
+        <p className="player-rating">⭐ {player.rating}</p>
       </div>
     </Link>
   ));

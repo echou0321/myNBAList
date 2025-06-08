@@ -35,7 +35,7 @@ function PlayerProfile() {
       .then(res => res.json())
       .then(data => {
         const playerData = data.find(p =>
-          `${p.Player}-${p.Team}`.replace(/\s+/g, '_').toLowerCase() === id
+          `${p.Player}-${p.Team}`.replace(/\s+/g, '-').toLowerCase() === id
         );
         setPlayer(playerData);
       })
@@ -78,7 +78,7 @@ function PlayerProfile() {
   }, [player, currentUser, id]);
 
   const fetchAverageRating = async () => {
-    if (!id) return;
+    if (!id || !player) return;
     const playerId = getNormalizedPlayerId(player);
     const q = query(collection(db, 'ratings'), where('playerId', '==', playerId));
     const snapshot = await getDocs(q);
