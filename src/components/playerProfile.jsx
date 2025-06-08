@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { auth } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { collection, addDoc, serverTimestamp, doc, setDoc, getDoc } from 'firebase/firestore';
+import { collection, doc, setDoc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebase';
 
 function PlayerProfile() {
@@ -15,7 +15,10 @@ function PlayerProfile() {
     playmaking: '',
     rebounding: ''
   });
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
+  const [averageRating, setAverageRating] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,37 +41,87 @@ function PlayerProfile() {
   }, [id]);
 
   useEffect(() => {
-  const fetchUserRating = async () => {
-    if (player && currentUser) {
-      const docId = `${id}_${currentUser.uid}`;
-      const ratingRef = doc(db, 'ratings', docId);
-      const snapshot = await getDoc(ratingRef);
+    const fetchUserRating = async () => {
+      if (player && currentUser) {
+        const docId = `${id}_${currentUser.uid}`;
+        const ratingRef = doc(db, 'ratings', docId);
+        const snapshot = await getDoc(ratingRef);
 
-      if (snapshot.exists()) {
-        const data = snapshot.data();
-        setRatings({
-          shooting: data.shooting || '',
-          dunking: data.dunking || '',
-          defense: data.defense || '',
-          playmaking: data.playmaking || '',
-          rebounding: data.rebounding || '',
-        });
+        if (snapshot.exists()) {
+          const data = snapshot.data();
+          setRatings({
+            shooting: data.shooting || '',
+            dunking: data.dunking || '',
+            defense: data.defense || '',
+            playmaking: data.playmaking || '',
+            rebounding: data.rebounding || '',
+          });
 
-        const avg =
-          (parseFloat(data.shooting) +
-            parseFloat(data.dunking) +
-            parseFloat(data.defense) +
-            parseFloat(data.playmaking) +
-            parseFloat(data.rebounding)) / 5;
+          const avg =
+            (parseFloat(data.shooting) +
+              parseFloat(data.dunking) +
+              parseFloat(data.defense) +
+              parseFloat(data.playmaking) +
+              parseFloat(data.rebounding)) / 5;
 
-        const overallField = document.getElementById('user-overall');
-        if (overallField) overallField.value = avg.toFixed(1);
+          const overallField = document.getElementById('user-overall');
+          if (overallField) overallField.value = avg.toFixed(1);
+        }
       }
+    };
+
+    fetchUserRating();
+  }, [player, currentUser, id]);
+
+  const fetchAverageRating = async () => {
+    if (!id) return;
+    const q = query(collection(db, 'ratings'), where('playerId', '==', id));
+    const snapshot = await getDocs(q);
+
+    const playerRatings = [];
+    snapshot.forEach(doc => playerRatings.push(doc.data()));
+
+    if (playerRatings.length > 0) {
+      const sum = {
+        shooting: 0,
+        dunking: 0,
+        defense: 0,
+        playmaking: 0,
+        rebounding: 0,
+      };
+
+      playerRatings.forEach(r => {
+        sum.shooting += r.shooting;
+        sum.dunking += r.dunking;
+        sum.defense += r.defense;
+        sum.playmaking += r.playmaking;
+        sum.rebounding += r.rebounding;
+      });
+
+      const count = playerRatings.length;
+      const avg = {
+        shooting: (sum.shooting / count).toFixed(1),
+        dunking: (sum.dunking / count).toFixed(1),
+        defense: (sum.defense / count).toFixed(1),
+        playmaking: (sum.playmaking / count).toFixed(1),
+        rebounding: (sum.rebounding / count).toFixed(1),
+        overall: (
+          (sum.shooting + sum.dunking + sum.defense + sum.playmaking + sum.rebounding) / (5 * count)
+        ).toFixed(1),
+      };
+
+      setAverageRating({
+        ...avg,
+        count: playerRatings.length
+      });
+    } else {
+      setAverageRating(null);
     }
   };
 
-  fetchUserRating();
-}, [player, currentUser, id]);
+  useEffect(() => {
+    fetchAverageRating();
+  }, [id]);
 
   const handleLogout = async () => {
     try {
@@ -92,9 +145,17 @@ function PlayerProfile() {
     }
 
     const { shooting, dunking, defense, playmaking, rebounding } = ratings;
+    const numericRatings = [shooting, dunking, defense, playmaking, rebounding].map(parseFloat);
 
-    if (![shooting, dunking, defense, playmaking, rebounding].every(val => val !== '')) {
-      alert("Please fill out all rating fields before submitting.");
+    if (numericRatings.some(val => isNaN(val))) {
+      setModalMessage("Please fill out all rating fields before submitting.");
+      setShowModal(true);
+      return;
+    }
+
+    if (numericRatings.some(val => val < 1 || val > 10)) {
+      setModalMessage("Ratings must be between 1 and 10.");
+      setShowModal(true);
       return;
     }
 
@@ -102,13 +163,9 @@ function PlayerProfile() {
     const userId = currentUser.uid;
     const docId = `${playerId}_${userId}`;
     const ratingRef = doc(db, 'ratings', docId);
-
     const overall = (
-      (parseFloat(shooting) +
-      parseFloat(dunking) +
-      parseFloat(defense) +
-      parseFloat(playmaking) +
-      parseFloat(rebounding)) / 5
+      (parseFloat(shooting) + parseFloat(dunking) + parseFloat(defense) +
+        parseFloat(playmaking) + parseFloat(rebounding)) / 5
     ).toFixed(1);
 
     document.getElementById('user-overall').value = overall;
@@ -125,10 +182,15 @@ function PlayerProfile() {
         overall: parseFloat(overall),
         submittedAt: new Date(),
       });
-      alert("Your rating was submitted successfully!");
+
+      await fetchAverageRating();
+      setModalMessage("Your rating was submitted successfully!");
+      setShowModal(true);
+      setTimeout(() => window.location.reload(), 1500);
     } catch (err) {
       console.error("Error submitting rating:", err);
-      alert("There was a problem submitting your rating.");
+      setModalMessage("There was a problem submitting your rating.");
+      setShowModal(true);
     }
   };
 
@@ -156,17 +218,7 @@ function PlayerProfile() {
                 <span style={{ color: '#fff', fontWeight: '600', marginRight: '1rem' }}>
                   Hello, {currentUser.displayName || currentUser.email}
                 </span>
-                <button onClick={handleLogout} style={{
-                  backgroundColor: 'transparent',
-                  border: '1px solid white',
-                  color: 'white',
-                  padding: '0.5rem 1rem',
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontWeight: '600',
-                }}>
-                  Logout
-                </button>
+                <button onClick={handleLogout}>Logout</button>
               </>
             ) : (
               <>
@@ -179,38 +231,30 @@ function PlayerProfile() {
       </header>
 
       <div className="player-header">
-        <img src={`/teamIMGs/${player.Team}.png`} alt={`${player.Team} logo`} className="team-logo"/>
+        <img src={`/teamIMGs/${player.Team}.png`} alt={`${player.Team} logo`} className="team-logo" />
         <div className="player-basic-info">
           <h1>{player.Player}</h1>
           <p>{player.Team} | #{player.Number || 'N/A'} | {player.Pos}</p>
         </div>
         <div className="player-ratings">
-          <div className="rating-badge overall">
-            Overall<br />
-            <span>{player.Overall || '-'}</span>
-          </div>
-          <div className="rating-badge">
-            Shooting<br /><span>{player.Shooting || '-'}</span>
-          </div>
-          <div className="rating-badge">
-            Dunking<br /><span>{player.Dunking || '-'}</span>
-          </div>
-          <div className="rating-badge">
-            Defense<br /><span>{player.Defense || '-'}</span>
-          </div>
-          <div className="rating-badge">
-            Playmaking<br /><span>{player.Playmaking || '-'}</span>
-          </div>
-          <div className="rating-badge">
-            Rebounding<br /><span>{player.Rebounding || '-'}</span>
-          </div>
+          <div className="rating-badge overall">Overall<br /><span>{averageRating?.overall || '-'}</span></div>
+          <div className="rating-badge">Shooting<br /><span>{averageRating?.shooting || '-'}</span></div>
+          <div className="rating-badge">Dunking<br /><span>{averageRating?.dunking || '-'}</span></div>
+          <div className="rating-badge">Defense<br /><span>{averageRating?.defense || '-'}</span></div>
+          <div className="rating-badge">Playmaking<br /><span>{averageRating?.playmaking || '-'}</span></div>
+          <div className="rating-badge">Rebounding<br /><span>{averageRating?.rebounding || '-'}</span></div>
         </div>
+        {averageRating?.count && (
+          <p className="rating-count-text">
+          <em>{averageRating.count} rating{averageRating.count !== 1 ? 's' : ''} submitted</em>
+          </p>
+        )}
       </div>
 
       <div className="user-rating-form">
         <h3>Your Ratings</h3>
         <form className="rating-form">
-          <input type="text" id="user-overall" name="user-overall" placeholder="Overall" aria-label="Your Overall" readOnly />
+          <input type="text" id="user-overall" placeholder="Overall" readOnly />
           {['shooting', 'dunking', 'defense', 'playmaking', 'rebounding'].map(attr => (
             <input
               key={attr}
@@ -232,11 +276,7 @@ function PlayerProfile() {
 
       <main className="player-main">
         <div className="player-profile-top">
-          <img
-            src={`/playerIMGs/${player.Player.replace(/\s+/g, '-')}.jpg`}
-            alt={player.name}
-            className="player-profile-img"
-          />
+          <img src={`/playerIMGs/${player.Player.replace(/\s+/g, '-')}.jpg`} alt={player.name} className="player-profile-img" />
           <div className="player-stats">
             <div><span>PPG</span> <strong>{player.PTS || '-'}</strong></div>
             <div><span>RPG</span> <strong>{player.TRB || '-'}</strong></div>
@@ -265,6 +305,15 @@ function PlayerProfile() {
       <footer>
         <p>&copy; 2025 MyNBAList</p>
       </footer>
+
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <p>{modalMessage}</p>
+            <button onClick={() => setShowModal(false)}>Close</button>
+          </div>
+        </div>
+      )}
     </>
   );
 }
