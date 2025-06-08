@@ -20,6 +20,8 @@ function PlayerProfile() {
   const [currentUser, setCurrentUser] = useState(null);
   const [averageRating, setAverageRating] = useState(null);
   const navigate = useNavigate();
+  const getNormalizedPlayerId = (player) => 
+  `${player.Player.replace(/\s+/g, '-').toLowerCase()}-${player.Team.toLowerCase()}`;
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -40,42 +42,45 @@ function PlayerProfile() {
       .catch(err => console.error("Failed to load player data", err));
   }, [id]);
 
-  useEffect(() => {
-    const fetchUserRating = async () => {
-      if (player && currentUser) {
-        const docId = `${id}_${currentUser.uid}`;
-        const ratingRef = doc(db, 'ratings', docId);
-        const snapshot = await getDoc(ratingRef);
+  const fetchUserRating = async () => {
+    if (player && currentUser) {
+      const playerId = getNormalizedPlayerId(player);
+      const docId = `${playerId}_${currentUser.uid}`;
+      const ratingRef = doc(db, 'ratings', docId);
+      const snapshot = await getDoc(ratingRef);
 
-        if (snapshot.exists()) {
-          const data = snapshot.data();
-          setRatings({
-            shooting: data.shooting || '',
-            dunking: data.dunking || '',
-            defense: data.defense || '',
-            playmaking: data.playmaking || '',
-            rebounding: data.rebounding || '',
-          });
+      if (snapshot.exists()) {
+        const data = snapshot.data();
+        setRatings({
+          shooting: data.shooting || '',
+          dunking: data.dunking || '',
+          defense: data.defense || '',
+          playmaking: data.playmaking || '',
+          rebounding: data.rebounding || '',
+        });
 
-          const avg =
-            (parseFloat(data.shooting) +
-              parseFloat(data.dunking) +
-              parseFloat(data.defense) +
-              parseFloat(data.playmaking) +
-              parseFloat(data.rebounding)) / 5;
+        const avg = (
+          (parseFloat(data.shooting) +
+            parseFloat(data.dunking) +
+            parseFloat(data.defense) +
+            parseFloat(data.playmaking) +
+            parseFloat(data.rebounding)) / 5
+        ).toFixed(1);
 
-          const overallField = document.getElementById('user-overall');
-          if (overallField) overallField.value = avg.toFixed(1);
-        }
+        const overallField = document.getElementById('user-overall');
+        if (overallField) overallField.value = avg;
       }
-    };
+    }
+  };
 
+  useEffect(() => {
     fetchUserRating();
   }, [player, currentUser, id]);
 
   const fetchAverageRating = async () => {
     if (!id) return;
-    const q = query(collection(db, 'ratings'), where('playerId', '==', id));
+    const playerId = getNormalizedPlayerId(player);
+    const q = query(collection(db, 'ratings'), where('playerId', '==', playerId));
     const snapshot = await getDocs(q);
 
     const playerRatings = [];
@@ -120,8 +125,10 @@ function PlayerProfile() {
   };
 
   useEffect(() => {
-    fetchAverageRating();
-  }, [id]);
+    if (player) {
+      fetchAverageRating();
+    }
+  }, [player, id]);
 
   const handleLogout = async () => {
     try {
@@ -159,8 +166,8 @@ function PlayerProfile() {
       return;
     }
 
-    const playerId = id;
     const userId = currentUser.uid;
+    const playerId = getNormalizedPlayerId(player);
     const docId = `${playerId}_${userId}`;
     const ratingRef = doc(db, 'ratings', docId);
     const overall = (
@@ -174,6 +181,8 @@ function PlayerProfile() {
       await setDoc(ratingRef, {
         playerId,
         userId,
+        playerName: player.Player, // full name with casing
+        imgFile: player.Player.replace(/\s+/g, '-'), // exact filename used in playerIMGs/
         shooting: parseFloat(shooting),
         dunking: parseFloat(dunking),
         defense: parseFloat(defense),
@@ -183,10 +192,11 @@ function PlayerProfile() {
         submittedAt: new Date(),
       });
 
+      await fetchUserRating();
       await fetchAverageRating();
+
       setModalMessage("Your rating was submitted successfully!");
       setShowModal(true);
-      setTimeout(() => window.location.reload(), 1500);
     } catch (err) {
       console.error("Error submitting rating:", err);
       setModalMessage("There was a problem submitting your rating.");
@@ -246,7 +256,7 @@ function PlayerProfile() {
         </div>
         {averageRating?.count && (
           <p className="rating-count-text">
-          <em>{averageRating.count} rating{averageRating.count !== 1 ? 's' : ''} submitted</em>
+            <em>{averageRating.count} rating{averageRating.count !== 1 ? 's' : ''} submitted</em>
           </p>
         )}
       </div>
@@ -319,3 +329,4 @@ function PlayerProfile() {
 }
 
 export default PlayerProfile;
+

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebase';
 
 export default function Browse() {
   const teamFullNames = {
@@ -29,38 +31,58 @@ export default function Browse() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('/data/players.json')
-      .then((res) => res.json())
-      .then((data) => {
-        const grouped = {};
+    const fetchData = async () => {
+      try {
+        const res = await fetch('/data/players.json');
+        const data = await res.json();
 
+        const grouped = {};
         data.forEach((p) => {
-          const name = p.Player;
           if (p.Team === '2TM') return;
-          if (!grouped[name]) {
-            grouped[name] = [];
-          }
-          grouped[name].push(p);
+          if (!grouped[p.Player]) grouped[p.Player] = [];
+          grouped[p.Player].push(p);
         });
 
         const transformed = Object.entries(grouped).map(([name, entries]) => {
           const latest = entries[entries.length - 1];
-
           return {
             id: `${latest.Player}-${latest.Team}`.replace(/\s+/g, '_').toLowerCase(),
             name: latest.Player,
             team: latest.Team,
             teamName: teamFullNames[latest.Team] || latest.Team,
-            position: latest.Pos, 
+            position: latest.Pos,
             conference: ['BOS','NYK','MIA','PHI','MIL','IND','ORL','CLE','ATL','TOR','WAS','CHI','CHA','DET','BRK','BKN'].includes(latest.Team) ? 'East' : 'West',
-            rating: "-", // placeholder for future average
             img: latest.Player.replace(/\s+/g, '-'),
           };
         });
 
-        setPlayers(transformed);
-      })
-      .catch((err) => console.error('Failed to load player data', err));
+        // Fetch ratings from Firestore
+        const ratingsSnapshot = await getDocs(collection(db, 'ratings'));
+        const ratingsMap = {};
+
+        ratingsSnapshot.forEach((doc) => {
+          const { playerId, overall } = doc.data();
+          if (!ratingsMap[playerId]) {
+            ratingsMap[playerId] = { sum: 0, count: 0 };
+          }
+          ratingsMap[playerId].sum += overall;
+          ratingsMap[playerId].count += 1;
+        });
+
+        // Attach average rating
+        const playersWithRatings = transformed.map((player) => {
+          const ratingData = ratingsMap[player.id];
+          const avgRating = ratingData ? (ratingData.sum / ratingData.count).toFixed(1) : '-';
+          return { ...player, rating: avgRating };
+        });
+
+        setPlayers(playersWithRatings);
+      } catch (err) {
+        console.error('Failed to load player data or ratings', err);
+      }
+    };
+
+    fetchData();
   }, []);
 
   useEffect(() => {
