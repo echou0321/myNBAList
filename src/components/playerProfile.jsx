@@ -108,7 +108,7 @@ function PlayerProfile() {
       </header>
 
       <div className="player-header">
-        <img src={`/teamIMGs/${player.Team.toLowerCase()}.png`} alt={`${player.Team} logo`} className="team-logo" />
+        <img src={`/public/teamIMGs/${player.Team.toLowerCase()}.png`} alt={`${player.Team} logo`} className="team-logo" />
         <div className="player-basic-info">
           <h1>{player.Player}</h1>
           <p>{player.Team} | #{player.Number || 'N/A'} | {player.Pos}</p>
@@ -162,7 +162,7 @@ function PlayerProfile() {
       <main className="player-main">
         <div className="player-profile-top">
           <img
-            src={`/playerIMGs/${player.Player.replace(/\s+/g, '-').toLowerCase()}.jpg`}
+            src={`/public/playerIMGs/${player.Player.replace(/\s+/g, '-').toLowerCase()}.jpg`}
             alt={player.Player}
             className="player-photo"
           />

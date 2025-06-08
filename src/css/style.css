@@ -413,6 +413,7 @@ footer {
   width: 80px;
   height: 80px;
   object-fit: contain;
+  margin-left: 10rem;
 }
 
 .player-basic-info h1 {
@@ -465,11 +466,12 @@ footer {
 }
 
 .player-photo {
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
   object-fit: cover;
-  border-radius: 50%;
-  border: 2px solid #0b1f40;
+  object-position: 0 5%;   
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .player-stats {
