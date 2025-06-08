@@ -31,7 +31,12 @@
     "PF": 2.2,
     "PTS": 32.7,
     "Awards": "",
-    "Player-additional": "gilgesh01"
+    "Player-additional": "gilgesh01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 2,
@@ -65,11 +70,16 @@
     "PF": 2.3,
     "PTS": 30.4,
     "Awards": "",
-    "Player-additional": "antetgi01"
+    "Player-additional": "antetgi01",
+    "Height": "6 ft 11 in",
+    "Weight": "243 lbs",
+    "College": "None",
+    "Exp": "Rookie",
+    "Experience": "12 years"
   },
   {
     "Rk": 3,
-    "Player": "Nikola Jokić",
+    "Player": "Nikola Joki\u0107",
     "Age": 29,
     "Team": "DEN",
     "Pos": "C",
@@ -99,11 +109,16 @@
     "PF": 2.3,
     "PTS": 29.6,
     "Awards": "",
-    "Player-additional": "jokicni01"
+    "Player-additional": "jokicni01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 4,
-    "Player": "Luka Dončić",
+    "Player": "Luka Don\u010di\u0107",
     "Age": 25,
     "Team": "2TM",
     "Pos": "PG",
@@ -133,11 +148,16 @@
     "PF": 2.5,
     "PTS": 28.2,
     "Awards": "",
-    "Player-additional": "doncilu01"
+    "Player-additional": "doncilu01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 4,
-    "Player": "Luka Dončić",
+    "Player": "Luka Don\u010di\u0107",
     "Age": 25,
     "Team": "DAL",
     "Pos": "PG",
@@ -167,11 +187,16 @@
     "PF": 2.6,
     "PTS": 28.1,
     "Awards": "",
-    "Player-additional": "doncilu01"
+    "Player-additional": "doncilu01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 4,
-    "Player": "Luka Dončić",
+    "Player": "Luka Don\u010di\u0107",
     "Age": 25,
     "Team": "LAL",
     "Pos": "PG",
@@ -201,7 +226,12 @@
     "PF": 2.4,
     "PTS": 28.2,
     "Awards": "",
-    "Player-additional": "doncilu01"
+    "Player-additional": "doncilu01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 5,
@@ -235,7 +265,12 @@
     "PF": 1.9,
     "PTS": 27.6,
     "Awards": "",
-    "Player-additional": "edwaran01"
+    "Player-additional": "edwaran01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 6,
@@ -269,7 +304,12 @@
     "PF": 2.2,
     "PTS": 26.8,
     "Awards": "",
-    "Player-additional": "tatumja01"
+    "Player-additional": "tatumja01",
+    "Height": "6 ft 8 in",
+    "Weight": "210 lbs",
+    "College": "Duke",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 7,
@@ -303,7 +343,12 @@
     "PF": 1.7,
     "PTS": 26.6,
     "Awards": "",
-    "Player-additional": "duranke01"
+    "Player-additional": "duranke01",
+    "Height": "6 ft 10 in",
+    "Weight": "240 lbs",
+    "College": "Texas",
+    "Exp": "Rookie",
+    "Experience": "18 years"
   },
   {
     "Rk": 8,
@@ -337,7 +382,12 @@
     "PF": 2.2,
     "PTS": 26.3,
     "Awards": "",
-    "Player-additional": "maxeyty01"
+    "Player-additional": "maxeyty01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 9,
@@ -371,7 +421,12 @@
     "PF": 2.8,
     "PTS": 26.1,
     "Awards": "",
-    "Player-additional": "cunnica01"
+    "Player-additional": "cunnica01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 10,
@@ -405,7 +460,12 @@
     "PF": 2.1,
     "PTS": 26,
     "Awards": "",
-    "Player-additional": "brunsja01"
+    "Player-additional": "brunsja01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 11,
@@ -439,7 +499,12 @@
     "PF": 2.1,
     "PTS": 25.9,
     "Awards": "",
-    "Player-additional": "banchpa01"
+    "Player-additional": "banchpa01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 12,
@@ -473,7 +538,12 @@
     "PF": 2.6,
     "PTS": 25.6,
     "Awards": "",
-    "Player-additional": "bookede01"
+    "Player-additional": "bookede01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "10 years"
   },
   {
     "Rk": 13,
@@ -507,7 +577,12 @@
     "PF": 3.3,
     "PTS": 25.2,
     "Awards": "",
-    "Player-additional": "ballla01"
+    "Player-additional": "ballla01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 14,
@@ -541,7 +616,12 @@
     "PF": 1.7,
     "PTS": 24.9,
     "Awards": "",
-    "Player-additional": "lillada01"
+    "Player-additional": "lillada01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "13 years"
   },
   {
     "Rk": 15,
@@ -575,7 +655,12 @@
     "PF": 1.9,
     "PTS": 24.7,
     "Awards": "",
-    "Player-additional": "davisan02"
+    "Player-additional": "davisan02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "13 years"
   },
   {
     "Rk": 15,
@@ -609,7 +694,12 @@
     "PF": 2,
     "PTS": 25.7,
     "Awards": "",
-    "Player-additional": "davisan02"
+    "Player-additional": "davisan02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "13 years"
   },
   {
     "Rk": 15,
@@ -643,7 +733,12 @@
     "PF": 1.8,
     "PTS": 20,
     "Awards": "",
-    "Player-additional": "davisan02"
+    "Player-additional": "davisan02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "13 years"
   },
   {
     "Rk": 16,
@@ -677,7 +772,12 @@
     "PF": 2,
     "PTS": 24.7,
     "Awards": "",
-    "Player-additional": "irvinky01"
+    "Player-additional": "irvinky01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "14 years"
   },
   {
     "Rk": 17,
@@ -711,7 +811,12 @@
     "PF": 2.7,
     "PTS": 24.6,
     "Awards": "",
-    "Player-additional": "willizi01"
+    "Player-additional": "willizi01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 18,
@@ -745,7 +850,12 @@
     "PF": 1.4,
     "PTS": 24.5,
     "Awards": "",
-    "Player-additional": "curryst01"
+    "Player-additional": "curryst01",
+    "Height": "6 ft 2 in",
+    "Weight": "185 lbs",
+    "College": "Davidson",
+    "Exp": "Rookie",
+    "Experience": "16 years"
   },
   {
     "Rk": 19,
@@ -779,7 +889,12 @@
     "PF": 1.4,
     "PTS": 24.4,
     "Awards": "",
-    "Player-additional": "jamesle01"
+    "Player-additional": "jamesle01",
+    "Height": "6 ft 9 in",
+    "Weight": "250 lbs",
+    "College": "None",
+    "Exp": "Rookie",
+    "Experience": "22 years"
   },
   {
     "Rk": 20,
@@ -813,7 +928,12 @@
     "PF": 3.5,
     "PTS": 24.4,
     "Awards": "",
-    "Player-additional": "townska01"
+    "Player-additional": "townska01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "10 years"
   },
   {
     "Rk": 21,
@@ -847,7 +967,12 @@
     "PF": 2.3,
     "PTS": 24.3,
     "Awards": "",
-    "Player-additional": "wembavi01"
+    "Player-additional": "wembavi01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 22,
@@ -881,7 +1006,12 @@
     "PF": 2.5,
     "PTS": 24.2,
     "Awards": "",
-    "Player-additional": "wagnefr01"
+    "Player-additional": "wagnefr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 23,
@@ -915,7 +1045,12 @@
     "PF": 1.9,
     "PTS": 24.2,
     "Awards": "",
-    "Player-additional": "youngtr01"
+    "Player-additional": "youngtr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 24,
@@ -949,7 +1084,12 @@
     "PF": 2,
     "PTS": 24,
     "Awards": "",
-    "Player-additional": "mitchdo01"
+    "Player-additional": "mitchdo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 25,
@@ -983,7 +1123,12 @@
     "PF": 1.8,
     "PTS": 24,
     "Awards": "",
-    "Player-additional": "thomaca02"
+    "Player-additional": "thomaca02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 26,
@@ -1017,7 +1162,12 @@
     "PF": 1.1,
     "PTS": 23.9,
     "Awards": "",
-    "Player-additional": "herroty01"
+    "Player-additional": "herroty01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 27,
@@ -1051,7 +1201,12 @@
     "PF": 2.2,
     "PTS": 23.8,
     "Awards": "",
-    "Player-additional": "embiijo01"
+    "Player-additional": "embiijo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 28,
@@ -1085,7 +1240,12 @@
     "PF": 2.6,
     "PTS": 23.5,
     "Awards": "",
-    "Player-additional": "foxde01"
+    "Player-additional": "foxde01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 28,
@@ -1119,7 +1279,12 @@
     "PF": 2.6,
     "PTS": 25,
     "Awards": "",
-    "Player-additional": "foxde01"
+    "Player-additional": "foxde01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 28,
@@ -1153,7 +1318,12 @@
     "PF": 2.7,
     "PTS": 19.7,
     "Awards": "",
-    "Player-additional": "foxde01"
+    "Player-additional": "foxde01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 29,
@@ -1187,7 +1357,12 @@
     "PF": 1.6,
     "PTS": 23.3,
     "Awards": "",
-    "Player-additional": "lavinza01"
+    "Player-additional": "lavinza01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "11 years"
   },
   {
     "Rk": 29,
@@ -1221,7 +1396,12 @@
     "PF": 1.5,
     "PTS": 24,
     "Awards": "",
-    "Player-additional": "lavinza01"
+    "Player-additional": "lavinza01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "11 years"
   },
   {
     "Rk": 29,
@@ -1255,7 +1435,12 @@
     "PF": 1.8,
     "PTS": 22.4,
     "Awards": "",
-    "Player-additional": "lavinza01"
+    "Player-additional": "lavinza01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "11 years"
   },
   {
     "Rk": 30,
@@ -1289,7 +1474,12 @@
     "PF": 2.3,
     "PTS": 23.2,
     "Awards": "",
-    "Player-additional": "moranja01"
+    "Player-additional": "moranja01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 31,
@@ -1323,7 +1513,12 @@
     "PF": 2.1,
     "PTS": 22.8,
     "Awards": "",
-    "Player-additional": "hardeja01"
+    "Player-additional": "hardeja01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "16 years"
   },
   {
     "Rk": 32,
@@ -1357,7 +1552,12 @@
     "PF": 2.4,
     "PTS": 22.2,
     "Awards": "",
-    "Player-additional": "brownja02"
+    "Player-additional": "brownja02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 33,
@@ -1391,7 +1591,12 @@
     "PF": 1.9,
     "PTS": 22.2,
     "Awards": "",
-    "Player-additional": "derozde01"
+    "Player-additional": "derozde01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "16 years"
   },
   {
     "Rk": 34,
@@ -1425,7 +1630,12 @@
     "PF": 2.5,
     "PTS": 22.2,
     "Awards": "",
-    "Player-additional": "ingrabr01"
+    "Player-additional": "ingrabr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 35,
@@ -1459,7 +1669,12 @@
     "PF": 3.5,
     "PTS": 22.2,
     "Awards": "",
-    "Player-additional": "jacksja02"
+    "Player-additional": "jacksja02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 36,
@@ -1493,7 +1708,12 @@
     "PF": 1.9,
     "PTS": 21.8,
     "Awards": "",
-    "Player-additional": "powelno01"
+    "Player-additional": "powelno01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "10 years"
   },
   {
     "Rk": 37,
@@ -1527,7 +1747,12 @@
     "PF": 2.3,
     "PTS": 21.6,
     "Awards": "",
-    "Player-additional": "willija06"
+    "Player-additional": "willija06",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 38,
@@ -1561,7 +1786,12 @@
     "PF": 1.5,
     "PTS": 21.5,
     "Awards": "",
-    "Player-additional": "leonaka01"
+    "Player-additional": "leonaka01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "14 years"
   },
   {
     "Rk": 39,
@@ -1595,7 +1825,12 @@
     "PF": 1.9,
     "PTS": 21.4,
     "Awards": "",
-    "Player-additional": "murraja01"
+    "Player-additional": "murraja01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 40,
@@ -1629,7 +1864,12 @@
     "PF": 2.1,
     "PTS": 21.2,
     "Awards": "",
-    "Player-additional": "murphtr02"
+    "Player-additional": "murphtr02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 41,
@@ -1663,7 +1903,12 @@
     "PF": 2.4,
     "PTS": 21.1,
     "Awards": "",
-    "Player-additional": "barrerj01"
+    "Player-additional": "barrerj01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 42,
@@ -1697,7 +1942,12 @@
     "PF": 2.2,
     "PTS": 21.1,
     "Awards": "",
-    "Player-additional": "mccolcj01"
+    "Player-additional": "mccolcj01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "12 years"
   },
   {
     "Rk": 43,
@@ -1731,7 +1981,12 @@
     "PF": 1.5,
     "PTS": 21,
     "Awards": "",
-    "Player-additional": "greenja05"
+    "Player-additional": "greenja05",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 44,
@@ -1765,7 +2020,12 @@
     "PF": 2.7,
     "PTS": 21,
     "Awards": "",
-    "Player-additional": "millebr02"
+    "Player-additional": "millebr02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 45,
@@ -1799,7 +2059,12 @@
     "PF": 1.9,
     "PTS": 20.6,
     "Awards": "",
-    "Player-additional": "garlada01"
+    "Player-additional": "garlada01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 46,
@@ -1833,7 +2098,12 @@
     "PF": 3,
     "PTS": 20.5,
     "Awards": "",
-    "Player-additional": "poolejo01"
+    "Player-additional": "poolejo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 47,
@@ -1867,7 +2137,12 @@
     "PF": 2.1,
     "PTS": 20.4,
     "Awards": "",
-    "Player-additional": "whiteco01"
+    "Player-additional": "whiteco01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 48,
@@ -1901,7 +2176,12 @@
     "PF": 1.5,
     "PTS": 20.3,
     "Awards": "",
-    "Player-additional": "bridgmi02"
+    "Player-additional": "bridgmi02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 49,
@@ -1935,7 +2215,12 @@
     "PF": 2.1,
     "PTS": 20.2,
     "Awards": "",
-    "Player-additional": "reaveau01"
+    "Player-additional": "reaveau01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 50,
@@ -1969,11 +2254,16 @@
     "PF": 2.4,
     "PTS": 20.2,
     "Awards": "",
-    "Player-additional": "siakapa01"
+    "Player-additional": "siakapa01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 51,
-    "Player": "Kristaps Porziņģis",
+    "Player": "Kristaps Porzi\u0146\u0123is",
     "Age": 29,
     "Team": "BOS",
     "Pos": "C",
@@ -2003,7 +2293,12 @@
     "PF": 2.8,
     "PTS": 19.5,
     "Awards": "",
-    "Player-additional": "porzikr01"
+    "Player-additional": "porzikr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 52,
@@ -2037,7 +2332,12 @@
     "PF": 1.7,
     "PTS": 19.3,
     "Awards": "",
-    "Player-additional": "barnesc01"
+    "Player-additional": "barnesc01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 53,
@@ -2071,7 +2371,12 @@
     "PF": 1.7,
     "PTS": 19.3,
     "Awards": "",
-    "Player-additional": "simonan01"
+    "Player-additional": "simonan01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 54,
@@ -2105,7 +2410,12 @@
     "PF": 2.4,
     "PTS": 19.2,
     "Awards": "",
-    "Player-additional": "banede01"
+    "Player-additional": "banede01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 55,
@@ -2139,11 +2449,16 @@
     "PF": 3.3,
     "PTS": 19.1,
     "Awards": "",
-    "Player-additional": "sabondo01"
+    "Player-additional": "sabondo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 56,
-    "Player": "Alperen Şengün",
+    "Player": "Alperen \u015eeng\u00fcn",
     "Age": 22,
     "Team": "HOU",
     "Pos": "C",
@@ -2173,7 +2488,12 @@
     "PF": 2.8,
     "PTS": 19.1,
     "Awards": "",
-    "Player-additional": "sengual01"
+    "Player-additional": "sengual01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 57,
@@ -2207,7 +2527,12 @@
     "PF": 2.9,
     "PTS": 19,
     "Awards": "",
-    "Player-additional": "collijo01"
+    "Player-additional": "collijo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 58,
@@ -2241,7 +2566,12 @@
     "PF": 1.7,
     "PTS": 19,
     "Awards": "",
-    "Player-additional": "markkla01"
+    "Player-additional": "markkla01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 59,
@@ -2275,7 +2605,12 @@
     "PF": 1.9,
     "PTS": 18.9,
     "Awards": "",
-    "Player-additional": "johnsja05"
+    "Player-additional": "johnsja05",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 60,
@@ -2309,7 +2644,12 @@
     "PF": 1.8,
     "PTS": 18.8,
     "Awards": "",
-    "Player-additional": "johnsca02"
+    "Player-additional": "johnsca02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 61,
@@ -2343,7 +2683,12 @@
     "PF": 2.5,
     "PTS": 18.7,
     "Awards": "",
-    "Player-additional": "randlju01"
+    "Player-additional": "randlju01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "11 years"
   },
   {
     "Rk": 62,
@@ -2377,7 +2722,12 @@
     "PF": 1.3,
     "PTS": 18.6,
     "Awards": "",
-    "Player-additional": "halibty01"
+    "Player-additional": "halibty01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 63,
@@ -2411,7 +2761,12 @@
     "PF": 2,
     "PTS": 18.5,
     "Awards": "",
-    "Player-additional": "mobleev01"
+    "Player-additional": "mobleev01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 64,
@@ -2445,11 +2800,16 @@
     "PF": 1.7,
     "PTS": 18.5,
     "Awards": "",
-    "Player-additional": "sharpsh01"
+    "Player-additional": "sharpsh01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 65,
-    "Player": "Nikola Vučević",
+    "Player": "Nikola Vu\u010devi\u0107",
     "Age": 34,
     "Team": "CHI",
     "Pos": "C",
@@ -2479,7 +2839,12 @@
     "PF": 2.2,
     "PTS": 18.5,
     "Awards": "",
-    "Player-additional": "vucevni01"
+    "Player-additional": "vucevni01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 66,
@@ -2513,7 +2878,12 @@
     "PF": 2.3,
     "PTS": 18.4,
     "Awards": "",
-    "Player-additional": "sextoco01"
+    "Player-additional": "sextoco01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 67,
@@ -2547,7 +2917,12 @@
     "PF": 2,
     "PTS": 18.2,
     "Awards": "",
-    "Player-additional": "portemi01"
+    "Player-additional": "portemi01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 68,
@@ -2581,7 +2956,12 @@
     "PF": 2.1,
     "PTS": 18.1,
     "Awards": "",
-    "Player-additional": "adebaba01"
+    "Player-additional": "adebaba01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 69,
@@ -2615,7 +2995,12 @@
     "PF": 1.7,
     "PTS": 18,
     "Awards": "",
-    "Player-additional": "wiggian01"
+    "Player-additional": "wiggian01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "11 years"
   },
   {
     "Rk": 69,
@@ -2649,7 +3034,12 @@
     "PF": 1.6,
     "PTS": 17.6,
     "Awards": "",
-    "Player-additional": "wiggian01"
+    "Player-additional": "wiggian01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "11 years"
   },
   {
     "Rk": 69,
@@ -2683,7 +3073,12 @@
     "PF": 1.8,
     "PTS": 19,
     "Awards": "",
-    "Player-additional": "wiggian01"
+    "Player-additional": "wiggian01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "11 years"
   },
   {
     "Rk": 70,
@@ -2717,7 +3112,12 @@
     "PF": 2.3,
     "PTS": 18,
     "Awards": "",
-    "Player-additional": "anunoog01"
+    "Player-additional": "anunoog01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 71,
@@ -2751,7 +3151,12 @@
     "PF": 1.5,
     "PTS": 17.6,
     "Awards": "",
-    "Player-additional": "bridgmi01"
+    "Player-additional": "bridgmi01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 72,
@@ -2785,7 +3190,12 @@
     "PF": 2.2,
     "PTS": 17.6,
     "Awards": "",
-    "Player-additional": "iveyja01"
+    "Player-additional": "iveyja01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 73,
@@ -2819,7 +3229,12 @@
     "PF": 0.9,
     "PTS": 17.5,
     "Awards": "",
-    "Player-additional": "butleji01"
+    "Player-additional": "butleji01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "14 years"
   },
   {
     "Rk": 73,
@@ -2853,7 +3268,12 @@
     "PF": 0.9,
     "PTS": 17,
     "Awards": "",
-    "Player-additional": "butleji01"
+    "Player-additional": "butleji01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "14 years"
   },
   {
     "Rk": 73,
@@ -2887,7 +3307,12 @@
     "PF": 1,
     "PTS": 17.9,
     "Awards": "",
-    "Player-additional": "butleji01"
+    "Player-additional": "butleji01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "14 years"
   },
   {
     "Rk": 74,
@@ -2921,7 +3346,12 @@
     "PF": 2,
     "PTS": 17.5,
     "Awards": "",
-    "Player-additional": "murrade01"
+    "Player-additional": "murrade01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 75,
@@ -2955,7 +3385,12 @@
     "PF": 2.4,
     "PTS": 17.2,
     "Awards": "",
-    "Player-additional": "monkma01"
+    "Player-additional": "monkma01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 76,
@@ -2989,7 +3424,12 @@
     "PF": 1.8,
     "PTS": 17.1,
     "Awards": "",
-    "Player-additional": "quickim01"
+    "Player-additional": "quickim01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 77,
@@ -3023,7 +3463,12 @@
     "PF": 2.4,
     "PTS": 17,
     "Awards": "",
-    "Player-additional": "huntede01"
+    "Player-additional": "huntede01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 77,
@@ -3057,7 +3502,12 @@
     "PF": 2.4,
     "PTS": 19,
     "Awards": "",
-    "Player-additional": "huntede01"
+    "Player-additional": "huntede01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 77,
@@ -3091,7 +3541,12 @@
     "PF": 2.5,
     "PTS": 14.3,
     "Awards": "",
-    "Player-additional": "huntede01"
+    "Player-additional": "huntede01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 78,
@@ -3125,7 +3580,12 @@
     "PF": 2.6,
     "PTS": 17,
     "Awards": "",
-    "Player-additional": "bealbr01"
+    "Player-additional": "bealbr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "13 years"
   },
   {
     "Rk": 79,
@@ -3159,7 +3619,12 @@
     "PF": 2.4,
     "PTS": 16.9,
     "Awards": "",
-    "Player-additional": "avdijde01"
+    "Player-additional": "avdijde01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 80,
@@ -3193,7 +3658,12 @@
     "PF": 1.7,
     "PTS": 16.8,
     "Awards": "",
-    "Player-additional": "georgke01"
+    "Player-additional": "georgke01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 81,
@@ -3227,7 +3697,12 @@
     "PF": 2.1,
     "PTS": 16.8,
     "Awards": "",
-    "Player-additional": "zubaciv01"
+    "Player-additional": "zubaciv01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 82,
@@ -3261,7 +3736,12 @@
     "PF": 1.8,
     "PTS": 16.4,
     "Awards": "",
-    "Player-additional": "whitede01"
+    "Player-additional": "whitede01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 83,
@@ -3295,7 +3775,12 @@
     "PF": 1.5,
     "PTS": 16.3,
     "Awards": "",
-    "Player-additional": "beaslma01"
+    "Player-additional": "beaslma01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 84,
@@ -3329,7 +3814,12 @@
     "PF": 1.7,
     "PTS": 16.3,
     "Awards": "",
-    "Player-additional": "vassede01"
+    "Player-additional": "vassede01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 85,
@@ -3363,7 +3853,12 @@
     "PF": 1.4,
     "PTS": 16.2,
     "Awards": "",
-    "Player-additional": "clarkjo01"
+    "Player-additional": "clarkjo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "11 years"
   },
   {
     "Rk": 86,
@@ -3397,7 +3892,12 @@
     "PF": 2.5,
     "PTS": 16.2,
     "Awards": "",
-    "Player-additional": "georgpa01"
+    "Player-additional": "georgpa01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "15 years"
   },
   {
     "Rk": 87,
@@ -3431,7 +3931,12 @@
     "PF": 2.8,
     "PTS": 16.2,
     "Awards": "",
-    "Player-additional": "suggsja01"
+    "Player-additional": "suggsja01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 88,
@@ -3465,7 +3970,12 @@
     "PF": 2.3,
     "PTS": 16.1,
     "Awards": "",
-    "Player-additional": "mathube01"
+    "Player-additional": "mathube01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 89,
@@ -3499,7 +4009,12 @@
     "PF": 2.5,
     "PTS": 15.6,
     "Awards": "",
-    "Player-additional": "turnemy01"
+    "Player-additional": "turnemy01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "10 years"
   },
   {
     "Rk": 90,
@@ -3533,7 +4048,12 @@
     "PF": 2.2,
     "PTS": 15.4,
     "Awards": "",
-    "Player-additional": "braunch01"
+    "Player-additional": "braunch01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 91,
@@ -3567,7 +4087,12 @@
     "PF": 1.9,
     "PTS": 15.3,
     "Awards": "",
-    "Player-additional": "kuminjo01"
+    "Player-additional": "kuminjo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 92,
@@ -3601,7 +4126,12 @@
     "PF": 1.6,
     "PTS": 15.3,
     "Awards": "",
-    "Player-additional": "mccaija01"
+    "Player-additional": "mccaija01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 93,
@@ -3635,7 +4165,12 @@
     "PF": 2.4,
     "PTS": 15.3,
     "Awards": "",
-    "Player-additional": "willima07"
+    "Player-additional": "willima07",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 94,
@@ -3669,7 +4204,12 @@
     "PF": 3,
     "PTS": 15.1,
     "Awards": "",
-    "Player-additional": "oubreke01"
+    "Player-additional": "oubreke01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "10 years"
   },
   {
     "Rk": 95,
@@ -3703,7 +4243,12 @@
     "PF": 2.3,
     "PTS": 15,
     "Awards": "",
-    "Player-additional": "holmgch01"
+    "Player-additional": "holmgch01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 96,
@@ -3737,7 +4282,12 @@
     "PF": 1.8,
     "PTS": 14.8,
     "Awards": "",
-    "Player-additional": "kuzmaky01"
+    "Player-additional": "kuzmaky01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 96,
@@ -3771,7 +4321,12 @@
     "PF": 1.6,
     "PTS": 15.2,
     "Awards": "",
-    "Player-additional": "kuzmaky01"
+    "Player-additional": "kuzmaky01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 96,
@@ -3805,7 +4360,12 @@
     "PF": 2,
     "PTS": 14.5,
     "Awards": "",
-    "Player-additional": "kuzmaky01"
+    "Player-additional": "kuzmaky01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 97,
@@ -3839,7 +4399,12 @@
     "PF": 2,
     "PTS": 14.7,
     "Awards": "",
-    "Player-additional": "castlst01"
+    "Player-additional": "castlst01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 98,
@@ -3873,7 +4438,12 @@
     "PF": 1.6,
     "PTS": 14.7,
     "Awards": "",
-    "Player-additional": "gordoaa01"
+    "Player-additional": "gordoaa01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "11 years"
   },
   {
     "Rk": 99,
@@ -3907,7 +4477,12 @@
     "PF": 2.3,
     "PTS": 14.7,
     "Awards": "",
-    "Player-additional": "washipj01"
+    "Player-additional": "washipj01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 100,
@@ -3941,7 +4516,12 @@
     "PF": 1.8,
     "PTS": 14.6,
     "Awards": "",
-    "Player-additional": "grimequ01"
+    "Player-additional": "grimequ01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 100,
@@ -3975,7 +4555,12 @@
     "PF": 1.7,
     "PTS": 10.2,
     "Awards": "",
-    "Player-additional": "grimequ01"
+    "Player-additional": "grimequ01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 100,
@@ -4009,7 +4594,12 @@
     "PF": 2.1,
     "PTS": 21.9,
     "Awards": "",
-    "Player-additional": "grimequ01"
+    "Player-additional": "grimequ01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 101,
@@ -4043,7 +4633,12 @@
     "PF": 1.7,
     "PTS": 14.6,
     "Awards": "",
-    "Player-additional": "giddejo01"
+    "Player-additional": "giddejo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 103,
@@ -4077,7 +4672,12 @@
     "PF": 2.2,
     "PTS": 14.4,
     "Awards": "",
-    "Player-additional": "aytonde01"
+    "Player-additional": "aytonde01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 104,
@@ -4111,7 +4711,12 @@
     "PF": 2.2,
     "PTS": 14.4,
     "Awards": "",
-    "Player-additional": "dickgr01"
+    "Player-additional": "dickgr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 105,
@@ -4145,7 +4750,12 @@
     "PF": 2.3,
     "PTS": 14.4,
     "Awards": "",
-    "Player-additional": "grantje01"
+    "Player-additional": "grantje01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "11 years"
   },
   {
     "Rk": 106,
@@ -4179,7 +4789,12 @@
     "PF": 1.5,
     "PTS": 14.3,
     "Awards": "",
-    "Player-additional": "pritcpa01"
+    "Player-additional": "pritcpa01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 107,
@@ -4213,7 +4828,12 @@
     "PF": 2.4,
     "PTS": 14.2,
     "Awards": "",
-    "Player-additional": "reidna01"
+    "Player-additional": "reidna01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 108,
@@ -4247,7 +4867,12 @@
     "PF": 2.3,
     "PTS": 14.1,
     "Awards": "",
-    "Player-additional": "daniedy01"
+    "Player-additional": "daniedy01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 109,
@@ -4281,7 +4906,12 @@
     "PF": 1.8,
     "PTS": 14.1,
     "Awards": "",
-    "Player-additional": "manntr01"
+    "Player-additional": "manntr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 110,
@@ -4315,7 +4945,12 @@
     "PF": 2.4,
     "PTS": 14.1,
     "Awards": "",
-    "Player-additional": "thompam01"
+    "Player-additional": "thompam01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 111,
@@ -4349,7 +4984,12 @@
     "PF": 2.3,
     "PTS": 14.1,
     "Awards": "",
-    "Player-additional": "vanvlfr01"
+    "Player-additional": "vanvlfr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 112,
@@ -4383,7 +5023,12 @@
     "PF": 3.2,
     "PTS": 14,
     "Awards": "",
-    "Player-additional": "brookdi01"
+    "Player-additional": "brookdi01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 113,
@@ -4417,7 +5062,12 @@
     "PF": 3,
     "PTS": 14,
     "Awards": "",
-    "Player-additional": "smithto05"
+    "Player-additional": "smithto05",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 114,
@@ -4451,7 +5101,12 @@
     "PF": 1.1,
     "PTS": 14,
     "Awards": "",
-    "Player-additional": "thompkl01"
+    "Player-additional": "thompkl01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "14 years"
   },
   {
     "Rk": 115,
@@ -4485,7 +5140,12 @@
     "PF": 1.9,
     "PTS": 13.9,
     "Awards": "",
-    "Player-additional": "portibo01"
+    "Player-additional": "portibo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "10 years"
   },
   {
     "Rk": 116,
@@ -4519,7 +5179,12 @@
     "PF": 1.9,
     "PTS": 13.7,
     "Awards": "",
-    "Player-additional": "harrito02"
+    "Player-additional": "harrito02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "14 years"
   },
   {
     "Rk": 117,
@@ -4553,7 +5218,12 @@
     "PF": 2.6,
     "PTS": 13.6,
     "Awards": "",
-    "Player-additional": "hartjo01"
+    "Player-additional": "hartjo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 118,
@@ -4587,7 +5257,12 @@
     "PF": 1.5,
     "PTS": 13.5,
     "Awards": "",
-    "Player-additional": "allenja01"
+    "Player-additional": "allenja01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 119,
@@ -4621,7 +5296,12 @@
     "PF": 2.6,
     "PTS": 13.4,
     "Awards": "",
-    "Player-additional": "okongon01"
+    "Player-additional": "okongon01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 120,
@@ -4655,7 +5335,12 @@
     "PF": 2.5,
     "PTS": 13.3,
     "Awards": "",
-    "Player-additional": "westbru01"
+    "Player-additional": "westbru01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "17 years"
   },
   {
     "Rk": 121,
@@ -4689,11 +5374,16 @@
     "PF": 1.6,
     "PTS": 13.2,
     "Awards": "",
-    "Player-additional": "marshna01"
+    "Player-additional": "marshna01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 122,
-    "Player": "Dennis Schröder",
+    "Player": "Dennis Schr\u00f6der",
     "Age": 31,
     "Team": "3TM",
     "Pos": "PG",
@@ -4723,11 +5413,16 @@
     "PF": 2.4,
     "PTS": 13.1,
     "Awards": "",
-    "Player-additional": "schrode01"
+    "Player-additional": "schrode01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 122,
-    "Player": "Dennis Schröder",
+    "Player": "Dennis Schr\u00f6der",
     "Age": 31,
     "Team": "BRK",
     "Pos": "PG",
@@ -4757,11 +5452,16 @@
     "PF": 2.4,
     "PTS": 18.4,
     "Awards": "",
-    "Player-additional": "schrode01"
+    "Player-additional": "schrode01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 122,
-    "Player": "Dennis Schröder",
+    "Player": "Dennis Schr\u00f6der",
     "Age": 31,
     "Team": "GSW",
     "Pos": "SG",
@@ -4791,11 +5491,16 @@
     "PF": 2.8,
     "PTS": 10.6,
     "Awards": "",
-    "Player-additional": "schrode01"
+    "Player-additional": "schrode01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 122,
-    "Player": "Dennis Schröder",
+    "Player": "Dennis Schr\u00f6der",
     "Age": 31,
     "Team": "DET",
     "Pos": "PG",
@@ -4825,7 +5530,12 @@
     "PF": 2,
     "PTS": 10.8,
     "Awards": "",
-    "Player-additional": "schrode01"
+    "Player-additional": "schrode01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 123,
@@ -4859,7 +5569,12 @@
     "PF": 1.8,
     "PTS": 13.1,
     "Awards": "",
-    "Player-additional": "hachiru01"
+    "Player-additional": "hachiru01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 124,
@@ -4893,7 +5608,12 @@
     "PF": 2.1,
     "PTS": 13,
     "Awards": "",
-    "Player-additional": "lopezbr01"
+    "Player-additional": "lopezbr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "17 years"
   },
   {
     "Rk": 125,
@@ -4927,7 +5647,12 @@
     "PF": 2.2,
     "PTS": 13,
     "Awards": "",
-    "Player-additional": "sarral01"
+    "Player-additional": "sarral01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 126,
@@ -4961,7 +5686,12 @@
     "PF": 1.8,
     "PTS": 12.9,
     "Awards": "",
-    "Player-additional": "wagnemo01"
+    "Player-additional": "wagnemo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 127,
@@ -4995,7 +5725,12 @@
     "PF": 1.3,
     "PTS": 12.7,
     "Awards": "",
-    "Player-additional": "brogdma01"
+    "Player-additional": "brogdma01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 128,
@@ -5029,7 +5764,12 @@
     "PF": 2.7,
     "PTS": 12.7,
     "Awards": "",
-    "Player-additional": "hendesc01"
+    "Player-additional": "hendesc01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 129,
@@ -5063,7 +5803,12 @@
     "PF": 1.5,
     "PTS": 12.7,
     "Awards": "",
-    "Player-additional": "johnske04"
+    "Player-additional": "johnske04",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 130,
@@ -5097,7 +5842,12 @@
     "PF": 2,
     "PTS": 12.6,
     "Awards": "",
-    "Player-additional": "russeda01"
+    "Player-additional": "russeda01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "10 years"
   },
   {
     "Rk": 130,
@@ -5131,7 +5881,12 @@
     "PF": 1.8,
     "PTS": 12.4,
     "Awards": "",
-    "Player-additional": "russeda01"
+    "Player-additional": "russeda01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "10 years"
   },
   {
     "Rk": 130,
@@ -5165,7 +5920,12 @@
     "PF": 2.1,
     "PTS": 12.9,
     "Awards": "",
-    "Player-additional": "russeda01"
+    "Player-additional": "russeda01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "10 years"
   },
   {
     "Rk": 131,
@@ -5199,7 +5959,12 @@
     "PF": 2,
     "PTS": 12.6,
     "Awards": "",
-    "Player-additional": "risacza01"
+    "Player-additional": "risacza01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 132,
@@ -5233,7 +5998,12 @@
     "PF": 1.2,
     "PTS": 12.5,
     "Awards": "",
-    "Player-additional": "aldamsa01"
+    "Player-additional": "aldamsa01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 133,
@@ -5267,7 +6037,12 @@
     "PF": 1.5,
     "PTS": 12.5,
     "Awards": "",
-    "Player-additional": "jeromty01"
+    "Player-additional": "jeromty01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 134,
@@ -5301,7 +6076,12 @@
     "PF": 2.4,
     "PTS": 12.4,
     "Awards": "",
-    "Player-additional": "murrake02"
+    "Player-additional": "murrake02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 135,
@@ -5335,7 +6115,12 @@
     "PF": 1.4,
     "PTS": 12.4,
     "Awards": "",
-    "Player-additional": "walkelo01"
+    "Player-additional": "walkelo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 136,
@@ -5369,7 +6154,12 @@
     "PF": 0.9,
     "PTS": 12.3,
     "Awards": "",
-    "Player-additional": "barneha02"
+    "Player-additional": "barneha02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "13 years"
   },
   {
     "Rk": 137,
@@ -5403,7 +6193,12 @@
     "PF": 2.4,
     "PTS": 12.3,
     "Awards": "",
-    "Player-additional": "coulibi01"
+    "Player-additional": "coulibi01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 138,
@@ -5437,7 +6232,12 @@
     "PF": 2.3,
     "PTS": 12.3,
     "Awards": "",
-    "Player-additional": "dosunay01"
+    "Player-additional": "dosunay01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 139,
@@ -5471,7 +6271,12 @@
     "PF": 2.7,
     "PTS": 12.3,
     "Awards": "",
-    "Player-additional": "gaffoda01"
+    "Player-additional": "gaffoda01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 140,
@@ -5505,7 +6310,12 @@
     "PF": 2.7,
     "PTS": 12.2,
     "Awards": "",
-    "Player-additional": "mcdanja02"
+    "Player-additional": "mcdanja02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 141,
@@ -5539,7 +6349,12 @@
     "PF": 2.2,
     "PTS": 12.2,
     "Awards": "",
-    "Player-additional": "smithja05"
+    "Player-additional": "smithja05",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 142,
@@ -5573,7 +6388,12 @@
     "PF": 1.5,
     "PTS": 12.1,
     "Awards": "",
-    "Player-additional": "leverca01"
+    "Player-additional": "leverca01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 142,
@@ -5607,7 +6427,12 @@
     "PF": 1.3,
     "PTS": 10.2,
     "Awards": "",
-    "Player-additional": "leverca01"
+    "Player-additional": "leverca01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 142,
@@ -5641,7 +6466,12 @@
     "PF": 2,
     "PTS": 14.9,
     "Awards": "",
-    "Player-additional": "leverca01"
+    "Player-additional": "leverca01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 143,
@@ -5675,7 +6505,12 @@
     "PF": 2.3,
     "PTS": 12.1,
     "Awards": "",
-    "Player-additional": "timmedr01"
+    "Player-additional": "timmedr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 144,
@@ -5709,7 +6544,12 @@
     "PF": 2.4,
     "PTS": 12,
     "Awards": "",
-    "Player-additional": "easonta01"
+    "Player-additional": "easonta01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 145,
@@ -5743,7 +6583,12 @@
     "PF": 2.5,
     "PTS": 12,
     "Awards": "",
-    "Player-additional": "goberru01"
+    "Player-additional": "goberru01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "12 years"
   },
   {
     "Rk": 146,
@@ -5777,7 +6622,12 @@
     "PF": 2.5,
     "PTS": 12,
     "Awards": "",
-    "Player-additional": "nesmiaa01"
+    "Player-additional": "nesmiaa01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 147,
@@ -5811,7 +6661,12 @@
     "PF": 1.3,
     "PTS": 12,
     "Awards": "",
-    "Player-additional": "wiggiaa01"
+    "Player-additional": "wiggiaa01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 148,
@@ -5845,7 +6700,12 @@
     "PF": 2,
     "PTS": 11.9,
     "Awards": "",
-    "Player-additional": "middlkh01"
+    "Player-additional": "middlkh01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "13 years"
   },
   {
     "Rk": 148,
@@ -5879,7 +6739,12 @@
     "PF": 2.3,
     "PTS": 12.6,
     "Awards": "",
-    "Player-additional": "middlkh01"
+    "Player-additional": "middlkh01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "13 years"
   },
   {
     "Rk": 148,
@@ -5913,7 +6778,12 @@
     "PF": 1.6,
     "PTS": 10.7,
     "Awards": "",
-    "Player-additional": "middlkh01"
+    "Player-additional": "middlkh01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "13 years"
   },
   {
     "Rk": 149,
@@ -5947,7 +6817,12 @@
     "PF": 3.2,
     "PTS": 11.8,
     "Awards": "",
-    "Player-additional": "durenja01"
+    "Player-additional": "durenja01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 150,
@@ -5981,7 +6856,12 @@
     "PF": 1.8,
     "PTS": 11.7,
     "Awards": "",
-    "Player-additional": "divindo01"
+    "Player-additional": "divindo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 151,
@@ -6015,7 +6895,12 @@
     "PF": 1.5,
     "PTS": 11.7,
     "Awards": "",
-    "Player-additional": "podzibr01"
+    "Player-additional": "podzibr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 152,
@@ -6049,7 +6934,12 @@
     "PF": 1.6,
     "PTS": 11.6,
     "Awards": "",
-    "Player-additional": "kispeco01"
+    "Player-additional": "kispeco01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 153,
@@ -6083,7 +6973,12 @@
     "PF": 2.4,
     "PTS": 11.4,
     "Awards": "",
-    "Player-additional": "sochaje01"
+    "Player-additional": "sochaje01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 154,
@@ -6117,7 +7012,12 @@
     "PF": 2.9,
     "PTS": 11.3,
     "Awards": "",
-    "Player-additional": "camarto01"
+    "Player-additional": "camarto01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 155,
@@ -6151,7 +7051,12 @@
     "PF": 3,
     "PTS": 11.2,
     "Awards": "",
-    "Player-additional": "harteis01"
+    "Player-additional": "harteis01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 156,
@@ -6185,7 +7090,12 @@
     "PF": 1.6,
     "PTS": 11.1,
     "Awards": "",
-    "Player-additional": "hieldbu01"
+    "Player-additional": "hieldbu01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 157,
@@ -6219,7 +7129,12 @@
     "PF": 1.6,
     "PTS": 11.1,
     "Awards": "",
-    "Player-additional": "holidjr01"
+    "Player-additional": "holidjr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "16 years"
   },
   {
     "Rk": 158,
@@ -6253,7 +7168,12 @@
     "PF": 2.2,
     "PTS": 11.1,
     "Awards": "",
-    "Player-additional": "kesslwa01"
+    "Player-additional": "kesslwa01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 159,
@@ -6287,7 +7207,12 @@
     "PF": 1.7,
     "PTS": 11.1,
     "Awards": "",
-    "Player-additional": "trentga02"
+    "Player-additional": "trentga02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 160,
@@ -6321,7 +7246,12 @@
     "PF": 1.5,
     "PTS": 11,
     "Awards": "",
-    "Player-additional": "dinwisp01"
+    "Player-additional": "dinwisp01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "11 years"
   },
   {
     "Rk": 161,
@@ -6355,7 +7285,12 @@
     "PF": 1.2,
     "PTS": 11,
     "Awards": "",
-    "Player-additional": "hardati02"
+    "Player-additional": "hardati02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "12 years"
   },
   {
     "Rk": 162,
@@ -6389,7 +7324,12 @@
     "PF": 1.8,
     "PTS": 11,
     "Awards": "",
-    "Player-additional": "robindu01"
+    "Player-additional": "robindu01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 163,
@@ -6423,7 +7363,12 @@
     "PF": 2.3,
     "PTS": 11,
     "Awards": "",
-    "Player-additional": "yabusgu01"
+    "Player-additional": "yabusgu01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 164,
@@ -6457,11 +7402,16 @@
     "PF": 1.6,
     "PTS": 10.9,
     "Awards": "",
-    "Player-additional": "sensabr01"
+    "Player-additional": "sensabr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 165,
-    "Player": "Bogdan Bogdanović",
+    "Player": "Bogdan Bogdanovi\u0107",
     "Age": 32,
     "Team": "2TM",
     "Pos": "SG",
@@ -6491,11 +7441,16 @@
     "PF": 2.4,
     "PTS": 10.8,
     "Awards": "",
-    "Player-additional": "bogdabo01"
+    "Player-additional": "bogdabo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 165,
-    "Player": "Bogdan Bogdanović",
+    "Player": "Bogdan Bogdanovi\u0107",
     "Age": 32,
     "Team": "ATL",
     "Pos": "SG",
@@ -6525,11 +7480,16 @@
     "PF": 2.4,
     "PTS": 10,
     "Awards": "",
-    "Player-additional": "bogdabo01"
+    "Player-additional": "bogdabo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 165,
-    "Player": "Bogdan Bogdanović",
+    "Player": "Bogdan Bogdanovi\u0107",
     "Age": 32,
     "Team": "LAC",
     "Pos": "SG",
@@ -6559,7 +7519,12 @@
     "PF": 2.3,
     "PTS": 11.4,
     "Awards": "",
-    "Player-additional": "bogdabo01"
+    "Player-additional": "bogdabo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 166,
@@ -6593,7 +7558,12 @@
     "PF": 0.9,
     "PTS": 10.8,
     "Awards": "",
-    "Player-additional": "hawkijo01"
+    "Player-additional": "hawkijo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 167,
@@ -6627,11 +7597,16 @@
     "PF": 1.7,
     "PTS": 10.7,
     "Awards": "",
-    "Player-additional": "bostobr01"
+    "Player-additional": "bostobr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 168,
-    "Player": "Nikola Jović",
+    "Player": "Nikola Jovi\u0107",
     "Age": 21,
     "Team": "MIA",
     "Pos": "PF",
@@ -6661,7 +7636,12 @@
     "PF": 1.8,
     "PTS": 10.7,
     "Awards": "",
-    "Player-additional": "jovicni01"
+    "Player-additional": "jovicni01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 169,
@@ -6695,7 +7675,12 @@
     "PF": 1.5,
     "PTS": 10.6,
     "Awards": "",
-    "Player-additional": "allengr01"
+    "Player-additional": "allengr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 170,
@@ -6729,7 +7714,12 @@
     "PF": 2.6,
     "PTS": 10.6,
     "Awards": "",
-    "Player-additional": "johnske07"
+    "Player-additional": "johnske07",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 171,
@@ -6763,7 +7753,12 @@
     "PF": 1.1,
     "PTS": 10.6,
     "Awards": "",
-    "Player-additional": "roziete01"
+    "Player-additional": "roziete01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "10 years"
   },
   {
     "Rk": 172,
@@ -6797,11 +7792,16 @@
     "PF": 1.4,
     "PTS": 10.5,
     "Awards": "",
-    "Player-additional": "toppiob01"
+    "Player-additional": "toppiob01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 173,
-    "Player": "Jonas Valančiūnas",
+    "Player": "Jonas Valan\u010di\u016bnas",
     "Age": 32,
     "Team": "2TM",
     "Pos": "C",
@@ -6831,11 +7831,16 @@
     "PF": 2.2,
     "PTS": 10.4,
     "Awards": "",
-    "Player-additional": "valanjo01"
+    "Player-additional": "valanjo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 173,
-    "Player": "Jonas Valančiūnas",
+    "Player": "Jonas Valan\u010di\u016bnas",
     "Age": 32,
     "Team": "WAS",
     "Pos": "C",
@@ -6865,11 +7870,16 @@
     "PF": 2,
     "PTS": 11.5,
     "Awards": "",
-    "Player-additional": "valanjo01"
+    "Player-additional": "valanjo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 173,
-    "Player": "Jonas Valančiūnas",
+    "Player": "Jonas Valan\u010di\u016bnas",
     "Age": 32,
     "Team": "SAC",
     "Pos": "C",
@@ -6899,7 +7909,12 @@
     "PF": 2.6,
     "PTS": 8.7,
     "Awards": "",
-    "Player-additional": "valanjo01"
+    "Player-additional": "valanjo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 174,
@@ -6933,7 +7948,12 @@
     "PF": 2,
     "PTS": 10.4,
     "Awards": "",
-    "Player-additional": "agbajoc01"
+    "Player-additional": "agbajoc01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 175,
@@ -6967,7 +7987,12 @@
     "PF": 1.8,
     "PTS": 10.4,
     "Awards": "",
-    "Player-additional": "wellsja01"
+    "Player-additional": "wellsja01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 176,
@@ -7001,7 +8026,12 @@
     "PF": 2.9,
     "PTS": 10.4,
     "Awards": "",
-    "Player-additional": "willigr01"
+    "Player-additional": "willigr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 177,
@@ -7035,7 +8065,12 @@
     "PF": 1.6,
     "PTS": 10.3,
     "Awards": "",
-    "Player-additional": "porteke02"
+    "Player-additional": "porteke02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 177,
@@ -7069,7 +8104,12 @@
     "PF": 1.6,
     "PTS": 9.3,
     "Awards": "",
-    "Player-additional": "porteke02"
+    "Player-additional": "porteke02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 177,
@@ -7103,7 +8143,12 @@
     "PF": 1.6,
     "PTS": 11.7,
     "Awards": "",
-    "Player-additional": "porteke02"
+    "Player-additional": "porteke02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 178,
@@ -7137,7 +8182,12 @@
     "PF": 1.6,
     "PTS": 10.3,
     "Awards": "",
-    "Player-additional": "alvarjo01"
+    "Player-additional": "alvarjo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 179,
@@ -7171,7 +8221,12 @@
     "PF": 2.1,
     "PTS": 10.3,
     "Awards": "",
-    "Player-additional": "claxtni01"
+    "Player-additional": "claxtni01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 180,
@@ -7205,7 +8260,12 @@
     "PF": 3.3,
     "PTS": 10.3,
     "Awards": "",
-    "Player-additional": "joneshe01"
+    "Player-additional": "joneshe01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 181,
@@ -7239,7 +8299,12 @@
     "PF": 3,
     "PTS": 10.3,
     "Awards": "",
-    "Player-additional": "meltode01"
+    "Player-additional": "meltode01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 182,
@@ -7273,7 +8338,12 @@
     "PF": 1.5,
     "PTS": 10.2,
     "Awards": "",
-    "Player-additional": "joeis01"
+    "Player-additional": "joeis01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 183,
@@ -7307,7 +8377,12 @@
     "PF": 0.8,
     "PTS": 10.2,
     "Awards": "",
-    "Player-additional": "jonesty01"
+    "Player-additional": "jonesty01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "10 years"
   },
   {
     "Rk": 184,
@@ -7341,7 +8416,12 @@
     "PF": 2.2,
     "PTS": 10.2,
     "Awards": "",
-    "Player-additional": "watfotr01"
+    "Player-additional": "watfotr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 185,
@@ -7375,7 +8455,12 @@
     "PF": 2.1,
     "PTS": 10.1,
     "Awards": "",
-    "Player-additional": "brookke02"
+    "Player-additional": "brookke02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 186,
@@ -7409,7 +8494,12 @@
     "PF": 2.9,
     "PTS": 10.1,
     "Awards": "",
-    "Player-additional": "dortlu01"
+    "Player-additional": "dortlu01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 187,
@@ -7443,7 +8533,12 @@
     "PF": 2.2,
     "PTS": 10.1,
     "Awards": "",
-    "Player-additional": "edwarju01"
+    "Player-additional": "edwarju01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 188,
@@ -7477,7 +8572,12 @@
     "PF": 2,
     "PTS": 10.1,
     "Awards": "",
-    "Player-additional": "jonesde02"
+    "Player-additional": "jonesde02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 189,
@@ -7511,7 +8611,12 @@
     "PF": 2.8,
     "PTS": 10.1,
     "Awards": "",
-    "Player-additional": "thompau01"
+    "Player-additional": "thompau01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 190,
@@ -7545,7 +8650,12 @@
     "PF": 1.4,
     "PTS": 10,
     "Awards": "",
-    "Player-additional": "bouchch01"
+    "Player-additional": "bouchch01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 191,
@@ -7579,7 +8689,12 @@
     "PF": 2.3,
     "PTS": 10,
     "Awards": "",
-    "Player-additional": "nembhan01"
+    "Player-additional": "nembhan01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 192,
@@ -7613,7 +8728,12 @@
     "PF": 2.4,
     "PTS": 10,
     "Awards": "",
-    "Player-additional": "willizi02"
+    "Player-additional": "willizi02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 193,
@@ -7647,7 +8767,12 @@
     "PF": 1.8,
     "PTS": 9.9,
     "Awards": "",
-    "Player-additional": "huertke01"
+    "Player-additional": "huertke01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 193,
@@ -7681,7 +8806,12 @@
     "PF": 1.6,
     "PTS": 7.9,
     "Awards": "",
-    "Player-additional": "huertke01"
+    "Player-additional": "huertke01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 193,
@@ -7715,7 +8845,12 @@
     "PF": 2,
     "PTS": 13.2,
     "Awards": "",
-    "Player-additional": "huertke01"
+    "Player-additional": "huertke01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 194,
@@ -7749,7 +8884,12 @@
     "PF": 2.5,
     "PTS": 9.9,
     "Awards": "",
-    "Player-additional": "niangge01"
+    "Player-additional": "niangge01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 194,
@@ -7783,7 +8923,12 @@
     "PF": 2.5,
     "PTS": 8.7,
     "Awards": "",
-    "Player-additional": "niangge01"
+    "Player-additional": "niangge01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 194,
@@ -7817,7 +8962,12 @@
     "PF": 2.6,
     "PTS": 12.1,
     "Awards": "",
-    "Player-additional": "niangge01"
+    "Player-additional": "niangge01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 195,
@@ -7851,7 +9001,12 @@
     "PF": 1.4,
     "PTS": 9.9,
     "Awards": "",
-    "Player-additional": "champju02"
+    "Player-additional": "champju02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 196,
@@ -7885,7 +9040,12 @@
     "PF": 2.6,
     "PTS": 9.9,
     "Awards": "",
-    "Player-additional": "pippesc02"
+    "Player-additional": "pippesc02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 197,
@@ -7919,7 +9079,12 @@
     "PF": 1.3,
     "PTS": 9.9,
     "Awards": "",
-    "Player-additional": "smithni01"
+    "Player-additional": "smithni01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 198,
@@ -7953,7 +9118,12 @@
     "PF": 2.3,
     "PTS": 9.8,
     "Awards": "",
-    "Player-additional": "carrica01"
+    "Player-additional": "carrica01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 199,
@@ -7987,7 +9157,12 @@
     "PF": 1.6,
     "PTS": 9.8,
     "Awards": "",
-    "Player-additional": "moodymo01"
+    "Player-additional": "moodymo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 200,
@@ -8021,7 +9196,12 @@
     "PF": 1.7,
     "PTS": 9.7,
     "Awards": "",
-    "Player-additional": "coffeam01"
+    "Player-additional": "coffeam01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 201,
@@ -8055,7 +9235,12 @@
     "PF": 1.5,
     "PTS": 9.6,
     "Awards": "",
-    "Player-additional": "chrisma02"
+    "Player-additional": "chrisma02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 201,
@@ -8089,7 +9274,12 @@
     "PF": 1.6,
     "PTS": 8.5,
     "Awards": "",
-    "Player-additional": "chrisma02"
+    "Player-additional": "chrisma02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 201,
@@ -8123,7 +9313,12 @@
     "PF": 1.3,
     "PTS": 11.2,
     "Awards": "",
-    "Player-additional": "chrisma02"
+    "Player-additional": "chrisma02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 202,
@@ -8157,7 +9352,12 @@
     "PF": 2.4,
     "PTS": 9.6,
     "Awards": "",
-    "Player-additional": "filipky01"
+    "Player-additional": "filipky01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 203,
@@ -8191,7 +9391,12 @@
     "PF": 2,
     "PTS": 9.5,
     "Awards": "",
-    "Player-additional": "evbuoto01"
+    "Player-additional": "evbuoto01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 204,
@@ -8225,7 +9430,12 @@
     "PF": 1.7,
     "PTS": 9.5,
     "Awards": "",
-    "Player-additional": "mcbrimi01"
+    "Player-additional": "mcbrimi01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 205,
@@ -8259,7 +9469,12 @@
     "PF": 2.1,
     "PTS": 9.5,
     "Awards": "",
-    "Player-additional": "wilsoja03"
+    "Player-additional": "wilsoja03",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 206,
@@ -8293,7 +9508,12 @@
     "PF": 1.7,
     "PTS": 9.4,
     "Awards": "",
-    "Player-additional": "alexani01"
+    "Player-additional": "alexani01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 207,
@@ -8327,7 +9547,12 @@
     "PF": 2.3,
     "PTS": 9.4,
     "Awards": "",
-    "Player-additional": "anthoco01"
+    "Player-additional": "anthoco01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 208,
@@ -8361,7 +9586,12 @@
     "PF": 2.1,
     "PTS": 9.4,
     "Awards": "",
-    "Player-additional": "blackan01"
+    "Player-additional": "blackan01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 209,
@@ -8395,7 +9625,12 @@
     "PF": 2.1,
     "PTS": 9.4,
     "Awards": "",
-    "Player-additional": "strusma01"
+    "Player-additional": "strusma01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 210,
@@ -8429,7 +9664,12 @@
     "PF": 1.6,
     "PTS": 9.4,
     "Awards": "",
-    "Player-additional": "vukcetr01"
+    "Player-additional": "vukcetr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 211,
@@ -8463,7 +9703,12 @@
     "PF": 0.9,
     "PTS": 9.4,
     "Awards": "",
-    "Player-additional": "whitmca01"
+    "Player-additional": "whitmca01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 212,
@@ -8497,7 +9742,12 @@
     "PF": 2.5,
     "PTS": 9.3,
     "Awards": "",
-    "Player-additional": "richani01"
+    "Player-additional": "richani01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 212,
@@ -8531,7 +9781,12 @@
     "PF": 2.3,
     "PTS": 8.9,
     "Awards": "",
-    "Player-additional": "richani01"
+    "Player-additional": "richani01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 212,
@@ -8565,7 +9820,12 @@
     "PF": 2.6,
     "PTS": 9.5,
     "Awards": "",
-    "Player-additional": "richani01"
+    "Player-additional": "richani01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 213,
@@ -8599,7 +9859,12 @@
     "PF": 1.7,
     "PTS": 9.3,
     "Awards": "",
-    "Player-additional": "wareke01"
+    "Player-additional": "wareke01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 214,
@@ -8633,7 +9898,12 @@
     "PF": 2.8,
     "PTS": 9.2,
     "Awards": "",
-    "Player-additional": "edeyza01"
+    "Player-additional": "edeyza01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 215,
@@ -8667,7 +9937,12 @@
     "PF": 2.9,
     "PTS": 9.1,
     "Awards": "",
-    "Player-additional": "cartewe01"
+    "Player-additional": "cartewe01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 216,
@@ -8701,7 +9976,12 @@
     "PF": 2.3,
     "PTS": 9.1,
     "Awards": "",
-    "Player-additional": "clownno01"
+    "Player-additional": "clownno01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 217,
@@ -8735,7 +10015,12 @@
     "PF": 1.2,
     "PTS": 9.1,
     "Awards": "",
-    "Player-additional": "knechda01"
+    "Player-additional": "knechda01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 218,
@@ -8769,7 +10054,12 @@
     "PF": 1.7,
     "PTS": 9.1,
     "Awards": "",
-    "Player-additional": "lawsoaj01"
+    "Player-additional": "lawsoaj01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 219,
@@ -8803,7 +10093,12 @@
     "PF": 1,
     "PTS": 9.1,
     "Awards": "",
-    "Player-additional": "mccontj01"
+    "Player-additional": "mccontj01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "10 years"
   },
   {
     "Rk": 220,
@@ -8837,7 +10132,12 @@
     "PF": 2,
     "PTS": 9.1,
     "Awards": "",
-    "Player-additional": "missiyv01"
+    "Player-additional": "missiyv01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 221,
@@ -8871,7 +10171,12 @@
     "PF": 2,
     "PTS": 9.1,
     "Awards": "",
-    "Player-additional": "onealro01"
+    "Player-additional": "onealro01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 222,
@@ -8905,7 +10210,12 @@
     "PF": 1.6,
     "PTS": 9,
     "Awards": "",
-    "Player-additional": "butleja02"
+    "Player-additional": "butleja02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 222,
@@ -8939,7 +10249,12 @@
     "PF": 1.3,
     "PTS": 6.9,
     "Awards": "",
-    "Player-additional": "butleja02"
+    "Player-additional": "butleja02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 222,
@@ -8973,7 +10288,12 @@
     "PF": 2,
     "PTS": 11.5,
     "Awards": "",
-    "Player-additional": "butleja02"
+    "Player-additional": "butleja02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 223,
@@ -9007,7 +10327,12 @@
     "PF": 1.6,
     "PTS": 9,
     "Awards": "",
-    "Player-additional": "smartma01"
+    "Player-additional": "smartma01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "11 years"
   },
   {
     "Rk": 223,
@@ -9041,7 +10366,12 @@
     "PF": 1.6,
     "PTS": 8.7,
     "Awards": "",
-    "Player-additional": "smartma01"
+    "Player-additional": "smartma01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "11 years"
   },
   {
     "Rk": 223,
@@ -9075,7 +10405,12 @@
     "PF": 1.5,
     "PTS": 9.3,
     "Awards": "",
-    "Player-additional": "smartma01"
+    "Player-additional": "smartma01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "11 years"
   },
   {
     "Rk": 224,
@@ -9109,7 +10444,12 @@
     "PF": 3.2,
     "PTS": 9,
     "Awards": "",
-    "Player-additional": "greendr01"
+    "Player-additional": "greendr01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "13 years"
   },
   {
     "Rk": 225,
@@ -9143,7 +10483,12 @@
     "PF": 2.2,
     "PTS": 9,
     "Awards": "",
-    "Player-additional": "hayeski01"
+    "Player-additional": "hayeski01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 226,
@@ -9177,7 +10522,12 @@
     "PF": 1.4,
     "PTS": 9,
     "Awards": "",
-    "Player-additional": "horfoal01"
+    "Player-additional": "horfoal01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "18 years"
   },
   {
     "Rk": 227,
@@ -9211,7 +10561,12 @@
     "PF": 2.3,
     "PTS": 9,
     "Awards": "",
-    "Player-additional": "strawju01"
+    "Player-additional": "strawju01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 228,
@@ -9245,11 +10600,16 @@
     "PF": 1.4,
     "PTS": 9,
     "Awards": "",
-    "Player-additional": "willipa01"
+    "Player-additional": "willipa01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "5 years"
   },
   {
     "Rk": 229,
-    "Player": "Jusuf Nurkić",
+    "Player": "Jusuf Nurki\u0107",
     "Age": 30,
     "Team": "2TM",
     "Pos": "C",
@@ -9279,11 +10639,16 @@
     "PF": 2.5,
     "PTS": 8.9,
     "Awards": "",
-    "Player-additional": "nurkiju01"
+    "Player-additional": "nurkiju01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 229,
-    "Player": "Jusuf Nurkić",
+    "Player": "Jusuf Nurki\u0107",
     "Age": 30,
     "Team": "PHO",
     "Pos": "C",
@@ -9313,11 +10678,16 @@
     "PF": 3.1,
     "PTS": 8.6,
     "Awards": "",
-    "Player-additional": "nurkiju01"
+    "Player-additional": "nurkiju01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 229,
-    "Player": "Jusuf Nurkić",
+    "Player": "Jusuf Nurki\u0107",
     "Age": 30,
     "Team": "CHO",
     "Pos": "C",
@@ -9347,7 +10717,12 @@
     "PF": 2,
     "PTS": 9.2,
     "Awards": "",
-    "Player-additional": "nurkiju01"
+    "Player-additional": "nurkiju01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 230,
@@ -9381,7 +10756,12 @@
     "PF": 1.9,
     "PTS": 8.9,
     "Awards": "",
-    "Player-additional": "capelca01"
+    "Player-additional": "capelca01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "11 years"
   },
   {
     "Rk": 231,
@@ -9415,7 +10795,12 @@
     "PF": 2,
     "PTS": 8.9,
     "Awards": "",
-    "Player-additional": "juzanjo01"
+    "Player-additional": "juzanjo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 232,
@@ -9449,7 +10834,12 @@
     "PF": 0.9,
     "PTS": 8.9,
     "Awards": "",
-    "Player-additional": "kennalu01"
+    "Player-additional": "kennalu01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "8 years"
   },
   {
     "Rk": 233,
@@ -9483,7 +10873,12 @@
     "PF": 1.8,
     "PTS": 8.8,
     "Awards": "",
-    "Player-additional": "champju01"
+    "Player-additional": "champju01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 234,
@@ -9517,7 +10912,12 @@
     "PF": 1.1,
     "PTS": 8.8,
     "Awards": "",
-    "Player-additional": "mykhasv01"
+    "Player-additional": "mykhasv01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "7 years"
   },
   {
     "Rk": 235,
@@ -9551,7 +10951,12 @@
     "PF": 1.8,
     "PTS": 8.8,
     "Awards": "",
-    "Player-additional": "paulch01"
+    "Player-additional": "paulch01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "20 years"
   },
   {
     "Rk": 236,
@@ -9585,7 +10990,12 @@
     "PF": 2.8,
     "PTS": 8.7,
     "Awards": "",
-    "Player-additional": "olynyke01"
+    "Player-additional": "olynyke01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "12 years"
   },
   {
     "Rk": 236,
@@ -9619,7 +11029,12 @@
     "PF": 2.5,
     "PTS": 7.1,
     "Awards": "",
-    "Player-additional": "olynyke01"
+    "Player-additional": "olynyke01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "12 years"
   },
   {
     "Rk": 236,
@@ -9653,7 +11068,12 @@
     "PF": 3.2,
     "PTS": 10.7,
     "Awards": "",
-    "Player-additional": "olynyke01"
+    "Player-additional": "olynyke01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "12 years"
   },
   {
     "Rk": 237,
@@ -9687,7 +11107,12 @@
     "PF": 2.2,
     "PTS": 8.7,
     "Awards": "",
-    "Player-additional": "finnedo01"
+    "Player-additional": "finnedo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 237,
@@ -9721,7 +11146,12 @@
     "PF": 2.7,
     "PTS": 10.4,
     "Awards": "",
-    "Player-additional": "finnedo01"
+    "Player-additional": "finnedo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 237,
@@ -9755,7 +11185,12 @@
     "PF": 1.9,
     "PTS": 7.9,
     "Awards": "",
-    "Player-additional": "finnedo01"
+    "Player-additional": "finnedo01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "9 years"
   },
   {
     "Rk": 238,
@@ -9789,7 +11224,12 @@
     "PF": 2.3,
     "PTS": 8.7,
     "Awards": "",
-    "Player-additional": "brissos01"
+    "Player-additional": "brissos01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "6 years"
   },
   {
     "Rk": 239,
@@ -9823,7 +11263,12 @@
     "PF": 1.8,
     "PTS": 8.7,
     "Awards": "",
-    "Player-additional": "caldwke01"
+    "Player-additional": "caldwke01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "12 years"
   },
   {
     "Rk": 240,
@@ -9857,7 +11302,12 @@
     "PF": 2.1,
     "PTS": 8.7,
     "Awards": "",
-    "Player-additional": "colliis01"
+    "Player-additional": "colliis01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 241,
@@ -9891,7 +11341,12 @@
     "PF": 1.7,
     "PTS": 8.7,
     "Awards": "",
-    "Player-additional": "exumda01"
+    "Player-additional": "exumda01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "11 years"
   },
   {
     "Rk": 242,
@@ -9925,7 +11380,12 @@
     "PF": 3,
     "PTS": 8.7,
     "Awards": "",
-    "Player-additional": "georgky01"
+    "Player-additional": "georgky01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 243,
@@ -9959,7 +11419,12 @@
     "PF": 1.6,
     "PTS": 8.7,
     "Awards": "",
-    "Player-additional": "hardyja02"
+    "Player-additional": "hardyja02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 244,
@@ -9993,7 +11458,12 @@
     "PF": 2.8,
     "PTS": 8.7,
     "Awards": "",
-    "Player-additional": "livelde01"
+    "Player-additional": "livelde01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 245,
@@ -10027,7 +11497,12 @@
     "PF": 1.3,
     "PTS": 8.7,
     "Awards": "",
-    "Player-additional": "martity01"
+    "Player-additional": "martity01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "3 years"
   },
   {
     "Rk": 246,
@@ -10061,7 +11536,12 @@
     "PF": 1.6,
     "PTS": 8.6,
     "Awards": "",
-    "Player-additional": "buzelma01"
+    "Player-additional": "buzelma01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 247,
@@ -10095,7 +11575,12 @@
     "PF": 1.2,
     "PTS": 8.6,
     "Awards": "",
-    "Player-additional": "jaqueja01"
+    "Player-additional": "jaqueja01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 248,
@@ -10129,7 +11614,12 @@
     "PF": 1.8,
     "PTS": 8.6,
     "Awards": "",
-    "Player-additional": "walteja01"
+    "Player-additional": "walteja01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "Rookie"
   },
   {
     "Rk": 249,
@@ -10163,7 +11653,12 @@
     "PF": 1.2,
     "PTS": 8.5,
     "Awards": "",
-    "Player-additional": "hausesa01"
+    "Player-additional": "hausesa01",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "4 years"
   },
   {
     "Rk": 250,
@@ -10197,6 +11692,11 @@
     "PF": 1.5,
     "PTS": 8.5,
     "Awards": "",
-    "Player-additional": "nancela02"
+    "Player-additional": "nancela02",
+    "Height": "Unknown",
+    "Weight": "Unknown",
+    "College": "N/A",
+    "Exp": "Rookie",
+    "Experience": "10 years"
   }
 ]
