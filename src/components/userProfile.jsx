@@ -6,10 +6,10 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 function UserProfile() {
   const [isEditing, setIsEditing] = useState(false);
   const [players, setPlayers] = useState([
-    { rank: 1, name: 'Nikola Jokić', team: 'Denver Nuggets', img: 'public/playerIMGs/Nikola-Jokić.jpg' },
+    { rank: 1, name: 'Nikola Jokić', team: 'Denver Nuggets', img: '/playerIMGs/Nikola-Jokić.jpg' },
     { rank: 2, name: 'Giannis Antetokounmpo', team: 'Milwaukee Bucks', img: '/playerIMGs/Giannis-Antetokounmpo.jpg' },
     { rank: 3, name: 'Shai Gilgeous-Alexander', team: 'Oklahoma City Thunder', img: '/playerIMGs/Shai-Gilgeous-Alexander.jpg' },
-    { rank: 4, name: 'Luka Dončić', team: 'Dallas Mavericks', img: 'public/playerIMGs/Luka-Dončić.jpg' },
+    { rank: 4, name: 'Luka Dončić', team: 'Dallas Mavericks', img: '/playerIMGs/Luka-Dončić.jpg' },
     { rank: 5, name: 'LeBron James', team: 'Los Angeles Lakers', img: '/playerIMGs/LeBron-James.jpg' },
     { rank: 6, name: 'Stephen Curry', team: 'Golden State Warriors', img: '/playerIMGs/Stephen-Curry.jpg' },
     { rank: 7, name: 'Jayson Tatum', team: 'Boston Celtics', img: '/playerIMGs/Jayson-Tatum.jpg' },
