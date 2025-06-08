@@ -200,6 +200,15 @@ li:nth-child(3)::before {
   border-radius: 50%;
 }
 
+.player-profile-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 16px;
+  object-fit: cover;
+  object-position: top; /* Focus on upper half */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
 .leaderboard-description {
   font-size: 0.9rem;
   color: #666;
