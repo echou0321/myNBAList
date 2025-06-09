@@ -5,16 +5,12 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 // Helper function to normalize player ID
 const getNormalizedPlayerId = (player) =>
-  `${player.Player.replace(/\s+/g, '-').toLowerCase()}-${player.Team.toLowerCase()}`;
+  `${player.Player.replace(/\s+/g, '-').toLowerCase()}-${player.Team}`; // Keep team code as is (e.g., 'LAL')
 
 // Helper function to generate image paths with proper capitalization
 const getImagePath = (name) => {
   if (!name || name === 'Unknown') return '/playerIMGs/default.jpg';
-  const nameParts = name.trim().split(/\s+/);
-  if (nameParts.length < 2) return `/playerIMGs/${name}.jpg`;
-  const firstName = nameParts[0].charAt(0).toLowerCase() + nameParts[0].slice(1).toLowerCase();
-  const lastName = nameParts.slice(1).join('-').toLowerCase();
-  const cleanName = `${firstName}-${lastName}`;
+  const cleanName = name.replace(/\s+/g, '-'); // Preserve case, just replace spaces with hyphens
   const path = `/playerIMGs/${cleanName}.jpg`;
   console.log(`Generated image path for ${name}: ${path}`);
   return path;
