@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../firebase';
+import { auth, rtdb } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebase';
+import { ref, get } from 'firebase/database';
 
 export default function Browse() {
   const teamFullNames = {
@@ -49,38 +48,49 @@ export default function Browse() {
           const teamCode = latest.Team || 'Unknown';
 
           return {
-            id: `${playerName.replace(/\s+/g, '-').toLowerCase()}-${teamCode.toLowerCase()}`, 
+            id: `${playerName.replace(/\s+/g, '-').toLowerCase()}-${teamCode.toLowerCase()}`,
             name: playerName,
             team: teamCode,
             teamName: teamFullNames[teamCode] || teamCode,
             position: latest.Pos,
             conference: ['BOS','NYK','MIA','PHI','MIL','IND','ORL','CLE','ATL','TOR','WAS','CHI','CHA','DET','BRK','BKN'].includes(teamCode) ? 'East' : 'West',
-            img: playerName.replace(/\s+/g, '-'), // preserve case for image filenames
+            img: playerName.replace(/\s+/g, '-'),
           };
         });
 
-        const ratingsSnapshot = await getDocs(collection(db, 'ratings'));
+        // Fetch ratings from RTDB
+        const ratingsRef = ref(rtdb, 'ratings');
+        const snapshot = await get(ratingsRef);
+        const ratingsData = snapshot.exists() ? snapshot.val() : {};
         const ratingsMap = {};
 
-        ratingsSnapshot.forEach((doc) => {
-          const { playerId, overall } = doc.data();
-          if (!ratingsMap[playerId]) {
-            ratingsMap[playerId] = { sum: 0, count: 0 };
-          }
-          ratingsMap[playerId].sum += overall;
-          ratingsMap[playerId].count += 1;
-        });
+        for (const playerId in ratingsData) {
+          const playerRatings = ratingsData[playerId];
+          let sum = 0;
+          let count = 0;
 
-        // Attach average rating
+          for (const userId in playerRatings) {
+            const { overall } = playerRatings[userId];
+            if (typeof overall === 'number') {
+              sum += overall;
+              count += 1;
+            }
+          }
+
+          if (count > 0) {
+            ratingsMap[playerId] = (sum / count).toFixed(1);
+          }
+        }
+
+        // Attach ratings to players
         const playersWithRatings = transformed.map((player) => {
-          const ratingData = ratingsMap[player.id];
-          const avgRating = ratingData ? (ratingData.sum / ratingData.count).toFixed(1) : '-';
+          const avgRating = ratingsMap[player.id] || '-';
           return { ...player, rating: avgRating };
         });
 
         setPlayers(playersWithRatings);
       } catch (err) {
-        console.error('Failed to load player data or ratings', err);
+        console.error('❌ Failed to load player data or ratings from RTDB:', err);
       }
     };
 

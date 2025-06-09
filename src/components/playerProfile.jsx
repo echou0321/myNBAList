@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { auth, db } from '../firebase';
+import { auth, rtdb } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import {
-  collection, doc, setDoc, getDoc, getDocs, query, where, Timestamp, addDoc, deleteDoc
-} from 'firebase/firestore';
+import { ref, push, set, get, remove, update } from "firebase/database"; 
 
 function PlayerProfile() {
   const { id } = useParams();
@@ -44,19 +42,18 @@ function PlayerProfile() {
 
     const playerId = getNormalizedPlayerId(player);
     const sessionKey = `visited-${playerId}`;
-
     if (sessionStorage.getItem(sessionKey) || visitLogged.current) return;
 
-    visitLogged.current = true; // prevent race condition
+    visitLogged.current = true;
 
     const logVisit = async () => {
       try {
-        const parentDocRef = doc(db, 'profileViews', playerId);
-        await setDoc(parentDocRef, { updatedAt: Timestamp.now() }, { merge: true });
+        const parentRef = ref(rtdb, `profileViews/${playerId}`);
+        await update(parentRef, { updatedAt: Date.now() });  // ✅ safe
 
-        const visitsRef = collection(parentDocRef, 'visits');
-        await addDoc(visitsRef, {
-          visitedAt: Timestamp.now(),
+        const visitsRef = ref(rtdb, `profileViews/${playerId}/visits`);
+        await push(visitsRef, {
+          visitedAt: Date.now(),
           playerName: player.Player,
           imgFile: player.Player.replace(/\s+/g, '-'),
           userId: currentUser?.uid || 'anonymous',
@@ -65,7 +62,7 @@ function PlayerProfile() {
         sessionStorage.setItem(sessionKey, 'true');
         console.log(`✅ Visit logged for ${player.Player}`);
       } catch (err) {
-        console.error('Error logging visit:', err);
+        console.error('Error logging visit in RTDB:', err);
       }
     };
 
@@ -74,31 +71,37 @@ function PlayerProfile() {
 
   const fetchUserRating = async () => {
     if (!player || !currentUser) return;
+
     const playerId = getNormalizedPlayerId(player);
-    const docId = `${playerId}_${currentUser.uid}`;
-    const ratingRef = doc(db, 'ratings', docId);
-    const snapshot = await getDoc(ratingRef);
+    const ratingPath = `ratings/${playerId}/${currentUser.uid}`;
+    const ratingRef = ref(rtdb, ratingPath);
 
-    if (snapshot.exists()) {
-      const data = snapshot.data();
-      setRatings({
-        shooting: data.shooting || '',
-        dunking: data.dunking || '',
-        defense: data.defense || '',
-        playmaking: data.playmaking || '',
-        rebounding: data.rebounding || '',
-      });
+    try {
+      const snapshot = await get(ratingRef);
 
-      const avg = (
-        (parseFloat(data.shooting) +
-         parseFloat(data.dunking) +
-         parseFloat(data.defense) +
-         parseFloat(data.playmaking) +
-         parseFloat(data.rebounding)) / 5
-      ).toFixed(1);
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        setRatings({
+          shooting: data.shooting || '',
+          dunking: data.dunking || '',
+          defense: data.defense || '',
+          playmaking: data.playmaking || '',
+          rebounding: data.rebounding || '',
+        });
 
-      const overallField = document.getElementById('user-overall');
-      if (overallField) overallField.value = avg;
+        const avg = (
+          (parseFloat(data.shooting) +
+          parseFloat(data.dunking) +
+          parseFloat(data.defense) +
+          parseFloat(data.playmaking) +
+          parseFloat(data.rebounding)) / 5
+        ).toFixed(1);
+
+        const overallField = document.getElementById('user-overall');
+        if (overallField) overallField.value = avg;
+      }
+    } catch (err) {
+      console.error("Error fetching user rating from RTDB:", err);
     }
   };
 
@@ -106,36 +109,53 @@ function PlayerProfile() {
 
   const fetchAverageRating = async () => {
     if (!player) return;
+
     const playerId = getNormalizedPlayerId(player);
-    const q = query(collection(db, 'ratings'), where('playerId', '==', playerId));
-    const snapshot = await getDocs(q);
-    const playerRatings = snapshot.docs.map(doc => doc.data());
+    const playerRatingsRef = ref(rtdb, `ratings/${playerId}`);
 
-    if (playerRatings.length > 0) {
-      const sum = { shooting: 0, dunking: 0, defense: 0, playmaking: 0, rebounding: 0 };
-      playerRatings.forEach(r => {
-        sum.shooting += r.shooting;
-        sum.dunking += r.dunking;
-        sum.defense += r.defense;
-        sum.playmaking += r.playmaking;
-        sum.rebounding += r.rebounding;
-      });
+    try {
+      const snapshot = await get(playerRatingsRef);
 
-      const count = playerRatings.length;
-      const avg = {
-        shooting: (sum.shooting / count).toFixed(1),
-        dunking: (sum.dunking / count).toFixed(1),
-        defense: (sum.defense / count).toFixed(1),
-        playmaking: (sum.playmaking / count).toFixed(1),
-        rebounding: (sum.rebounding / count).toFixed(1),
-        overall: (
-          (sum.shooting + sum.dunking + sum.defense + sum.playmaking + sum.rebounding) / (5 * count)
-        ).toFixed(1),
-      };
+      if (snapshot.exists()) {
+        const ratingsObj = snapshot.val();
+        const playerRatings = Object.values(ratingsObj);
 
-      setAverageRating({ ...avg, count });
-    } else {
-      setAverageRating(null);
+        const sum = {
+          shooting: 0,
+          dunking: 0,
+          defense: 0,
+          playmaking: 0,
+          rebounding: 0
+        };
+
+        playerRatings.forEach(r => {
+          sum.shooting += parseFloat(r.shooting) || 0;
+          sum.dunking += parseFloat(r.dunking) || 0;
+          sum.defense += parseFloat(r.defense) || 0;
+          sum.playmaking += parseFloat(r.playmaking) || 0;
+          sum.rebounding += parseFloat(r.rebounding) || 0;
+        });
+
+        const count = playerRatings.length;
+        const avg = {
+          shooting: (sum.shooting / count).toFixed(1),
+          dunking: (sum.dunking / count).toFixed(1),
+          defense: (sum.defense / count).toFixed(1),
+          playmaking: (sum.playmaking / count).toFixed(1),
+          rebounding: (sum.rebounding / count).toFixed(1),
+          overall: (
+            (sum.shooting + sum.dunking + sum.defense + sum.playmaking + sum.rebounding) / (5 * count)
+          ).toFixed(1),
+        };
+
+        console.log('📊 Calculated average rating:', avg);
+        setAverageRating({ ...avg, count });
+      } else {
+        console.log('❌ No ratings found for', playerId);
+        setAverageRating(null);
+      }
+    } catch (err) {
+      console.error("Error fetching average rating from RTDB:", err);
     }
   };
 
@@ -154,15 +174,16 @@ function PlayerProfile() {
     if (!currentUser || !player) return;
 
     const playerId = getNormalizedPlayerId(player);
-    const docId = `${playerId}_${currentUser.uid}`;
-    const ratingRef = doc(db, 'ratings', docId);
+    const ratingPath = `ratings/${playerId}/${currentUser.uid}`;
+    const ratingRef = ref(rtdb, ratingPath);
 
     try {
-      await deleteDoc(ratingRef);
+      await remove(ratingRef);
 
       setRatings({
         shooting: '', dunking: '', defense: '', playmaking: '', rebounding: ''
       });
+
       const overallField = document.getElementById('user-overall');
       if (overallField) overallField.value = '';
 
@@ -171,7 +192,7 @@ function PlayerProfile() {
 
       await fetchAverageRating();
     } catch (err) {
-      console.error("Error deleting rating:", err);
+      console.error("Error deleting rating from RTDB:", err);
       setModalMessage("There was a problem deleting your rating.");
       setShowModal(true);
     }
@@ -192,7 +213,7 @@ function PlayerProfile() {
     const numericRatings = Object.values(ratings).map(parseFloat);
     if (numericRatings.some(val => isNaN(val))) {
       setModalMessage("Please fill out all rating fields before submitting.");
-      setShowModal(true);
+      setShowModal(true); 
       return;
     }
     if (numericRatings.some(val => val < 1 || val > 10)) {
@@ -202,13 +223,13 @@ function PlayerProfile() {
     }
 
     const playerId = getNormalizedPlayerId(player);
-    const docId = `${playerId}_${currentUser.uid}`;
-    const ratingRef = doc(db, 'ratings', docId);
+    const ratingPath = `ratings/${playerId}/${currentUser.uid}`;
+    const ratingRef = ref(rtdb, ratingPath);
     const overall = (numericRatings.reduce((a, b) => a + b, 0) / 5).toFixed(1);
     document.getElementById('user-overall').value = overall;
 
     try {
-      await setDoc(ratingRef, {
+      await set(ratingRef, {
         playerId,
         userId: currentUser.uid,
         playerName: player.Player,
@@ -216,8 +237,8 @@ function PlayerProfile() {
         ...Object.fromEntries(['shooting', 'dunking', 'defense', 'playmaking', 'rebounding']
           .map((attr, i) => [attr, numericRatings[i]])),
         overall: parseFloat(overall),
-        submittedAt: new Date(),
-        lastUpdatedAt: new Date(),
+        submittedAt: Date.now(),
+        lastUpdatedAt: Date.now(),
       });
 
       await fetchUserRating();
