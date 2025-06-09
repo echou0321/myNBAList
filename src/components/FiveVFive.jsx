@@ -30,15 +30,13 @@ class ErrorBoundary extends React.Component {
 const getNormalizedPlayerId = (player) =>
   `${player.Player.replace(/\s+/g, '-').toLowerCase()}-${player.Team}`; // Keep team code as is (e.g., 'LAL')
 
-// Helper function to generate image paths with proper capitalization
+// Helper function to generate image paths
 const getImagePath = (name) => {
-  if (!name || name === 'Unknown') return '/playerIMGs/default.jpg';
-  const cleanName = name
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/[ćč]/g, 'c') // Normalize ć, č to c
-    .replace(/[đ]/g, 'd')  // Normalize đ to d
-    .replace(/[š]/g, 's')  // Normalize š to s
-    .replace(/[ž]/g, 'z'); // Normalize ž to z
+  if (!name || name === 'Unknown') {
+    console.log('Using default image for unknown player');
+    return '/icons/ChatGPT%20Image%20Jun%208,%202025%20at%2004_34_48%20AM.png';
+  }
+  const cleanName = name.replace(/\s+/g, '-'); // Preserve special characters
   const path = `/playerIMGs/${cleanName}.jpg`;
   console.log(`Generated image path for ${name}: ${path}`);
   return path;
