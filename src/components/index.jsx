@@ -202,7 +202,7 @@ const HomePage = () => {
                         alt={player.name}
                         className="player-img"
                       />
-                      <span>{player.name} — 🔥 {player.count} visits</span>
+                      {` ${player.name} — 🔥 ${player.count} visits`}
                     </li>
                   </Link>
                 ))}

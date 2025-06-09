@@ -1232,6 +1232,7 @@ footer {
   }
 
   /* ========== TRENDING PLAYERS SECTION ========== */
+/* ========== TRENDING PLAYERS SECTION ========== */
 #trending-players ol {
   list-style: none;
   padding: 0;
@@ -1241,18 +1242,18 @@ footer {
   gap: 0.75rem;
 }
 
-.player-card-link {
+.player-card-link-trending {
   text-decoration: none;
   color: inherit;
   transition: background-color 0.2s ease;
 }
 
-.player-card-link:hover {
+.player-card-link-trending:hover {
   background-color: #f0f0f0;
   border-radius: 8px;
 }
 
-.player-card-link li {
+.player-card-link-trending li {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -1261,10 +1262,12 @@ footer {
   border-radius: 8px;
   background-color: #ffffff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease, filter 0.2s ease;
 }
 
-.player-card-link li:hover {
+.player-card-link-trending li:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  filter: brightness(0.9); 
 }
 
 .player-card-link-trending .player-img {
@@ -1311,10 +1314,12 @@ footer {
   border-radius: 8px;
   background-color: #ffffff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 #top-rated-players .player-card-link li:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  filter: brightness(0.9); 
 }
 
 #top-rated-players .player-img {
@@ -1322,7 +1327,7 @@ footer {
   height: 50px;
   object-fit: cover;
   border-radius: 50%;
-  border: 2px solid #004c97; /* A distinct blue to differentiate from trending red */
+  border: 2px solid #004c97; 
 }
 
 #top-rated-players span {
