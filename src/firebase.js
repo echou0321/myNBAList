@@ -2,8 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getDatabase } from "firebase/database"; 
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -12,10 +11,12 @@ const firebaseConfig = {
   projectId: "mynbalist",
   storageBucket: "mynbalist.firebasestorage.app",
   messagingSenderId: "217984887356",
-  appId: "1:217984887356:web:4557ecc8f37f256e9eb139"
+  appId: "1:217984887356:web:4557ecc8f37f256e9eb139",
+  databaseURL: "https://mynbalist-default-rtdb.firebaseio.com" 
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export const rtdb = getDatabase(app); 
