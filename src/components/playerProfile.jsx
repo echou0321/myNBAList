@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { auth, db } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import {
-  collection, doc, setDoc, getDoc, getDocs, query, where, Timestamp, addDoc
+  collection, doc, setDoc, getDoc, getDocs, query, where, Timestamp, addDoc, deleteDoc
 } from 'firebase/firestore';
 
 function PlayerProfile() {
@@ -150,6 +150,33 @@ function PlayerProfile() {
     }
   };
 
+  const handleDelete = async () => {
+    if (!currentUser || !player) return;
+
+    const playerId = getNormalizedPlayerId(player);
+    const docId = `${playerId}_${currentUser.uid}`;
+    const ratingRef = doc(db, 'ratings', docId);
+
+    try {
+      await deleteDoc(ratingRef);
+
+      setRatings({
+        shooting: '', dunking: '', defense: '', playmaking: '', rebounding: ''
+      });
+      const overallField = document.getElementById('user-overall');
+      if (overallField) overallField.value = '';
+
+      setModalMessage("Your rating was successfully removed.");
+      setShowModal(true);
+
+      await fetchAverageRating();
+    } catch (err) {
+      console.error("Error deleting rating:", err);
+      setModalMessage("There was a problem deleting your rating.");
+      setShowModal(true);
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRatings(prev => ({ ...prev, [name]: value }));
@@ -276,9 +303,14 @@ function PlayerProfile() {
               onChange={handleChange}
             />
           ))}
-          <div className="submit-rating">
-            <button type="button" onClick={handleSubmit}>Submit Your Ratings</button>
-          </div>
+        <div className="submit-rating">
+          <button type="button" onClick={handleSubmit}>Submit Your Ratings</button>
+          {Object.values(ratings).some(val => val !== '') && (
+            <button type="button" onClick={handleDelete} style={{ marginLeft: '1rem' }}>
+              Remove Rating
+            </button>
+          )}
+        </div>
         </form>
       </div>
 

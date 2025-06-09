@@ -12,6 +12,8 @@ const HomePage = () => {
   const [topRatedPlayers, setTopRatedPlayers] = useState([]);
   const navigate = useNavigate();
   const [trending, setTrending] = useState([]);
+  const getNormalizedPlayerId = (player) =>
+    `${player.Player.replace(/\s+/g, '-').toLowerCase()}-${player.Team.toLowerCase()}`;
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -165,6 +167,27 @@ const HomePage = () => {
           </section>
 
           <div className="player-lists">
+                        <section id="top-rated-players">
+              <h2>🏆 Top Rated Players</h2>
+              <p className="leaderboard-description">
+                Top rated players are ranked based on their highest overall fan rating across all categories.
+              </p>
+              <ol>
+                {topRatedPlayers.map((player, index) => (
+                  <Link to={`/playerprofile/${player.id}`} className="player-card-link" key={player.id}>
+                    <li key={player.name}>
+                      <img
+                        src={`/playerIMGs/${player.img}.jpg`}
+                        alt={player.name}
+                        className="player-img"
+                      />
+                      {` ${player.name} — ⭐ ${player.rating}`}
+                    </li>
+                  </Link>
+                ))}
+              </ol>
+            </section>
+
             <section id="trending-players">
               <h2>🔥 Trending Players</h2>
               <p className="leaderboard-description">
@@ -172,33 +195,16 @@ const HomePage = () => {
               </p>
               <ol>
                 {trending.map((player) => (
-                  <li key={player.id}>
-                    <img
-                      src={`/playerIMGs/${player.img || 'default'}.jpg`}
-                      alt={player.name}
-                      className="player-img"
-                    />
-                    <span>{player.name} — 🔥 {player.count} visits</span>
-                  </li>
-                ))}
-              </ol>
-            </section>
-
-            <section id="top-rated-players">
-              <h2>🏆 Top Rated Players</h2>
-              <p className="leaderboard-description">
-                Top rated players are ranked based on their highest overall fan rating across all categories.
-              </p>
-              <ol>
-                {topRatedPlayers.map((player, index) => (
-                  <li key={player.name}>
-                    <img
-                      src={`/playerIMGs/${player.img}.jpg`}
-                      alt={player.name}
-                      className="player-img"
-                    />
-                    {` ${player.name} — ⭐ ${player.rating}`}
-                  </li>
+                  <Link to={`/playerprofile/${player.id}`} className="player-card-link" key={player.id}>
+                    <li>
+                      <img
+                        src={`/playerIMGs/${player.img || 'default'}.jpg`}
+                        alt={player.name}
+                        className="player-img"
+                      />
+                      <span>{player.name} — 🔥 {player.count} visits</span>
+                    </li>
+                  </Link>
                 ))}
               </ol>
             </section>
