@@ -16,6 +16,7 @@ function PlayerProfile() {
   const [averageRating, setAverageRating] = useState(null);
   const navigate = useNavigate();
   const visitLogged = useRef(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const getNormalizedPlayerId = (player) =>
     `${player.Player.replace(/\s+/g, '-').toLowerCase()}-${player.Team.toLowerCase()}`;
@@ -288,15 +289,20 @@ function PlayerProfile() {
   if (!player) return <p style={{ color: 'white', textAlign: 'center' }}>Loading player data...</p>;
 
   return (
-    <>
-      <header>
+    <div className="min-h-screen bg-gray-100">
+      <header className="site-header">
         <div className="site-logo">
           <img src="/icons/Basketball-icon.jpg" alt="Site Icon" className="logo-img" />
           <h1>MyNBAList</h1>
+          <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+            ☰
+          </button>
         </div>
-        <nav>
+
+        {/* Full menu for desktop */}
+        <nav className="desktop-nav">
           <div className="nav-left">
-            <Link to="/home">Home</Link>
+            <Link to="/">Home</Link>
             <Link to="/browse">Browse Players</Link>
             <Link to="/5v5">My NBA 5v5</Link>
             <Link to="/profile">My Profile</Link>
@@ -317,6 +323,26 @@ function PlayerProfile() {
             )}
           </div>
         </nav>
+
+        {/* Collapsible menu for mobile */}
+        {menuOpen && (
+          <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`}>
+            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link to="/browse" onClick={() => setMenuOpen(false)}>Browse Players</Link>
+            <Link to="/5v5" onClick={() => setMenuOpen(false)}>My NBA 5v5</Link>
+            <Link to="/profile" onClick={() => setMenuOpen(false)}>My Profile</Link>
+            {currentUser ? (
+              <>
+                <button onClick={() => { setMenuOpen(false); handleLogout(); }}>Logout</button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+                <Link to="/register" onClick={() => setMenuOpen(false)}>Register</Link>
+              </>
+            )}
+          </nav>
+        )}
       </header>
 
       <div className="player-header">
@@ -439,7 +465,7 @@ function PlayerProfile() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
