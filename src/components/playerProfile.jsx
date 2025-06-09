@@ -300,14 +300,37 @@ function PlayerProfile() {
         </section>
 
         <section className="last-five-games">
-          <h2>Last 5 Games</h2>
-          <p style={{ color: '#ccc' }}>Game log not available in dataset.</p>
-        </section>
+  <h2 style={{ color: '#d0021b' }}>2025 Stats Summary</h2>
+  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '2rem', flexWrap: 'wrap' }}>
+    <div style={{ flex: 1 }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', color: '#111', fontSize: '16px' }}>
+        <tbody>
+          <tr><td><strong>Games Played</strong></td><td>{player.G}</td></tr>
+          <tr><td><strong>Minutes/Game</strong></td><td>{player.MP}</td></tr>
+          <tr><td><strong>FG</strong></td><td>{player.FG}/{player.FGA} ({player["FG%"]})</td></tr>
+          <tr><td><strong>3P</strong></td><td>{player["3P"]}/{player["3PA"]} ({player["3P%"]})</td></tr>
+          <tr><td><strong>2P</strong></td><td>{player["2P"]}/{player["2PA"]} ({player["2P%"]})</td></tr>
+          <tr><td><strong>FT</strong></td><td>{player.FT}/{player.FTA} ({player["FT%"]})</td></tr>
+          <tr><td><strong>eFG%</strong></td><td>{player["eFG%"]}</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style={{ flex: 1 }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', color: '#111', fontSize: '16px' }}>
+        <tbody>
+          <tr><td><strong>Rebounds</strong></td><td>ORB {player.ORB}, DRB {player.DRB}, TRB {player.TRB}</td></tr>
+          <tr><td><strong>AST</strong></td><td>{player.AST}</td></tr>
+          <tr><td><strong>STL</strong></td><td>{player.STL}</td></tr>
+          <tr><td><strong>BLK</strong></td><td>{player.BLK}</td></tr>
+          <tr><td><strong>TO</strong></td><td>{player.TOV}</td></tr>
+          <tr><td><strong>PF</strong></td><td>{player.PF}</td></tr>
+          <tr><td><strong>PTS/Game</strong></td><td>{player.PTS}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 
-        <section className="awards-section">
-          <h2>Awards and Honors</h2>
-          <p style={{ color: '#ccc' }}>Award data not included.</p>
-        </section>
       </main>
 
       <footer>
