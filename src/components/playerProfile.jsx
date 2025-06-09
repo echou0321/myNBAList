@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { auth, rtdb } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { ref, push, set, get, remove, update } from "firebase/database"; 
+import { ref , push, set, get, remove, update } from "firebase/database";
 
 function PlayerProfile() {
   const { id } = useParams();
@@ -198,6 +198,39 @@ function PlayerProfile() {
     }
   };
 
+  const handleAddToFavorites = async () => {
+    if (!currentUser) {
+      alert('Please log in to add players to your Top 10 list.');
+      return;
+    }
+
+    const favoritesRef = ref(rtdb, `users/${currentUser.uid}/favorites`);
+    const snapshot = await get(favoritesRef);
+    const currentFavorites = snapshot.exists() ? snapshot.val() : [];
+
+    const playerId = getNormalizedPlayerId(player);
+
+    // Prevent duplicates
+    if (currentFavorites.includes(playerId)) {
+      alert('This player is already in your Top 10 list!');
+      return;
+    }
+
+    if (currentFavorites.length >= 10) {
+      alert('Your Top 10 list is full! Remove a player before adding more.');
+      return;
+    }
+
+    const updatedFavorites = [...currentFavorites, playerId];
+    try {
+      await set(favoritesRef, updatedFavorites);
+      alert('Player added to your Top 10!');
+    } catch (err) {
+      console.error('Failed to update favorites:', err);
+      alert('Something went wrong. Please try again.');
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRatings(prev => ({ ...prev, [name]: value }));
@@ -304,6 +337,14 @@ function PlayerProfile() {
           <p className="rating-count-text">
             <em>{averageRating.count} rating{averageRating.count !== 1 ? 's' : ''} submitted</em>
           </p>
+        )}
+        {currentUser && (
+          <button
+            className="favorite-button"
+            onClick={handleAddToFavorites}
+          >
+            ⭐ Add to Favorite Players
+          </button>
         )}
       </div>
 
