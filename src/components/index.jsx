@@ -23,6 +23,54 @@ const HomePage = () => {
   }, []);
 
   useEffect(() => {
+    const fetchTopPlayers = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, 'ratings'));
+        const playerMap = {};
+
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          const playerId = data.playerId;
+
+          if (!playerMap[playerId]) {
+            playerMap[playerId] = {
+              total: 0,
+              count: 0,
+              playerId: playerId,
+              playerName: data.playerName,
+              imgFile: data.imgFile,
+            };
+          }
+
+          playerMap[playerId].total += data.overall;
+          playerMap[playerId].count += 1;
+        });
+
+        const players = Object.values(playerMap)
+          .map(player => {
+            const average = player.count > 0 ? (player.total / player.count).toFixed(1) : null;
+
+            return {
+              name: player.playerName || "Unknown",
+              img: player.imgFile || "default",
+              rating: average,
+              id: player.playerId,
+            };
+          })
+          .filter(p => p.rating !== null)
+          .sort((a, b) => b.rating - a.rating)
+          .slice(0, 10);
+
+        setTopRatedPlayers(players);
+      } catch (err) {
+        console.error('Error fetching top players:', err);
+      }
+    };
+
+    fetchTopPlayers();
+  }, []);
+  useEffect(() => {
+
     const fetchTrendingPlayers = async () => {
       console.log('📍 Fetching trending players...');
       try {
@@ -67,53 +115,6 @@ const HomePage = () => {
     };
 
     fetchTrendingPlayers();
-  }, []);
-
-  useEffect(() => {
-    const fetchTopPlayers = async () => {
-      try {
-        const snapshot = await getDocs(collection(db, 'ratings'));
-        const playerMap = {};
-
-        snapshot.forEach(doc => {
-          const data = doc.data();
-          const playerId = data.playerId;
-
-          if (!playerMap[playerId]) {
-            playerMap[playerId] = {
-              total: 0,
-              count: 0,
-              playerId: playerId,
-              playerName: data.playerName,
-              imgFile: data.imgFile,
-            };
-          }
-
-          playerMap[playerId].total += data.overall;
-          playerMap[playerId].count += 1;
-        });
-
-        const players = Object.values(playerMap)
-          .map(player => {
-            const average = player.count > 0 ? (player.total / player.count).toFixed(1) : null;
-
-            return {
-              name: player.playerName || "Unknown",
-              img: player.imgFile || "default",
-              rating: average,
-            };
-          })
-          .filter(p => p.rating !== null)
-          .sort((a, b) => b.rating - a.rating)
-          .slice(0, 10);
-
-        setTopRatedPlayers(players);
-      } catch (err) {
-        console.error('Error fetching top players:', err);
-      }
-    };
-
-    fetchTopPlayers();
   }, []);
 
   const handleLogout = async () => {
@@ -173,11 +174,11 @@ const HomePage = () => {
                 Top rated players are ranked based on their highest overall fan rating across all categories.
               </p>
               <ol>
-                {topRatedPlayers.map((player, index) => (
+                {topRatedPlayers.map((player) => (
                   <Link to={`/playerprofile/${player.id}`} className="player-card-link" key={player.id}>
                     <li key={player.name}>
                       <img
-                        src={`/playerIMGs/${player.img}.jpg`}
+                        src={`/playerIMGs/${player.img || 'default'}.jpg`}
                         alt={player.name}
                         className="player-img"
                       />
@@ -196,7 +197,7 @@ const HomePage = () => {
               <ol>
                 {trending.map((player) => (
                   <Link to={`/playerprofile/${player.id}`} className="player-card-link-trending" key={player.id}>
-                    <li>
+                    <li key={player.name}>
                       <img
                         src={`/playerIMGs/${player.img || 'default'}.jpg`}
                         alt={player.name}
