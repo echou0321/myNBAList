@@ -1,32 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { collection, doc, setDoc, getDoc, getDocs, query, where } from 'firebase/firestore';
-import { db } from '../firebase';
+import {
+  collection, doc, setDoc, getDoc, getDocs, query, where, Timestamp, addDoc
+} from 'firebase/firestore';
 
 function PlayerProfile() {
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
   const [ratings, setRatings] = useState({
-    shooting: '',
-    dunking: '',
-    defense: '',
-    playmaking: '',
-    rebounding: ''
+    shooting: '', dunking: '', defense: '', playmaking: '', rebounding: ''
   });
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
   const [averageRating, setAverageRating] = useState(null);
   const navigate = useNavigate();
-  const getNormalizedPlayerId = (player) => 
-  `${player.Player.replace(/\s+/g, '-').toLowerCase()}-${player.Team.toLowerCase()}`;
+  const visitLogged = useRef(false);
+
+  const getNormalizedPlayerId = (player) =>
+    `${player.Player.replace(/\s+/g, '-').toLowerCase()}-${player.Team.toLowerCase()}`;
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-    });
+    const unsubscribe = onAuthStateChanged(auth, (user) => setCurrentUser(user));
     return () => unsubscribe();
   }, []);
 
@@ -42,59 +39,80 @@ function PlayerProfile() {
       .catch(err => console.error("Failed to load player data", err));
   }, [id]);
 
-  const fetchUserRating = async () => {
-    if (player && currentUser) {
-      const playerId = getNormalizedPlayerId(player);
-      const docId = `${playerId}_${currentUser.uid}`;
-      const ratingRef = doc(db, 'ratings', docId);
-      const snapshot = await getDoc(ratingRef);
+  useEffect(() => {
+    if (!player) return;
 
-      if (snapshot.exists()) {
-        const data = snapshot.data();
-        setRatings({
-          shooting: data.shooting || '',
-          dunking: data.dunking || '',
-          defense: data.defense || '',
-          playmaking: data.playmaking || '',
-          rebounding: data.rebounding || '',
+    const playerId = getNormalizedPlayerId(player);
+    const sessionKey = `visited-${playerId}`;
+
+    if (sessionStorage.getItem(sessionKey) || visitLogged.current) return;
+
+    visitLogged.current = true; // prevent race condition
+
+    const logVisit = async () => {
+      try {
+        const parentDocRef = doc(db, 'profileViews', playerId);
+        await setDoc(parentDocRef, { updatedAt: Timestamp.now() }, { merge: true });
+
+        const visitsRef = collection(parentDocRef, 'visits');
+        await addDoc(visitsRef, {
+          visitedAt: Timestamp.now(),
+          playerName: player.Player,
+          imgFile: player.Player.replace(/\s+/g, '-'),
+          userId: currentUser?.uid || 'anonymous',
         });
 
-        const avg = (
-          (parseFloat(data.shooting) +
-            parseFloat(data.dunking) +
-            parseFloat(data.defense) +
-            parseFloat(data.playmaking) +
-            parseFloat(data.rebounding)) / 5
-        ).toFixed(1);
-
-        const overallField = document.getElementById('user-overall');
-        if (overallField) overallField.value = avg;
+        sessionStorage.setItem(sessionKey, 'true');
+        console.log(`✅ Visit logged for ${player.Player}`);
+      } catch (err) {
+        console.error('Error logging visit:', err);
       }
+    };
+
+    logVisit();
+  }, [player]);
+
+  const fetchUserRating = async () => {
+    if (!player || !currentUser) return;
+    const playerId = getNormalizedPlayerId(player);
+    const docId = `${playerId}_${currentUser.uid}`;
+    const ratingRef = doc(db, 'ratings', docId);
+    const snapshot = await getDoc(ratingRef);
+
+    if (snapshot.exists()) {
+      const data = snapshot.data();
+      setRatings({
+        shooting: data.shooting || '',
+        dunking: data.dunking || '',
+        defense: data.defense || '',
+        playmaking: data.playmaking || '',
+        rebounding: data.rebounding || '',
+      });
+
+      const avg = (
+        (parseFloat(data.shooting) +
+         parseFloat(data.dunking) +
+         parseFloat(data.defense) +
+         parseFloat(data.playmaking) +
+         parseFloat(data.rebounding)) / 5
+      ).toFixed(1);
+
+      const overallField = document.getElementById('user-overall');
+      if (overallField) overallField.value = avg;
     }
   };
 
-  useEffect(() => {
-    fetchUserRating();
-  }, [player, currentUser, id]);
+  useEffect(() => { fetchUserRating(); }, [player, currentUser, id]);
 
   const fetchAverageRating = async () => {
-    if (!id || !player) return;
+    if (!player) return;
     const playerId = getNormalizedPlayerId(player);
     const q = query(collection(db, 'ratings'), where('playerId', '==', playerId));
     const snapshot = await getDocs(q);
-
-    const playerRatings = [];
-    snapshot.forEach(doc => playerRatings.push(doc.data()));
+    const playerRatings = snapshot.docs.map(doc => doc.data());
 
     if (playerRatings.length > 0) {
-      const sum = {
-        shooting: 0,
-        dunking: 0,
-        defense: 0,
-        playmaking: 0,
-        rebounding: 0,
-      };
-
+      const sum = { shooting: 0, dunking: 0, defense: 0, playmaking: 0, rebounding: 0 };
       playerRatings.forEach(r => {
         sum.shooting += r.shooting;
         sum.dunking += r.dunking;
@@ -115,20 +133,13 @@ function PlayerProfile() {
         ).toFixed(1),
       };
 
-      setAverageRating({
-        ...avg,
-        count: playerRatings.length
-      });
+      setAverageRating({ ...avg, count });
     } else {
       setAverageRating(null);
     }
   };
 
-  useEffect(() => {
-    if (player) {
-      fetchAverageRating();
-    }
-  }, [player, id]);
+  useEffect(() => { if (player) fetchAverageRating(); }, [player, id]);
 
   const handleLogout = async () => {
     try {
@@ -151,50 +162,39 @@ function PlayerProfile() {
       return;
     }
 
-    const { shooting, dunking, defense, playmaking, rebounding } = ratings;
-    const numericRatings = [shooting, dunking, defense, playmaking, rebounding].map(parseFloat);
-
+    const numericRatings = Object.values(ratings).map(parseFloat);
     if (numericRatings.some(val => isNaN(val))) {
       setModalMessage("Please fill out all rating fields before submitting.");
       setShowModal(true);
       return;
     }
-
     if (numericRatings.some(val => val < 1 || val > 10)) {
       setModalMessage("Ratings must be between 1 and 10.");
       setShowModal(true);
       return;
     }
 
-    const userId = currentUser.uid;
     const playerId = getNormalizedPlayerId(player);
-    const docId = `${playerId}_${userId}`;
+    const docId = `${playerId}_${currentUser.uid}`;
     const ratingRef = doc(db, 'ratings', docId);
-    const overall = (
-      (parseFloat(shooting) + parseFloat(dunking) + parseFloat(defense) +
-        parseFloat(playmaking) + parseFloat(rebounding)) / 5
-    ).toFixed(1);
-
+    const overall = (numericRatings.reduce((a, b) => a + b, 0) / 5).toFixed(1);
     document.getElementById('user-overall').value = overall;
 
     try {
       await setDoc(ratingRef, {
         playerId,
-        userId,
-        playerName: player.Player, // full name with casing
-        imgFile: player.Player.replace(/\s+/g, '-'), // exact filename used in playerIMGs/
-        shooting: parseFloat(shooting),
-        dunking: parseFloat(dunking),
-        defense: parseFloat(defense),
-        playmaking: parseFloat(playmaking),
-        rebounding: parseFloat(rebounding),
+        userId: currentUser.uid,
+        playerName: player.Player,
+        imgFile: player.Player.replace(/\s+/g, '-'),
+        ...Object.fromEntries(['shooting', 'dunking', 'defense', 'playmaking', 'rebounding']
+          .map((attr, i) => [attr, numericRatings[i]])),
         overall: parseFloat(overall),
         submittedAt: new Date(),
+        lastUpdatedAt: new Date(),
       });
 
       await fetchUserRating();
       await fetchAverageRating();
-
       setModalMessage("Your rating was submitted successfully!");
       setShowModal(true);
     } catch (err) {
@@ -204,9 +204,7 @@ function PlayerProfile() {
     }
   };
 
-  if (!player) {
-    return <p style={{ color: 'white', textAlign: 'center' }}>Loading player data...</p>;
-  }
+  if (!player) return <p style={{ color: 'white', textAlign: 'center' }}>Loading player data...</p>;
 
   return (
     <>

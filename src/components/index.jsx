@@ -2,19 +2,69 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import { Timestamp } from 'firebase/firestore';
+
 
 const HomePage = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [topRatedPlayers, setTopRatedPlayers] = useState([]);
   const navigate = useNavigate();
+  const [trending, setTrending] = useState([]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
     });
     return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const fetchTrendingPlayers = async () => {
+      console.log('📍 Fetching trending players...');
+      try {
+        const sevenDaysAgo = Timestamp.fromDate(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000));
+        console.log('🕒 Seven days ago:', sevenDaysAgo.toDate());
+
+        const profileViewsSnapshot = await getDocs(collection(db, 'profileViews'));
+        const trendingData = [];
+
+        console.log('👤 Found player IDs:', profileViewsSnapshot.docs.map(d => d.id));
+
+        for (const docSnap of profileViewsSnapshot.docs) {
+          const playerId = docSnap.id;
+
+          const visitsQuery = query(
+            collection(db, 'profileViews', playerId, 'visits'),
+            where('visitedAt', '>=', sevenDaysAgo)
+          );
+          const visitsSnapshot = await getDocs(visitsQuery);
+
+          console.log(`🔍 Player: ${playerId}, visit count: ${visitsSnapshot.size}`);
+
+          if (visitsSnapshot.size > 0) {
+            const sampleDoc = visitsSnapshot.docs[0].data();
+            console.log('🧾 Sample doc:', sampleDoc);
+
+            trendingData.push({
+              id: playerId,
+              name: sampleDoc.playerName,
+              img: sampleDoc.imgFile,
+              count: visitsSnapshot.size,
+            });
+          }
+        }
+
+        trendingData.sort((a, b) => b.count - a.count);
+        console.log('🎯 Final trending data:', trendingData);
+        setTrending(trendingData.slice(0, 10));
+      } catch (err) {
+        console.error('❌ Failed to fetch trending players:', err);
+      }
+    };
+
+    fetchTrendingPlayers();
   }, []);
 
   useEffect(() => {
@@ -118,9 +168,20 @@ const HomePage = () => {
             <section id="trending-players">
               <h2>🔥 Trending Players</h2>
               <p className="leaderboard-description">
-                Trending players are ranked based on the number of votes received or changes in fan ratings this month.
+                Trending players are ranked by how many times their profile was viewed in the past week (7 days), including visits from both logged-in and guest users.
               </p>
-              {/* Left untouched for now */}
+              <ol>
+                {trending.map((player) => (
+                  <li key={player.id}>
+                    <img
+                      src={`/playerIMGs/${player.img || 'default'}.jpg`}
+                      alt={player.name}
+                      className="player-img"
+                    />
+                    <span>{player.name} — 🔥 {player.count} visits</span>
+                  </li>
+                ))}
+              </ol>
             </section>
 
             <section id="top-rated-players">
