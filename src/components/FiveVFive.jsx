@@ -3,6 +3,29 @@ import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
+// Error Boundary Component
+class ErrorBoundary extends React.Component {
+  state = { hasError: false, error: null };
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      console.error('Error in FiveVFive:', this.state.error);
+      return (
+        <div style={{ textAlign: 'center', padding: '20px', color: 'red' }}>
+          <h2>Something went wrong.</h2>
+          <p>{this.state.error?.message || 'Unknown error'}</p>
+          <p>Please check the console for details and try refreshing.</p>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 // Helper function to normalize player ID
 const getNormalizedPlayerId = (player) =>
   `${player.Player.replace(/\s+/g, '-').toLowerCase()}-${player.Team}`; // Keep team code as is (e.g., 'LAL')
@@ -10,7 +33,12 @@ const getNormalizedPlayerId = (player) =>
 // Helper function to generate image paths with proper capitalization
 const getImagePath = (name) => {
   if (!name || name === 'Unknown') return '/playerIMGs/default.jpg';
-  const cleanName = name.replace(/\s+/g, '-'); // Preserve case, just replace spaces with hyphens
+  const cleanName = name
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/[ćč]/g, 'c') // Normalize ć, č to c
+    .replace(/[đ]/g, 'd')  // Normalize đ to d
+    .replace(/[š]/g, 's')  // Normalize š to s
+    .replace(/[ž]/g, 'z'); // Normalize ž to z
   const path = `/playerIMGs/${cleanName}.jpg`;
   console.log(`Generated image path for ${name}: ${path}`);
   return path;
