@@ -1267,7 +1267,7 @@ footer {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
-.player-card-link .player-img {
+.player-card-link-trending .player-img {
   width: 50px;
   height: 50px;
   object-fit: cover;

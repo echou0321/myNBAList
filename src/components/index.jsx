@@ -195,7 +195,7 @@ const HomePage = () => {
               </p>
               <ol>
                 {trending.map((player) => (
-                  <Link to={`/playerprofile/${player.id}`} className="player-card-link" key={player.id}>
+                  <Link to={`/playerprofile/${player.id}`} className="player-card-link-trending" key={player.id}>
                     <li>
                       <img
                         src={`/playerIMGs/${player.img || 'default'}.jpg`}
