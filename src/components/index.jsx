@@ -10,6 +10,7 @@ const HomePage = () => {
   const [topRatedPlayers, setTopRatedPlayers] = useState([]);
   const [trending, setTrending] = useState([]);
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => setCurrentUser(user));
@@ -129,12 +130,17 @@ const HomePage = () => {
 
   return (
     <>
-      <header>
+      <header className="site-header">
         <div className="site-logo">
           <img src="/icons/Basketball-icon.jpg" alt="Site Icon" className="logo-img" />
           <h1>MyNBAList</h1>
+          <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+            ☰
+          </button>
         </div>
-        <nav>
+
+        {/* Full menu for desktop */}
+        <nav className="desktop-nav">
           <div className="nav-left">
             <Link to="/">Home</Link>
             <Link to="/browse">Browse Players</Link>
@@ -157,6 +163,26 @@ const HomePage = () => {
             )}
           </div>
         </nav>
+
+        {/* Collapsible menu for mobile */}
+        {menuOpen && (
+          <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`}>
+            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link to="/browse" onClick={() => setMenuOpen(false)}>Browse Players</Link>
+            <Link to="/5v5" onClick={() => setMenuOpen(false)}>My NBA 5v5</Link>
+            <Link to="/profile" onClick={() => setMenuOpen(false)}>My Profile</Link>
+            {currentUser ? (
+              <>
+                <button onClick={() => { setMenuOpen(false); handleLogout(); }}>Logout</button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+                <Link to="/register" onClick={() => setMenuOpen(false)}>Register</Link>
+              </>
+            )}
+          </nav>
+        )}
       </header>
 
       <main>
