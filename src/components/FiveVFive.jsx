@@ -7,13 +7,13 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 const getNormalizedPlayerId = (player) =>
   `${player.Player.replace(/\s+/g, '-').toLowerCase()}-${player.Team.toLowerCase()}`;
 
-// Helper function to generate image paths
+// Helper function to generate image paths with proper capitalization
 const getImagePath = (name) => {
   if (!name || name === 'Unknown') return '/playerIMGs/default.jpg';
   const nameParts = name.trim().split(/\s+/);
   if (nameParts.length < 2) return `/playerIMGs/${name}.jpg`;
-  const firstName = nameParts[0];
-  const lastName = nameParts.slice(1).join('-');
+  const firstName = nameParts[0].charAt(0).toLowerCase() + nameParts[0].slice(1).toLowerCase();
+  const lastName = nameParts.slice(1).join('-').toLowerCase();
   const cleanName = `${firstName}-${lastName}`;
   const path = `/playerIMGs/${cleanName}.jpg`;
   console.log(`Generated image path for ${name}: ${path}`);
