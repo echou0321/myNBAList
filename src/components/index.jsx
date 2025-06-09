@@ -129,7 +129,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <>
+    <div className="min-h-screen bg-gray-100">
       <header className="site-header">
         <div className="site-logo">
           <img src="/icons/Basketball-icon.jpg" alt="Site Icon" className="logo-img" />
@@ -248,7 +248,7 @@ const HomePage = () => {
       <footer>
         <p>&copy; 2025 MyNBAList</p>
       </footer>
-    </>
+    </div>
   );
 };
 
