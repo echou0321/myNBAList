@@ -348,29 +348,6 @@ function UserProfile() {
             )}
           </div>
         </section>
-
-        <section id="cta" className="text-center">
-          <h2 className="text-2xl font-bold mb-2">Share Your List</h2>
-          <p className="mb-2">
-            Let other basketball fans see your top picks and spark a conversation about who deserves to be
-            on the list!
-          </p>
-          <p>
-            <a href="https://twitter.com/intent/tweet" className="text-blue-500 hover:underline">
-              Share on Twitter
-            </a>{' '}
-            or{' '}
-            <button
-              className="text-blue-500 hover:underline"
-              onClick={() => {
-                navigator.clipboard.writeText(window.location.href);
-                alert('Link copied to clipboard!');
-              }}
-            >
-              Copy Link
-            </button>
-          </p>
-        </section>
       </main>
 
       <footer className="text-center p-4 bg-gray-800 text-white">
