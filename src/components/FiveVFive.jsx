@@ -1,145 +1,89 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../firebase';
+import { auth, rtdb } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { ref, get } from "firebase/database";
+
+// Error Boundary Component
+class ErrorBoundary extends React.Component {
+  state = { hasError: false, error: null };
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      console.error('Error in FiveVFive:', this.state.error);
+      return (
+        <div style={{ textAlign: 'center', padding: '20px', color: 'red' }}>
+          <h2>Something went wrong.</h2>
+          <p>{this.state.error?.message || 'Unknown error'}</p>
+          <p>Please check the console for details and try refreshing.</p>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+// Helper function to normalize player ID
+const getNormalizedPlayerId = (player) =>
+  `${player.Player.replace(/\s+/g, '-').toLowerCase()}-${player.Team.toLowerCase()}`;
+
+// Helper function to format player name for image filename
+const formatPlayerNameForImage = (playerName) => {
+  return playerName.replace(/\s+/g, '-');
+};
+
+// Helper function to show team strength preview
+const getTeamStrengthPreview = (teamPlayers) => {
+  const selectedCount = Object.values(teamPlayers.players).filter(p => p).length;
+  if (selectedCount === 0) return 'No players selected';
+  if (selectedCount < 5) return `${selectedCount}/5 players selected`;
+  return 'Team complete - ready for simulation';
+};
 
 // TeamSelector Component
-function TeamSelector({ teamNumber, setPlayers, selectedPlayers }) {
+function TeamSelector({ teamNumber, setPlayers, selectedPlayers, allPlayers, otherTeamPlayers }) {
+  const [teamName, setTeamName] = useState(selectedPlayers.teamName || '');
+
   const playersByPosition = {
-    pg: teamNumber === 1
-      ? [
-          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
-          { value: 'stephen-curry', label: 'Stephen Curry', img: '/playerIMGs/Stephen-Curry.jpg' },
-          { value: 'luka-doncic', label: 'Luka Dončić', img: 'public/playerIMGs/Luka-Dončić.jpg' },
-          { value: 'shai-gilgeous-alexander', label: 'Shai Gilgeous-Alexander', img: '/playerIMGs/Shai-Gilgeous-Alexander.jpg' },
-          { value: 'damian-lillard', label: 'Damian Lillard', img: '/playerIMGs/Damian-Lillard.jpg' },
-          { value: 'tyrese-haliburton', label: 'Tyrese Haliburton', img: '/playerIMGs/Tyrese-Haliburton.jpg' },
-          { value: 'jalen-brunson', label: 'Jalen Brunson', img: '/playerIMGs/Jalen-Brunson.jpg' },
-          { value: 'trae-young', label: 'Trae Young', img: 'public/playerIMGs/Trae-Young.jpg' },
-          { value: 'deaaron-fox', label: 'De’Aaron Fox', img: "public/playerIMGs/De'Aaron-Fox.jpg" },
-        ]
-      : [
-          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
-          { value: 'ja-morant', label: 'Ja Morant', img: '/playerIMGs/Ja-Morant.jpg' },
-          { value: 'kyrie-irving', label: 'Kyrie Irving', img: '/playerIMGs/Kyrie-Irving.jpg' },
-          { value: 'darius-garland', label: 'Darius Garland', img: '/playerIMGs/Darius-Garland.jpg' },
-          { value: 'lamelo-ball', label: 'LaMelo Ball', img: '/playerIMGs/Lamelo-Ball.jpg' },
-          { value: 'cade-cunningham', label: 'Cade Cunningham', img: '/playerIMGs/Cade-Cunningham.jpg' },
-          { value: 'tyrese-maxey', label: 'Tyrese Maxey', img: '/playerIMGs/Tyrese-Maxey.jpg' },
-          { value: 'jamal-murray', label: 'Jamal Murray', img: '/playerIMGs/Jamal-Murray.jpg' },
-          { value: 'donovan-mitchell', label: 'Donovan Mitchell', img: '/playerIMGs/Donovan-Mitchell.jpg' },
-        ],
-    sg: teamNumber === 1
-      ? [
-          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
-          { value: 'devin-booker', label: 'Devin Booker', img: '/playerIMGs/Devin-Booker.jpg' },
-          { value: 'anthony-edwards', label: 'Anthony Edwards', img: '/playerIMGs/Anthony-Edwards.jpg' },
-          { value: 'jaylen-brown', label: 'Jaylen Brown', img: '/playerIMGs/Jaylen-Brown.jpg' },
-          { value: 'bradley-beal', label: 'Bradley Beal', img: '/playerIMGs/Bradley-Beal.jpg' },
-          { value: 'zach-lavine', label: 'Zach LaVine', img: 'public/playerIMGs/Zach-Lavine.jpg' },
-          { value: 'demar-derozan', label: 'DeMar DeRozan', img: '/playerIMGs/DeMar-DeRozan.jpg' },
-          { value: 'desmond-bane', label: 'Desmond Bane', img: '/playerIMGs/Desmond-Bane.jpg' },
-          { value: 'jalen-green', label: 'Jalen Green', img: '/playerIMGs/Jalen-Green.jpg' },
-        ]
-      : [
-          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
-          { value: 'donovan-mitchell', label: 'Donovan Mitchell', img: '/playerIMGs/Donovan-Mitchell.jpg' },
-          { value: 'mikal-bridges', label: 'Mikal Bridges', img: '/playerIMGs/Mikal-Bridges.jpg' },
-          { value: 'jalen-williams', label: 'Jalen Williams', img: '/playerIMGs/Jalen-Williams.jpg' },
-          { value: 'tyler-herro', label: 'Tyler Herro', img: '/playerIMGs/Tyler-Herro.jpg' },
-          { value: 'austin-reaves', label: 'Austin Reaves', img: '/playerIMGs/Austin-Reaves.jpg' },
-          { value: 'anfernee-simons', label: 'Anfernee Simons', img: '/playerIMGs/Anfernee-Simons.jpg' },
-          { value: 'cj-mccollum', label: 'C.J. McCollum', img: '/playerIMGs/CJ-McCollum.jpg' },
-          { value: 'devin-vassell', label: 'Devin Vassell', img: '/playerIMGs/Devin-Vassell.jpg' },
-        ],
-    sf: teamNumber === 1
-      ? [
-          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
-          { value: 'lebron-james', label: 'LeBron James', img: '/playerIMGs/LeBron-James.jpg' },
-          { value: 'kevin-durant', label: 'Kevin Durant', img: '/playerIMGs/Kevin-Durant.jpg' },
-          { value: 'jayson-tatum', label: 'Jayson Tatum', img: '/playerIMGs/Jayson-Tatum.jpg' },
-          { value: 'jimmy-butler', label: 'Jimmy Butler', img: '/playerIMGs/Jimmy-Butler.jpg' },
-          { value: 'paul-george', label: 'Paul George', img: '/playerIMGs/Paul-George.jpg' },
-          { value: 'brandon-ingram', label: 'Brandon Ingram', img: '/playerIMGs/Brandon-Ingram.jpg' },
-          { value: 'scottie-barnes', label: 'Scottie Barnes', img: '/playerIMGs/Scottie-Barnes.jpg' },
-          { value: 'franz-wagner', label: 'Franz Wagner', img: '/playerIMGs/Franz-Wagner.jpg' },
-        ]
-      : [
-          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
-          { value: 'kawhi-leonard', label: 'Kawhi Leonard', img: '/playerIMGs/Kawhi-Leonard.jpg' },
-          { value: 'khris-middleton', label: 'Khris Middleton', img: '/playerIMGs/Khris-Middleton.jpg' },
-          { value: 'mikal-bridges', label: 'Mikal Bridges', img: '/playerIMGs/Mikal-Bridges.jpg' },
-          { value: 'klay-thompson', label: 'Klay Thompson', img: '/playerIMGs/Klay-Thompson.jpg' },
-          { value: 'og-anunoby', label: 'OG Anunoby', img: '/playerIMGs/OG-Anunoby.jpg' },
-          { value: 'deandre-hunter', label: 'De’Andre Hunter', img: "public/playerIMGs/De'Andre-Hunter.jpg" },
-          { value: 'kyle-kuzma', label: 'Kyle Kuzma', img: '/playerIMGs/Kyle-Kuzma.jpg' },
-          { value: 'jaden-mcdaniels', label: 'Jaden McDaniels', img: 'public/playerIMGs/Jaden-Mcdaniels.jpg' },
-        ],
-    pf: teamNumber === 1
-      ? [
-          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
-          { value: 'giannis-antetokounmpo', label: 'Giannis Antetokounmpo', img: '/playerIMGs/Giannis-Antetokounmpo.jpg' },
-          { value: 'anthony-davis', label: 'Anthony Davis', img: '/playerIMGs/Anthony-Davis.jpg' },
-          { value: 'zion-williamson', label: 'Zion Williamson', img: '/playerIMGs/Zion-Williamson.jpg' },
-          { value: 'pascal-siakam', label: 'Pascal Siakam', img: '/playerIMGs/Pascal-Siakam.jpg' },
-          { value: 'evan-mobley', label: 'Evan Mobley', img: '/playerIMGs/Evan-Mobley.jpg' },
-          { value: 'karl-anthony-towns', label: 'Karl-Anthony Towns', img: '/playerIMGs/Karl-Anthony-Towns.jpg' },
-          { value: 'lauri-markkanen', label: 'Lauri Markkanen', img: '/playerIMGs/Lauri-Markkanen.jpg' },
-          { value: 'paolo-banchero', label: 'Paolo Banchero', img: '/playerIMGs/Paolo-Banchero.jpg' },
-        ]
-      : [
-          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
-          { value: 'draymond-green', label: 'Draymond Green', img: 'public/playerIMGs/Draymond-Green.jpg'},
-          { value: 'karl-anthony-towns', label: 'Karl-Anthony Towns', img: '/playerIMGs/Karl-Anthony-Towns.jpg' },
-          { value: 'domantas-sabonis', label: 'Domantas Sabonis', img: '/playerIMGs/Domantas-Sabonis.jpg' },
-          { value: 'julius-randle', label: 'Julius Randle', img: '/playerIMGs/Julius-Randle.jpg' },
-          { value: 'john-collins', label: 'John Collins', img: '/playerIMGs/John-Collins.jpg' },
-          { value: 'aaron-gordon', label: 'Aaron Gordon', img: '/playerIMGs/Aaron-Gordon.jpg' },
-          { value: 'jaren-jackson-jr', label: 'Jaren Jackson Jr.', img: 'public/playerIMGs/Jaren-Jackson-Jr..jpg' },
-          { value: 'chet-holmgren', label: 'Chet Holmgren', img: '/playerIMGs/Chet-Holmgren.jpg' },
-        ],
-    c: teamNumber === 1
-      ? [
-          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
-          { value: 'nikola-jokic', label: 'Nikola Jokić', img: 'public/playerIMGs/Nikola-Jokić.jpg' },
-          { value: 'joel-embiid', label: 'Joel Embiid', img: '/playerIMGs/Joel-Embiid.jpg' },
-          { value: 'bam-adebayo', label: 'Bam Adebayo', img: '/playerIMGs/Bam-Adebayo.jpg' },
-          { value: 'victor-wembanyama', label: 'Victor Wembanyama', img: '/playerIMGs/Victor-Wembanyama.jpg' },
-          { value: 'rudy-gobert', label: 'Rudy Gobert', img: '/playerIMGs/Rudy-Gobert.jpg' },
-          { value: 'al-horford', label: 'Al Horford', img: '/playerIMGs/Al-Horford.jpg' },
-          { value: 'myles-turner', label: 'Myles Turner', img: '/playerIMGs/Myles-Turner.jpg' },
-          { value: 'walker-kessler', label: 'Walker Kessler', img: '/playerIMGs/Walker-Kessler.jpg' },
-        ]
-      : [
-          { value: '', label: 'Select a Player', img: '/playerIMGs/placeholder.jpg' },
-          { value: 'domantas-sabonis', label: 'Domantas Sabonis', img: '/playerIMGs/Domantas-Sabonis.jpg' },
-          { value: 'jarrett-allen', label: 'Jarrett Allen', img: '/playerIMGs/Jarrett-Allen.jpg' },
-          { value: 'deandre-ayton', label: 'Deandre Ayton', img: '/playerIMGs/Deandre-Ayton.jpg' },
-          { value: 'brook-lopez', label: 'Brook Lopez', img: '/playerIMGs/Brook-Lopez.jpg' },
-          { value: 'clint-capela', label: 'Clint Capela', img: '/playerIMGs/Clint-Capela.jpg' },
-          { value: 'nikola-vucevic', label: 'Nikola Vučević', img: 'public/playerIMGs/Nikola-Vučević.jpg' },
-          { value: 'zach-edey', label: 'Zach Edey', img: '/playerIMGs/Zach-Edey.jpg' },
-          { value: 'daniel-gafford', label: 'Daniel Gafford', img: '/playerIMGs/Daniel-Gafford.jpg' },
-        ],
+    pg: allPlayers.filter(p => p.position === 'PG'),
+    sg: allPlayers.filter(p => p.position === 'SG'),
+    sf: allPlayers.filter(p => p.position === 'SF'),
+    pf: allPlayers.filter(p => p.position === 'PF'),
+    c: allPlayers.filter(p => p.position === 'C'),
   };
 
+  const otherTeamPlayerIds = Object.values(otherTeamPlayers.players)
+    .filter(p => p)
+    .map(p => p.id);
+
   const handlePlayerChange = (position, value) => {
-    const selected = playersByPosition[position].find(p => p.value === value);
-    console.log(`Selected player for ${position}:`, selected); // Debug log
+    const selected = allPlayers.find(p => p.id === value);
+    console.log(`Selected player for ${position}:`, selected);
     setPlayers(prev => ({
       ...prev,
       [position]: value,
       players: {
         ...prev.players,
         [position]: selected && value
-          ? { name: selected.label, position: position.toUpperCase(), img: selected.img }
+          ? { 
+              id: selected.id, 
+              name: selected.name, 
+              position: position.toUpperCase(), 
+              img: selected.img 
+            }
           : null,
-      }
+      },
     }));
   };
 
-  const handleTeamNameChange = e => {
-    setPlayers(prev => ({ ...prev, teamName: e.target.value }));
+  const handleTeamNameChange = (e) => {
+    const newName = e.target.value;
+    setTeamName(newName);
+    setPlayers(prev => ({ ...prev, teamName: newName }));
   };
 
   return (
@@ -157,9 +101,14 @@ function TeamSelector({ teamNumber, setPlayers, selectedPlayers }) {
               value={selectedPlayers[position] || ''}
               onChange={e => handlePlayerChange(position, e.target.value)}
             >
+              <option value="">Select a Player</option>
               {playersByPosition[position].map(player => (
-                <option key={player.value} value={player.value}>
-                  {player.label}
+                <option
+                  key={player.id}
+                  value={player.id}
+                  disabled={otherTeamPlayerIds.includes(player.id)}
+                >
+                  {player.name}
                 </option>
               ))}
             </select>
@@ -172,9 +121,12 @@ function TeamSelector({ teamNumber, setPlayers, selectedPlayers }) {
             id={`team${teamNumber}-name`}
             placeholder={`Team ${teamNumber}`}
             className="border p-2 rounded"
-            value={selectedPlayers.teamName || ''}
+            value={teamName}
             onChange={handleTeamNameChange}
           />
+        </div>
+        <div className="team-status text-sm text-gray-600 mt-2">
+          {getTeamStrengthPreview(selectedPlayers)}
         </div>
       </div>
     </div>
@@ -183,43 +135,48 @@ function TeamSelector({ teamNumber, setPlayers, selectedPlayers }) {
 
 // CourtVisualization Component
 function CourtVisualization({ team1Players, team2Players }) {
-  const defaultTeam1Players = {
-    pg: { name: 'Player 1', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    sg: { name: 'Player 2', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    sf: { name: 'Player 3', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    pf: { name: 'Player 4', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    c: { name: 'Player 5', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-  };
-
-  const defaultTeam2Players = {
-    pg: { name: 'Player 1', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    sg: { name: 'Player 2', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    sf: { name: 'Player 3', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    pf: { name: 'Player 4', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    c: { name: 'Player 5', position: 'PG', img: 'public/icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+  const defaultTeamPlayers = {
+    pg: { name: 'Player 1', position: 'PG', img: 'default' },
+    sg: { name: 'Player 2', position: 'SG', img: 'default' },
+    sf: { name: 'Player 3', position: 'SF', img: 'default' },
+    pf: { name: 'Player 4', position: 'PF', img: 'default' },
+    c: { name: 'Player 5', position: 'C', img: 'default' },
   };
 
   const getTeamPlayers = (teamPlayers, defaults) => {
     const result = {};
     ['pg', 'sg', 'sf', 'pf', 'c'].forEach(pos => {
       result[pos] = teamPlayers.players?.[pos] || defaults[pos];
-      // Ensure img is never undefined
-      if (!result[pos].img) {
-        result[pos].img = '/playerIMGs/placeholder.jpg';
-      }
     });
     return result;
   };
 
-  const team1ToShow = getTeamPlayers(team1Players, defaultTeam1Players);
-  const team2ToShow = getTeamPlayers(team2Players, defaultTeam2Players);
-  
+  const team1ToShow = getTeamPlayers(team1Players, defaultTeamPlayers);
+  const team2ToShow = getTeamPlayers(team2Players, defaultTeamPlayers);
+
+  const handleImageError = (e) => {
+    console.warn(`Image failed to load: ${e.target.src}, falling back to default`);
+    e.target.src = '/icons/ChatGPT%20Image%20Jun%208,%202025%20at%2004_34_48%20AM.png';
+  };
+
+  const getImageSrc = (player) => {
+    if (player.img === 'default') {
+      return '/icons/ChatGPT%20Image%20Jun%208,%202025%20at%2004_34_48%20AM.png';
+    }
+    return `/playerIMGs/${player.img}.jpg`;
+  };
+
   const team1PlayerElements = ['pg', 'sg', 'sf', 'pf', 'c'].map(pos => {
     const player = team1ToShow[pos];
     return (
       <div className={`player-position ${pos}`} key={pos}>
         <div className="player-marker" data-tooltip={`${player.name}: ${player.position}`}>
-          <img src={player.img} alt={player.position} className="player-img" />
+          <img
+            src={getImageSrc(player)}
+            alt={player.position}
+            className="player-img"
+            onError={handleImageError}
+          />
           <div className="player-info">
             <span className="player-name">{player.name}</span>
             <span className="player-position-label">{player.position}</span>
@@ -234,7 +191,12 @@ function CourtVisualization({ team1Players, team2Players }) {
     return (
       <div className={`player-position ${pos}`} key={pos}>
         <div className="player-marker" data-tooltip={`${player.name}: ${player.position}`}>
-          <img src={player.img} alt={player.position} className="player-img" />
+          <img
+            src={getImageSrc(player)}
+            alt={player.position}
+            className="player-img"
+            onError={handleImageError}
+          />
           <div className="player-info">
             <span className="player-name">{player.name}</span>
             <span className="player-position-label">{player.position}</span>
@@ -274,20 +236,241 @@ function CourtVisualization({ team1Players, team2Players }) {
 
 // MatchupResults Component
 function MatchupResults({ team1Players, team2Players }) {
-  const stats = [
-    { category: 'Shooting', team1: { score: 8.5, width: '65%' }, team2: { score: 7.2, width: '55%' } },
-    { category: 'Dunking', team1: { score: 9.1, width: '70%' }, team2: { score: 7.8, width: '60%' } },
-    { category: 'Defense', team1: { score: 7.2, width: '55%' }, team2: { score: 9.7, width: '75%' } },
-    { category: 'Playmaking', team1: { score: 10.4, width: '80%' }, team2: { score: 7.8, width: '60%' } },
-    { category: 'Rebounding', team1: { score: 9.8, width: '75%' }, team2: { score: 8.5, width: '65%' } },
-    { category: 'Overall', team1: { score: 9.0, width: '69%' }, team2: { score: 8.2, width: '63%' } },
-  ];
+  const [team1Stats, setTeam1Stats] = useState(null);
+  const [team2Stats, setTeam2Stats] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const overallStat = stats.find(s => s.category === 'Overall');
-  const winner =
-    overallStat.team1.score > overallStat.team2.score
-      ? team1Players.teamName || 'Team 1'
-      : team2Players.teamName || 'Team 2';
+  // Function to fetch average ratings for a player
+  const fetchPlayerAverageRating = async (playerId) => {
+    try {
+      const playerRatingsRef = ref(rtdb, `ratings/${playerId}`);
+      const snapshot = await get(playerRatingsRef);
+
+      if (!snapshot.exists()) {
+        console.log(`No ratings found for player: ${playerId}`);
+        return {
+          shooting: 5.0,
+          dunking: 5.0,
+          defense: 5.0,
+          playmaking: 5.0,
+          rebounding: 5.0,
+          overall: 5.0,
+          count: 0
+        };
+      }
+
+      const ratingsObj = snapshot.val();
+      const playerRatings = Object.values(ratingsObj);
+
+      const sum = {
+        shooting: 0,
+        dunking: 0,
+        defense: 0,
+        playmaking: 0,
+        rebounding: 0
+      };
+
+      playerRatings.forEach(rating => {
+        sum.shooting += parseFloat(rating.shooting) || 0;
+        sum.dunking += parseFloat(rating.dunking) || 0;
+        sum.defense += parseFloat(rating.defense) || 0;
+        sum.playmaking += parseFloat(rating.playmaking) || 0;
+        sum.rebounding += parseFloat(rating.rebounding) || 0;
+      });
+
+      const count = playerRatings.length;
+      const avgRatings = {
+        shooting: (sum.shooting / count),
+        dunking: (sum.dunking / count),
+        defense: (sum.defense / count),
+        playmaking: (sum.playmaking / count),
+        rebounding: (sum.rebounding / count),
+        count: count
+      };
+
+      avgRatings.overall = (
+        avgRatings.shooting + avgRatings.dunking + avgRatings.defense + 
+        avgRatings.playmaking + avgRatings.rebounding
+      ) / 5;
+
+      return avgRatings;
+    } catch (err) {
+      console.error(`Error fetching ratings for ${playerId}:`, err);
+      return {
+        shooting: 5.0,
+        dunking: 5.0,
+        defense: 5.0,
+        playmaking: 5.0,
+        rebounding: 5.0,
+        overall: 5.0,
+        count: 0
+      };
+    }
+  };
+
+  // Function to calculate team stats based on selected players
+  const calculateTeamStats = async (teamPlayers) => {
+    const positions = ['pg', 'sg', 'sf', 'pf', 'c'];
+    const teamRatings = {
+      shooting: 0,
+      dunking: 0,
+      defense: 0,
+      playmaking: 0,
+      rebounding: 0,
+      overall: 0,
+      playerCount: 0
+    };
+
+    let validPlayers = 0;
+
+    for (const position of positions) {
+      const player = teamPlayers.players?.[position];
+      if (player && player.id) {
+        const playerRatings = await fetchPlayerAverageRating(player.id);
+        teamRatings.shooting += playerRatings.shooting;
+        teamRatings.dunking += playerRatings.dunking;
+        teamRatings.defense += playerRatings.defense;
+        teamRatings.playmaking += playerRatings.playmaking;
+        teamRatings.rebounding += playerRatings.rebounding;
+        validPlayers++;
+      }
+    }
+
+    if (validPlayers > 0) {
+      teamRatings.shooting = teamRatings.shooting / validPlayers;
+      teamRatings.dunking = teamRatings.dunking / validPlayers;
+      teamRatings.defense = teamRatings.defense / validPlayers;
+      teamRatings.playmaking = teamRatings.playmaking / validPlayers;
+      teamRatings.rebounding = teamRatings.rebounding / validPlayers;
+      teamRatings.overall = (
+        teamRatings.shooting + teamRatings.dunking + teamRatings.defense + 
+        teamRatings.playmaking + teamRatings.rebounding
+      ) / 5;
+      teamRatings.playerCount = validPlayers;
+    }
+
+    return teamRatings;
+  };
+
+  // Calculate stats when teams change
+  useEffect(() => {
+    const calculateBothTeamStats = async () => {
+      const team1HasPlayers = Object.values(team1Players.players || {}).some(p => p);
+      const team2HasPlayers = Object.values(team2Players.players || {}).some(p => p);
+
+      if (!team1HasPlayers && !team2HasPlayers) {
+        setTeam1Stats(null);
+        setTeam2Stats(null);
+        return;
+      }
+
+      setLoading(true);
+      setError('');
+
+      try {
+        const [team1StatsResult, team2StatsResult] = await Promise.all([
+          calculateTeamStats(team1Players),
+          calculateTeamStats(team2Players)
+        ]);
+
+        setTeam1Stats(team1StatsResult);
+        setTeam2Stats(team2StatsResult);
+      } catch (err) {
+        console.error('Error calculating team stats:', err);
+        setError('Failed to calculate team stats');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    calculateBothTeamStats();
+  }, [team1Players, team2Players]);
+
+  // Generate simulated final score based on overall rating
+  const generateScore = (teamOverall) => {
+    const baseScore = 95;
+    const variance = 15;
+    const ratingMultiplier = (teamOverall - 5) * 2;
+    const randomFactor = (Math.random() - 0.5) * 10;
+    return Math.round(baseScore + ratingMultiplier + variance + randomFactor);
+  };
+
+  if (loading) {
+    return (
+      <section id="matchup-results" className="p-4">
+        <div className="results-container">
+          <p className="text-center text-lg">Calculating matchup results...</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section id="matchup-results" className="p-4">
+        <div className="results-container">
+          <p className="text-center text-red-500">{error}</p>
+        </div>
+      </section>
+    );
+  }
+
+  if (!team1Stats || !team2Stats) {
+    return (
+      <section id="matchup-results" className="p-4">
+        <div className="results-container">
+          <p className="text-center text-gray-500">Select players for both teams to see matchup results</p>
+        </div>
+      </section>
+    );
+  }
+
+  // Determine winner and generate scores
+  const team1Overall = team1Stats.overall;
+  const team2Overall = team2Stats.overall;
+  const team1Score = generateScore(team1Overall);
+  const team2Score = generateScore(team2Overall);
+  
+  let finalTeam1Score = team1Score;
+  let finalTeam2Score = team2Score;
+  
+  if (team1Overall > team2Overall && team1Score <= team2Score) {
+    finalTeam1Score = team2Score + Math.floor(Math.random() * 5) + 1;
+  } else if (team2Overall > team1Overall && team2Score <= team1Score) {
+    finalTeam2Score = team1Score + Math.floor(Math.random() * 5) + 1;
+  }
+
+  const winner = finalTeam1Score > finalTeam2Score 
+    ? team1Players.teamName || 'Team 1'
+    : team2Players.teamName || 'Team 2';
+
+  // Calculate percentage widths for comparison bars
+  const getComparisonData = (stat) => {
+    const team1Value = team1Stats[stat];
+    const team2Value = team2Stats[stat];
+    const maxValue = Math.max(team1Value, team2Value, 10);
+    
+    return {
+      team1: {
+        score: team1Value.toFixed(1),
+        width: `${Math.max((team1Value / maxValue) * 100, 10)}%`
+      },
+      team2: {
+        score: team2Value.toFixed(1),
+        width: `${Math.max((team2Value / maxValue) * 100, 10)}%`
+      }
+    };
+  };
+
+  const stats = [
+    { category: 'Shooting', ...getComparisonData('shooting') },
+    { category: 'Dunking', ...getComparisonData('dunking') },
+    { category: 'Defense', ...getComparisonData('defense') },
+    { category: 'Playmaking', ...getComparisonData('playmaking') },
+    { category: 'Rebounding', ...getComparisonData('rebounding') },
+    { category: 'Overall', ...getComparisonData('overall') },
+  ];
 
   return (
     <section id="matchup-results" className="p-4">
@@ -296,34 +479,53 @@ function MatchupResults({ team1Players, team2Players }) {
           <h3 className="text-xl font-semibold mb-2">Matchup Winner</h3>
           <div className="winner-badge bg-green-500 text-white p-4 rounded">
             <div className="winner-text text-lg">{winner} Wins!</div>
-            <div className="winner-score text-xl font-bold">108 - 102</div>
+            <div className="winner-score text-xl font-bold">
+              {finalTeam1Score} - {finalTeam2Score}
+            </div>
           </div>
         </div>
+        
         <div className="stat-comparison">
           <h3 className="text-xl font-semibold mb-4">Team Comparison</h3>
+          <p className="text-sm text-gray-600 mb-4">
+            Based on user ratings • Team 1: {team1Stats.playerCount}/5 players rated • Team 2: {team2Stats.playerCount}/5 players rated
+          </p>
+          
           {stats.map(stat => (
             <div className="stat-category mb-4" key={stat.category}>
-              <div className="category-name font-semibold">{stat.category}</div>
-              <div className="comparison-bar flex">
+              <div className="category-name font-semibold mb-1">{stat.category}</div>
+              <div className="comparison-bar flex rounded overflow-hidden" style={{ height: '40px' }}>
                 <div
-                  className="team1-bar bg-blue-500 text-white text-center"
-                  style={{ width: stat.team1.width }}
+                  className="team1-bar bg-blue-500 text-white text-center flex items-center justify-center text-sm font-bold"
+                  style={{ width: stat.team1.width, minWidth: '60px' }}
                 >
                   {stat.team1.score}
                 </div>
                 <div
-                  className="team2-bar bg-red-500 text-white text-center"
-                  style={{ width: stat.team2.width }}
+                  className="team2-bar bg-red-500 text-white text-center flex items-center justify-center text-sm font-bold"
+                  style={{ width: stat.team2.width, minWidth: '60px' }}
                 >
                   {stat.team2.score}
                 </div>
               </div>
-              <div className="team-names flex justify-between">
-                <span>{team1Players.teamName || 'Team 1'}</span>
-                <span>{team2Players.teamName || 'Team 2'}</span>
+              <div className="team-names flex justify-between mt-1 text-sm">
+                <span className="text-blue-600 font-medium">{team1Players.teamName || 'Team 1'}</span>
+                <span className="text-red-600 font-medium">{team2Players.teamName || 'Team 2'}</span>
               </div>
             </div>
           ))}
+        </div>
+        
+        <div className="matchup-details bg-gray-50 p-4 rounded">
+          <h4 className="font-semibold mb-2">Matchup Analysis</h4>
+          <p className="text-sm text-gray-700">
+            {team1Overall > team2Overall 
+              ? `${team1Players.teamName || 'Team 1'} has the statistical advantage with an overall rating of ${team1Overall.toFixed(1)} vs ${team2Overall.toFixed(1)}.`
+              : team2Overall > team1Overall
+              ? `${team2Players.teamName || 'Team 2'} has the statistical advantage with an overall rating of ${team2Overall.toFixed(1)} vs ${team1Overall.toFixed(1)}.`
+              : `Both teams are evenly matched with similar overall ratings around ${team1Overall.toFixed(1)}.`
+            }
+          </p>
         </div>
       </div>
     </section>
@@ -352,9 +554,66 @@ function FiveVFive() {
     players: {},
   });
 
+  const [allPlayers, setAllPlayers] = useState([]);
   const [error, setError] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const teamFullNames = {
+    ATL: 'Atlanta Hawks', BOS: 'Boston Celtics', BRK: 'Brooklyn Nets',
+    CHO: 'Charlotte Hornets', CHI: 'Chicago Bulls', CLE: 'Cleveland Cavaliers',
+    DAL: 'Dallas Mavericks', DEN: 'Denver Nuggets', DET: 'Detroit Pistons',
+    GSW: 'Golden State Warriors', HOU: 'Houston Rockets', IND: 'Indiana Pacers',
+    LAC: 'Los Angeles Clippers', LAL: 'Los Angeles Lakers', MEM: 'Memphis Grizzlies',
+    MIA: 'Miami Heat', MIL: 'Milwaukee Bucks', MIN: 'Minnesota Timberwolves',
+    NOP: 'New Orleans Pelicans', NYK: 'New York Knicks', OKC: 'Oklahoma City Thunder',
+    ORL: 'Orlando Magic', PHI: 'Philadelphia 76ers', PHO: 'Phoenix Suns',
+    POR: 'Portland Trail Blazers', SAC: 'Sacramento Kings', SAS: 'San Antonio Spurs',
+    TOR: 'Toronto Raptors', UTA: 'Utah Jazz', WAS: 'Washington Wizards'
+  };
+
+  // Fetch player data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('/data/players.json');
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        const data = await res.json();
+        console.log('Fetched player data:', data);
+
+        const grouped = {};
+        data.forEach((p) => {
+          if (p.Team === '2TM') return;
+          if (!grouped[p.Player]) grouped[p.Player] = [];
+          grouped[p.Player].push(p);
+        });
+
+        const transformed = Object.entries(grouped).map(([name, entries]) => {
+          const latest = entries[entries.length - 1];
+          const playerName = latest.Player || 'Unknown';
+          const teamCode = latest.Team || 'Unknown';
+
+          return {
+            id: getNormalizedPlayerId(latest),
+            name: playerName,
+            team: teamCode,
+            teamName: teamFullNames[teamCode] || teamCode,
+            position: latest.Pos,
+            img: formatPlayerNameForImage(playerName),
+          };
+        });
+
+        console.log('Transformed players:', transformed);
+        setAllPlayers(transformed);
+      } catch (err) {
+        console.error('Failed to load player data:', err);
+        setError('Failed to load player data. Please try again later.');
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
@@ -377,12 +636,17 @@ function FiveVFive() {
     const team2Selected = Object.values(team2Players.players).filter(p => p).length === 5;
 
     if (!team1Selected || !team2Selected) {
-      setError('Please select all players for both teams.');
+      setError('Please select all players for both teams to simulate the matchup.');
       return;
     }
 
     setError('');
-    console.log('Simulating matchup:', { team1Players, team2Players });
+    console.log('Simulating matchup with real player ratings:', { team1Players, team2Players });
+    
+    const resultsSection = document.getElementById('matchup-results');
+    if (resultsSection) {
+      resultsSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleReset = () => {
@@ -393,51 +657,57 @@ function FiveVFive() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <header className="flex justify-between items-center p-4 bg-gray-800 text-white">
-        <div className="site-logo flex items-center">
-          <img
-            src="/icons/Basketball-icon.jpg"
-            alt="Site Icon"
-            className="logo-img w-10 h-10 mr-2"
-          />
-          <h1 className="text-2xl font-bold">MyNBAList</h1>
+      <header className="site-header">
+        <div className="site-logo">
+          <img src="/icons/Basketball-icon.jpg" alt="Site Icon" className="logo-img" />
+          <h1>MyNBAList</h1>
+          <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+            ☰
+          </button>
         </div>
-        <nav className="flex justify-between w-full">
-          <div className="nav-left flex space-x-4">
-            <Link to="/home" className="hover:text-gray-300">Home</Link>
-            <Link to="/browse" className="hover:text-gray-300">Browse Players</Link>
-            <Link to="/5v5" className="hover:text-gray-300">My NBA 5v5</Link>
-            <Link to="/profile" className="hover:text-gray-300">My Profile</Link>
+
+        <nav className="desktop-nav">
+          <div className="nav-left">
+            <Link to="/">Home</Link>
+            <Link to="/browse">Browse Players</Link>
+            <Link to="/5v5">My NBA 5v5</Link>
+            <Link to="/profile">My Profile</Link>
           </div>
-          <div className="nav-right flex space-x-4">
+          <div className="nav-right">
             {currentUser ? (
               <>
                 <span style={{ color: '#fff', fontWeight: '600', marginRight: '1rem' }}>
                   Hello, {currentUser.displayName || currentUser.email}
                 </span>
-                <button
-                  onClick={handleLogout}
-                  style={{
-                    backgroundColor: 'transparent',
-                    border: '1px solid white',
-                    color: 'white',
-                    padding: '0.5rem 1rem',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontWeight: '600',
-                  }}
-                >
-                  Logout
-                </button>
+                <button onClick={handleLogout}>Logout</button>
               </>
             ) : (
               <>
-                <Link to="/login" className="hover:text-gray-300">Login</Link>
-                <Link to="/register" className="hover:text-gray-300">Register</Link>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
               </>
             )}
           </div>
         </nav>
+
+        {menuOpen && (
+          <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`}>
+            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link to="/browse" onClick={() => setMenuOpen(false)}>Browse Players</Link>
+            <Link to="/5v5" onClick={() => setMenuOpen(false)}>My NBA 5v5</Link>
+            <Link to="/profile" onClick={() => setMenuOpen(false)}>My Profile</Link>
+            {currentUser ? (
+              <>
+                <button onClick={() => { setMenuOpen(false); handleLogout(); }}>Logout</button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+                <Link to="/register" onClick={() => setMenuOpen(false)}>Register</Link>
+              </>
+            )}
+          </nav>
+        )}
       </header>
 
       <main className="container mx-auto p-4">
@@ -457,11 +727,15 @@ function FiveVFive() {
                 teamNumber={1}
                 setPlayers={setTeam1Players}
                 selectedPlayers={team1Players}
+                allPlayers={allPlayers}
+                otherTeamPlayers={team2Players}
               />
               <TeamSelector
                 teamNumber={2}
                 setPlayers={setTeam2Players}
                 selectedPlayers={team2Players}
+                allPlayers={allPlayers}
+                otherTeamPlayers={team1Players}
               />
             </div>
             {error && <p className="text-red-500 text-center mt-4">{error}</p>}

@@ -18,6 +18,7 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError]               = useState('');
   const [currentUser, setCurrentUser]   = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -67,19 +68,20 @@ export default function Register() {
   };
 
   return (
-    <>
-      <header>
+    <div className="min-h-screen bg-gray-100">
+      <header className="site-header">
         <div className="site-logo">
-          <img
-            src="/icons/Basketball-icon.jpg"
-            alt="Site Icon"
-            className="logo-img"
-          />
+          <img src="/icons/Basketball-icon.jpg" alt="Site Icon" className="logo-img" />
           <h1>MyNBAList</h1>
+          <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+            ☰
+          </button>
         </div>
-        <nav>
+
+        {/* Full menu for desktop */}
+        <nav className="desktop-nav">
           <div className="nav-left">
-            <Link to="/home">Home</Link>
+            <Link to="/">Home</Link>
             <Link to="/browse">Browse Players</Link>
             <Link to="/5v5">My NBA 5v5</Link>
             <Link to="/profile">My Profile</Link>
@@ -90,20 +92,7 @@ export default function Register() {
                 <span style={{ color: '#fff', fontWeight: '600', marginRight: '1rem' }}>
                   Hello, {currentUser.displayName || currentUser.email}
                 </span>
-                <button
-                  onClick={handleLogout}
-                  style={{
-                    backgroundColor: 'transparent',
-                    border: '1px solid white',
-                    color: 'white',
-                    padding: '0.5rem 1rem',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontWeight: '600',
-                  }}
-                >
-                  Logout
-                </button>
+                <button onClick={handleLogout}>Logout</button>
               </>
             ) : (
               <>
@@ -113,6 +102,26 @@ export default function Register() {
             )}
           </div>
         </nav>
+
+        {/* Collapsible menu for mobile */}
+        {menuOpen && (
+          <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`}>
+            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link to="/browse" onClick={() => setMenuOpen(false)}>Browse Players</Link>
+            <Link to="/5v5" onClick={() => setMenuOpen(false)}>My NBA 5v5</Link>
+            <Link to="/profile" onClick={() => setMenuOpen(false)}>My Profile</Link>
+            {currentUser ? (
+              <>
+                <button onClick={() => { setMenuOpen(false); handleLogout(); }}>Logout</button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+                <Link to="/register" onClick={() => setMenuOpen(false)}>Register</Link>
+              </>
+            )}
+          </nav>
+        )}
       </header>
 
       <main>
@@ -249,7 +258,7 @@ export default function Register() {
       <footer>
         <p>&copy; 2025 MyNBAList</p>
       </footer>
-    </>
+    </div>
   );
 }
 

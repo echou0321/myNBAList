@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../firebase';
+import { auth, rtdb } from '../firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebase';
+import { ref, get } from 'firebase/database';
 
 export default function Browse() {
   const teamFullNames = {
@@ -28,6 +27,7 @@ export default function Browse() {
   const [sortBy, setSortBy] = useState('first');
   const [sortByRating, setSortByRating] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,40 +45,53 @@ export default function Browse() {
 
         const transformed = Object.entries(grouped).map(([name, entries]) => {
           const latest = entries[entries.length - 1];
+          const playerName = latest.Player || 'Unknown';
+          const teamCode = latest.Team || 'Unknown';
+
           return {
-            id: `${latest.Player.replace(/\s+/g, '-').toLowerCase()}-${latest.Team.toLowerCase()}`,
-            name: latest.Player,
-            team: latest.Team,
-            teamName: teamFullNames[latest.Team] || latest.Team,
+            id: `${playerName.replace(/\s+/g, '-').toLowerCase()}-${teamCode.toLowerCase()}`,
+            name: playerName,
+            team: teamCode,
+            teamName: teamFullNames[teamCode] || teamCode,
             position: latest.Pos,
-            conference: ['BOS','NYK','MIA','PHI','MIL','IND','ORL','CLE','ATL','TOR','WAS','CHI','CHA','DET','BRK','BKN'].includes(latest.Team) ? 'East' : 'West',
-            img: latest.Player.replace(/\s+/g, '-'),
+            conference: ['BOS','NYK','MIA','PHI','MIL','IND','ORL','CLE','ATL','TOR','WAS','CHI','CHA','DET','BRK','BKN'].includes(teamCode) ? 'East' : 'West',
+            img: playerName.replace(/\s+/g, '-'),
           };
         });
 
-        // Fetch ratings from Firestore
-        const ratingsSnapshot = await getDocs(collection(db, 'ratings'));
+        // Fetch ratings from RTDB
+        const ratingsRef = ref(rtdb, 'ratings');
+        const snapshot = await get(ratingsRef);
+        const ratingsData = snapshot.exists() ? snapshot.val() : {};
         const ratingsMap = {};
 
-        ratingsSnapshot.forEach((doc) => {
-          const { playerId, overall } = doc.data();
-          if (!ratingsMap[playerId]) {
-            ratingsMap[playerId] = { sum: 0, count: 0 };
-          }
-          ratingsMap[playerId].sum += overall;
-          ratingsMap[playerId].count += 1;
-        });
+        for (const playerId in ratingsData) {
+          const playerRatings = ratingsData[playerId];
+          let sum = 0;
+          let count = 0;
 
-        // Attach average rating
+          for (const userId in playerRatings) {
+            const { overall } = playerRatings[userId];
+            if (typeof overall === 'number') {
+              sum += overall;
+              count += 1;
+            }
+          }
+
+          if (count > 0) {
+            ratingsMap[playerId] = (sum / count).toFixed(1);
+          }
+        }
+
+        // Attach ratings to players
         const playersWithRatings = transformed.map((player) => {
-          const ratingData = ratingsMap[player.id];
-          const avgRating = ratingData ? (ratingData.sum / ratingData.count).toFixed(1) : '-';
+          const avgRating = ratingsMap[player.id] || '-';
           return { ...player, rating: avgRating };
         });
 
         setPlayers(playersWithRatings);
       } catch (err) {
-        console.error('Failed to load player data or ratings', err);
+        console.error('❌ Failed to load player data or ratings from RTDB:', err);
       }
     };
 
@@ -114,7 +127,9 @@ export default function Browse() {
 
   const sortedPlayers = [...filteredPlayers].sort((a, b) => {
     if (sortByRating !== '') {
-      return sortByRating === 'desc' ? b.rating - a.rating : a.rating - b.rating;
+      const ratingA = parseFloat(a.rating) || 0;
+      const ratingB = parseFloat(b.rating) || 0;
+      return sortByRating === 'desc' ? ratingB - ratingA : ratingA - ratingB;
     } else if (sortBy === 'last') {
       const lastA = a.name.split(' ').slice(-1)[0];
       const lastB = b.name.split(' ').slice(-1)[0];
@@ -168,21 +183,26 @@ export default function Browse() {
             }
           })()}
         </p>
-        <p class="player-rating">⭐ {player.rating}</p>
+        <p className="player-rating">⭐ {player.rating}</p>
       </div>
     </Link>
   ));
 
   return (
-    <>
-      <header>
+    <div className="min-h-screen bg-gray-100">
+      <header className="site-header">
         <div className="site-logo">
           <img src="/icons/Basketball-icon.jpg" alt="Site Icon" className="logo-img" />
           <h1>MyNBAList</h1>
+          <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+            ☰
+          </button>
         </div>
-        <nav>
+
+        {/* Full menu for desktop */}
+        <nav className="desktop-nav">
           <div className="nav-left">
-            <Link to="/home">Home</Link>
+            <Link to="/">Home</Link>
             <Link to="/browse">Browse Players</Link>
             <Link to="/5v5">My NBA 5v5</Link>
             <Link to="/profile">My Profile</Link>
@@ -193,20 +213,7 @@ export default function Browse() {
                 <span style={{ color: '#fff', fontWeight: '600', marginRight: '1rem' }}>
                   Hello, {currentUser.displayName || currentUser.email}
                 </span>
-                <button
-                  onClick={handleLogout}
-                  style={{
-                    backgroundColor: 'transparent',
-                    border: '1px solid white',
-                    color: 'white',
-                    padding: '0.5rem 1rem',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontWeight: '600',
-                  }}
-                >
-                  Logout
-                </button>
+                <button onClick={handleLogout}>Logout</button>
               </>
             ) : (
               <>
@@ -216,6 +223,26 @@ export default function Browse() {
             )}
           </div>
         </nav>
+
+        {/* Collapsible menu for mobile */}
+        {menuOpen && (
+          <nav className={`mobile-nav ${menuOpen ? 'open' : ''}`}>
+            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link to="/browse" onClick={() => setMenuOpen(false)}>Browse Players</Link>
+            <Link to="/5v5" onClick={() => setMenuOpen(false)}>My NBA 5v5</Link>
+            <Link to="/profile" onClick={() => setMenuOpen(false)}>My Profile</Link>
+            {currentUser ? (
+              <>
+                <button onClick={() => { setMenuOpen(false); handleLogout(); }}>Logout</button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+                <Link to="/register" onClick={() => setMenuOpen(false)}>Register</Link>
+              </>
+            )}
+          </nav>
+        )}
       </header>
 
       <main>
@@ -264,7 +291,7 @@ export default function Browse() {
 
           <select id="rating-filter" value={ratingFilter} onChange={e => setRatingFilter(e.target.value)}>
             <option value="">All Ratings</option>
-            {[...Array(10)].map((_, i) => (
+            {[...Array(11)].map((_, i) => (
               <option key={i} value={i}>{i}</option>
             ))}
           </select>
@@ -288,6 +315,6 @@ export default function Browse() {
       <footer>
         <p>© 2025 MyNBAList</p>
       </footer>
-    </>
+    </div>
   );
 }
