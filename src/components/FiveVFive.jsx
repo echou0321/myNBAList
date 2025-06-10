@@ -28,18 +28,11 @@ class ErrorBoundary extends React.Component {
 
 // Helper function to normalize player ID
 const getNormalizedPlayerId = (player) =>
-  `${player.Player.replace(/\s+/g, '-').toLowerCase()}-${player.Team}`; // Keep team code as is (e.g., 'LAL')
+  `${player.Player.replace(/\s+/g, '-').toLowerCase()}-${player.Team.toLowerCase()}`;
 
-// Helper function to generate image paths
-const getImagePath = (name) => {
-  if (!name || name === 'Unknown') {
-    console.log('Using default image for unknown player');
-    return '/icons/ChatGPT%20Image%20Jun%208,%202025%20at%2004_34_48%20AM.png';
-  }
-  const cleanName = name.replace(/\s+/g, '-'); // Preserve special characters
-  const path = `/playerIMGs/${cleanName}.jpg`;
-  console.log(`Generated image path for ${name}: ${path}`);
-  return path;
+// Helper function to format player name for image filename
+const formatPlayerNameForImage = (playerName) => {
+  return playerName.replace(/\s+/g, '-');
 };
 
 // TeamSelector Component
@@ -67,7 +60,12 @@ function TeamSelector({ teamNumber, setPlayers, selectedPlayers, allPlayers, oth
       players: {
         ...prev.players,
         [position]: selected && value
-          ? { id: selected.id, name: selected.name, position: position.toUpperCase(), img: selected.img }
+          ? { 
+              id: selected.id, 
+              name: selected.name, 
+              position: position.toUpperCase(), 
+              img: selected.img 
+            }
           : null,
       },
     }));
@@ -126,23 +124,17 @@ function TeamSelector({ teamNumber, setPlayers, selectedPlayers, allPlayers, oth
 // CourtVisualization Component
 function CourtVisualization({ team1Players, team2Players }) {
   const defaultTeamPlayers = {
-    pg: { name: 'Player 1', position: 'PG', img: 'icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    sg: { name: 'Player 2', position: 'SG', img: 'icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    sf: { name: 'Player 3', position: 'SF', img: 'icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    pf: { name: 'Player 4', position: 'PF', img: 'icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
-    c: { name: 'Player 5', position: 'C', img: 'icons/ChatGPT Image Jun 8, 2025 at 04_34_48 AM.png' },
+    pg: { name: 'Player 1', position: 'PG', img: 'default' },
+    sg: { name: 'Player 2', position: 'SG', img: 'default' },
+    sf: { name: 'Player 3', position: 'SF', img: 'default' },
+    pf: { name: 'Player 4', position: 'PF', img: 'default' },
+    c: { name: 'Player 5', position: 'C', img: 'default' },
   };
 
   const getTeamPlayers = (teamPlayers, defaults) => {
     const result = {};
     ['pg', 'sg', 'sf', 'pf', 'c'].forEach(pos => {
       result[pos] = teamPlayers.players?.[pos] || defaults[pos];
-      if (!result[pos].img) {
-        result[pos].img = '/playerIMGs/default.jpg';
-        console.warn(`No image for ${pos}, falling back to default`);
-      } else {
-        console.log(`Team player ${pos} image: ${result[pos].img}`);
-      }
     });
     return result;
   };
@@ -151,8 +143,16 @@ function CourtVisualization({ team1Players, team2Players }) {
   const team2ToShow = getTeamPlayers(team2Players, defaultTeamPlayers);
 
   const handleImageError = (e) => {
-    console.warn(`Image failed to load: ${e.target.src}, falling back to default`, e);
-    e.target.src = '/playerIMGs/default.jpg';
+    console.warn(`Image failed to load: ${e.target.src}, falling back to default`);
+    e.target.src = '/icons/ChatGPT%20Image%20Jun%208,%202025%20at%2004_34_48%20AM.png';
+  };
+
+  const getImageSrc = (player) => {
+    if (player.img === 'default') {
+      return '/icons/ChatGPT%20Image%20Jun%208,%202025%20at%2004_34_48%20AM.png';
+    }
+    // Use the img property directly since it's already formatted correctly
+    return `/playerIMGs/${player.img}.jpg`;
   };
 
   const team1PlayerElements = ['pg', 'sg', 'sf', 'pf', 'c'].map(pos => {
@@ -161,7 +161,7 @@ function CourtVisualization({ team1Players, team2Players }) {
       <div className={`player-position ${pos}`} key={pos}>
         <div className="player-marker" data-tooltip={`${player.name}: ${player.position}`}>
           <img
-            src={player.img}
+            src={getImageSrc(player)}
             alt={player.position}
             className="player-img"
             onError={handleImageError}
@@ -181,7 +181,7 @@ function CourtVisualization({ team1Players, team2Players }) {
       <div className={`player-position ${pos}`} key={pos}>
         <div className="player-marker" data-tooltip={`${player.name}: ${player.position}`}>
           <img
-            src={player.img}
+            src={getImageSrc(player)}
             alt={player.position}
             className="player-img"
             onError={handleImageError}
@@ -349,7 +349,7 @@ function FiveVFive() {
             team: teamCode,
             teamName: teamFullNames[teamCode] || teamCode,
             position: latest.Pos,
-            img: getImagePath(playerName),
+            img: formatPlayerNameForImage(playerName), // This should match your file naming: "Stephen-Curry"
           };
         });
 
