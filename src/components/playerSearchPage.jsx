@@ -127,7 +127,9 @@ export default function Browse() {
 
   const sortedPlayers = [...filteredPlayers].sort((a, b) => {
     if (sortByRating !== '') {
-      return sortByRating === 'desc' ? b.rating - a.rating : a.rating - b.rating;
+      const ratingA = parseFloat(a.rating) || 0;
+      const ratingB = parseFloat(b.rating) || 0;
+      return sortByRating === 'desc' ? ratingB - ratingA : ratingA - ratingB;
     } else if (sortBy === 'last') {
       const lastA = a.name.split(' ').slice(-1)[0];
       const lastB = b.name.split(' ').slice(-1)[0];
@@ -289,7 +291,7 @@ export default function Browse() {
 
           <select id="rating-filter" value={ratingFilter} onChange={e => setRatingFilter(e.target.value)}>
             <option value="">All Ratings</option>
-            {[...Array(10)].map((_, i) => (
+            {[...Array(11)].map((_, i) => (
               <option key={i} value={i}>{i}</option>
             ))}
           </select>
