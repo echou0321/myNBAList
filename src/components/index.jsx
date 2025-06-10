@@ -1,3 +1,18 @@
+/**
+ * HomePage.jsx
+ * 
+ * This component displays the homepage for MyNBAList, including:
+ * - Auth state logic
+ * - Top 10 rated players
+ * - Trending players by weekly profile views
+ * 
+ * AI tools (e.g., ChatGPT by OpenAI) were used to assist with:
+ * - Optimizing data aggregation logic for top/trending players
+ * - Improving error handling and commenting clarity
+ * 
+ * Citation: OpenAI. (2025). ChatGPT (June 2025 version) [Large language model]. https://chat.openai.com
+ */
+
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
@@ -12,11 +27,13 @@ const HomePage = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Track current login status
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => setCurrentUser(user));
     return () => unsubscribe();
   }, []);
 
+  // Handle logout and redirect to login
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -26,6 +43,7 @@ const HomePage = () => {
     }
   };
 
+  // Fetch and calculate top 10 rated players by average overall rating
   useEffect(() => {
     const fetchTopPlayers = async () => {
       try {
@@ -37,7 +55,7 @@ const HomePage = () => {
           return;
         }
 
-        const allRatings = snapshot.val(); // playerId -> userId -> ratingObj
+        const allRatings = snapshot.val(); // { playerId: { userId: { ratingObj } } }
         const playerMap = {};
 
         for (const playerId in allRatings) {
@@ -78,6 +96,7 @@ const HomePage = () => {
     fetchTopPlayers();
   }, []);
 
+  // Fetch trending players based on profile views in the past 7 days
   useEffect(() => {
     const fetchTrendingPlayers = async () => {
       try {
@@ -91,7 +110,7 @@ const HomePage = () => {
         }
 
         const trendingData = [];
-        const profileViews = snapshot.val(); 
+        const profileViews = snapshot.val();
 
         for (const playerId in profileViews) {
           const visits = profileViews[playerId].visits;

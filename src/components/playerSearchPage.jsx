@@ -1,3 +1,17 @@
+/**
+ * Browse.jsx
+ * 
+ * This component allows users to browse NBA players with filters for team, position, conference, rating, 
+ * and sort toggles. It dynamically loads data and merges it with live rating info from Firebase.
+ * 
+ * AI tools (e.g., ChatGPT by OpenAI) were used to assist with:
+ * - Optimizing the data transformation and filtering logic
+ * - Implementing sort toggles and rating aggregation
+ * - Clarifying error handling and naming consistency
+ * 
+ * Citation: OpenAI. (2025). ChatGPT (June 2025 version) [Large language model]. https://chat.openai.com
+ */
+
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, rtdb } from '../firebase';
@@ -38,7 +52,7 @@ export default function Browse() {
 
         const grouped = {};
         data.forEach((p) => {
-          if (p.Team === '2TM') return;
+          if (p.Team === '2TM') return; // Skip multi-team entries
           if (!grouped[p.Player]) grouped[p.Player] = [];
           grouped[p.Player].push(p);
         });
@@ -59,7 +73,7 @@ export default function Browse() {
           };
         });
 
-        // Fetch ratings from RTDB
+        // Fetch and average ratings from RTDB
         const ratingsRef = ref(rtdb, 'ratings');
         const snapshot = await get(ratingsRef);
         const ratingsData = snapshot.exists() ? snapshot.val() : {};
@@ -83,7 +97,7 @@ export default function Browse() {
           }
         }
 
-        // Attach ratings to players
+        // Merge rating data into player objects
         const playersWithRatings = transformed.map((player) => {
           const avgRating = ratingsMap[player.id] || '-';
           return { ...player, rating: avgRating };
@@ -114,6 +128,7 @@ export default function Browse() {
     }
   };
 
+  // Filter player list by all selected filters
   const filteredPlayers = players.filter(player => {
     const ratingInt = Math.floor(player.rating);
     return (
@@ -125,6 +140,7 @@ export default function Browse() {
     );
   });
 
+  // Sort by rating or name
   const sortedPlayers = [...filteredPlayers].sort((a, b) => {
     if (sortByRating !== '') {
       const ratingA = parseFloat(a.rating) || 0;
