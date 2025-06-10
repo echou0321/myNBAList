@@ -229,3 +229,7 @@ export default function Login() {
     </div>
   );
 }
+
+/* Used AI when running into errors with connecting firebase and login page and it provided me instructions on how to do so.
+    Also used AI to help with cetain styling issues of the login page.
+*/
