@@ -1,15 +1,20 @@
-MyNBAList is a full-stack web application built with React, Vite, and Firebase, powered by a Kaggle NBA dataset. The app enables basketball fans to:
+# MyNBAList
 
-Browse and search NBA players with filters, sorting, and pagination.
+A React + Firebase web app for browsing, rating, and personalizing NBA player lists with live database updates.  
 
-View detailed Player Profile pages with stats, bios, recent games, and user ratings.
+---
 
-Submit and persist ratings using Firebase Realtime Database.
+## Features
+- Browse & Search: Explore NBA players with search, filters, sorting, and pagination.  
+- Player Profiles: View stats, bios, and user ratings for each player.  
+- Ratings System: Submit and persist ratings using Firebase Realtime Database.  
+- Trending & Top Players: See the most rated and highest-rated players updated in real time.  
+- User Profiles: Customize a Top 10 players list (drag-and-drop) and upload profile pictures.  
+- Responsive Design: Optimized for desktop and mobile devices.  
 
-Discover trending players and top-rated players, updated dynamically in real time.
+---
 
-Create a personalized user profile, including a drag-and-drop Top 10 players list and profile picture uploads.
-
-Enjoy a responsive design optimized for desktop and mobile.
-
-This project demonstrates frontend development, dataset integration, real-time database management, and collaborative software engineering.
+## Tech Stack
+- **Frontend:** React, Vite, Tailwind CSS  
+- **Backend / Database:** Firebase (Auth, Realtime Database, Hosting, Storage)  
+- **Data Source:** Kaggle NBA dataset (JSON)  
