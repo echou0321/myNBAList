@@ -1,12 +1,15 @@
-# React + Vite
+MyNBAList is a full-stack web application built with React, Vite, and Firebase, powered by a Kaggle NBA dataset. The app enables basketball fans to:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Browse and search NBA players with filters, sorting, and pagination.
 
-Currently, two official plugins are available:
+View detailed Player Profile pages with stats, bios, recent games, and user ratings.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Submit and persist ratings using Firebase Realtime Database.
 
-## Expanding the ESLint configuration
+Discover trending players and top-rated players, updated dynamically in real time.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Create a personalized user profile, including a drag-and-drop Top 10 players list and profile picture uploads.
+
+Enjoy a responsive design optimized for desktop and mobile.
+
+This project demonstrates frontend development, dataset integration, real-time database management, and collaborative software engineering.
